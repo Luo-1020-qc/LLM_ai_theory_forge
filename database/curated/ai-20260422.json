@@ -1,0 +1,760 @@
+{
+  "source": {
+    "id": "AIEXAM-20260422",
+    "exam_date": "2026-04-22",
+    "job_track": "互联网公司 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260422",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260422-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "某运营商构建网络配置命令、设备运行日志、故障案例一体化检索系统，文本中包含大量命令行（如 display interface、ip route）、MAC/IP 地址、端口编号、VLAN ID、OID 等结构化内容。最合适的处理方式是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "对命令行、IP、MAC、端口等增加专用词表，按命令块/日志条目切分，使用通信领域微调 Embedding"
+        },
+        {
+          "label": "B",
+          "text": "全部文本统一小写并去除符号，避免分词异常"
+        },
+        {
+          "label": "C",
+          "text": "直接按固定长度切分，使用通用分词与通用 Embedding"
+        },
+        {
+          "label": "D",
+          "text": "只使用关键词 BM25 检索，不使用 Embedding"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "通信领域文本包含大量专用术语（命令行、MAC 地址、OID 等），通用分词会将其错误拆分或忽略。需要增加专用词表保留完整语义，按命令块/日志条目做语义切分，并使用领域微调 Embedding 来捕获专业语境。B 项去除符号会丢失关键信息（如 IP 地址中的点号），C 项固定长度切分会截断命令块，D 项纯 BM25 无法处理语义相似但文本不同的查询。",
+      "topic": "大模型——RAG/检索增强",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "在大模型指令微调实验中，研究人员对比了 3 种训练数据配比（纯指令、指令+多轮对话、指令+知识）下的模型响应准确率，需直观展示不同配比的准确率差异并便于组间对比，最适合的可视化图表是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "分组柱状图"
+        },
+        {
+          "label": "B",
+          "text": "雷达图"
+        },
+        {
+          "label": "C",
+          "text": "饼图"
+        },
+        {
+          "label": "D",
+          "text": "直方图"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "分组柱状图最适合展示少量分类变量之间的数值对比，3 种配比作为分组、准确率作为柱高，组间差异一目了然。饼图适合展示占比而非对比，雷达图适合多维度评估，直方图用于展示连续变量的频率分布。",
+      "topic": "机器学习——数据可视化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q003",
+      "source_number": 3,
+      "type": "single",
+      "stem": "牛顿迭代法的迭代公式为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$x_{n+1} = x_n - \\frac{f(x_n)}{f’(x_n)}$"
+        },
+        {
+          "label": "B",
+          "text": "$x_{n+1} = x_n - f(x_n)$"
+        },
+        {
+          "label": "C",
+          "text": "$x_{n+1} = x_n + \\frac{f(x_n)}{f’(x_n)}$"
+        },
+        {
+          "label": "D",
+          "text": "$x_{n+1} = \\frac{f’(x_n)}{f(x_n)}$"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "牛顿迭代法通过在当前点做切线逼近零点，切线方程为 $y = f(x_n) + f’(x_n)(x - x_n)$，令 $y = 0$ 解出 $x_{n+1} = x_n - \\frac{f(x_n)}{f’(x_n)}$。C 项符号错误，B 项缺少导数项，D 项分子分母颠倒。",
+      "topic": "数学——数值计算",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$y = f(x_n) + f’(x_n)(x - x_n)$",
+        "$y = 0$",
+        "$x_{n+1} = x_n - \\frac{f(x_n)}{f’(x_n)}$",
+        "牛顿迭代法通过在当前点做切线逼近零点，切线方程为 $y = f(x_n) + f’(x_n)(x - x_n)$，令 $y = 0$ 解出 $x_{n+1} = x_n - \\frac{f(x_n)}{f’(x_n)}$。C 项符号错误，B 项缺少导数项，D 项分子分母颠倒。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "张量并行（TP）主要用于解决单卡显存无法容纳单个模型层权重的问题，其切分逻辑是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "按优化器状态切分，不同 GPU 维护不同的优化器状态"
+        },
+        {
+          "label": "B",
+          "text": "按网络层深度切分，不同层放在不同 GPU 上"
+        },
+        {
+          "label": "C",
+          "text": "按批次大小切分，不同样本放在不同 GPU 上"
+        },
+        {
+          "label": "D",
+          "text": "按矩阵运算的维度切分，同一层内的权重被拆分到不同 GPU 上"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "张量并行（Tensor Parallelism）的核心是将同一层的权重矩阵按行或列维度切分到多个 GPU 上，每个 GPU 计算部分矩阵乘法后通过 AllReduce 汇聚结果。A 项描述的是 ZeRO 优化器，B 项是流水线并行（Pipeline Parallelism），C 项是数据并行（Data Parallelism）。",
+      "topic": "大模型——分布式训练",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "下列哪个矩阵一定是可逆的？",
+      "options": [
+        {
+          "label": "A",
+          "text": "对称矩阵"
+        },
+        {
+          "label": "B",
+          "text": "行列式为零的矩阵"
+        },
+        {
+          "label": "C",
+          "text": "单位矩阵"
+        },
+        {
+          "label": "D",
+          "text": "所有元素都为零的矩阵"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "单位矩阵 $I$ 的行列式为 $1$，且 $I^{-1} = I$，因此一定可逆。对称矩阵不一定可逆（如零矩阵就是对称的），行列式为零的矩阵定义上不可逆，零矩阵行列式为零也不可逆。",
+      "topic": "数学——线性代数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$I$",
+        "$1$",
+        "$I^{-1} = I$",
+        "单位矩阵 $I$ 的行列式为 $1$，且 $I^{-1} = I$，因此一定可逆。对称矩阵不一定可逆（如零矩阵就是对称的），行列式为零的矩阵定义上不可逆，零矩阵行列式为零也不可逆。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "在多轮对话推理系统中，如果 GPU/NPU 显存已满但仍有新的 token 需要生成，系统通常采用什么策略？",
+      "options": [
+        {
+          "label": "A",
+          "text": "将部分 KV Cache swap 到 CPU 或进行 recomputation"
+        },
+        {
+          "label": "B",
+          "text": "自动降低模型精度"
+        },
+        {
+          "label": "C",
+          "text": "重启服务器"
+        },
+        {
+          "label": "D",
+          "text": "直接杀掉进程"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "vLLM 等推理引擎在显存不足时，会将低优先级请求的 KV Cache 换出（swap）到 CPU 内存，或在需要时重新计算（recomputation），这是 PagedAttention 的核心机制之一。B/C/D 都不是正常的显存管理策略。",
+      "topic": "大模型——推理优化",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "在部署阶段，将卷积层（Conv）与批归一化层（BN）进行融合（Folding）是各大编译器的标配操作。以下关于 Conv+BN 融合的描述中，最准确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "融合是为了让 BN 的梯度能更快反向传播到 Conv 层，从而加速推理"
+        },
+        {
+          "label": "B",
+          "text": "融合是一种纯代数等价变换，在模型编译期（Offline）就将 BN 的缩放和偏移参数直接吸收到 Conv 的权重和偏置中，运行时完全没有 BN 的开销"
+        },
+        {
+          "label": "C",
+          "text": "融合是在运行时（Runtime）将 BN 的均值和方差传入 Conv 的底层算子中并行计算"
+        },
+        {
+          "label": "D",
+          "text": "Conv+BN 融合会轻微改变模型的输出精度，因为融合后的算子无法使用 Tensor Core 加速"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "Conv+BN 融合在编译期完成，将 BN 的 $\\gamma, \\beta, \\mu, \\sigma$ 代数合并到 Conv 的权重 $W$ 和偏置 $b$ 中，推理时仅需执行一次卷积操作，消除 BN 的额外计算和显存开销。A 项混淆了训练和推理阶段，C 项并非运行时操作，D 项的精度说法不成立。",
+      "topic": "深度学习——模型部署",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$\\gamma, \\beta, \\mu, \\sigma$",
+        "$W$",
+        "$b$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q008",
+      "source_number": 8,
+      "type": "single",
+      "stem": "在流水线并行（Pipeline Parallel）中，一个模型被切分为多个 Stage，分布在不同 GPU 上。当某些 GPU 在等待上游 Stage 的计算结果时出现空闲，这种现象被称为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "Pipeline Bubble"
+        },
+        {
+          "label": "B",
+          "text": "显存碎片"
+        },
+        {
+          "label": "C",
+          "text": "GPU Context Switch"
+        },
+        {
+          "label": "D",
+          "text": "网络拥塞"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "Pipeline Bubble 是流水线并行中的核心问题：由于各 Stage 之间存在数据依赖，部分 GPU 在等待上游输出时处于空闲状态，形成”气泡”。GPipe 通过 micro-batch 切分、1F1B 调度等方法来减小 bubble 比例。",
+      "topic": "大模型——分布式训练",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q009",
+      "source_number": 9,
+      "type": "single",
+      "stem": "在层次聚类分析（HAC）中，以下哪一种方法是用于定义簇间距离的常见方式？",
+      "options": [
+        {
+          "label": "A",
+          "text": "Expectation-Maximization"
+        },
+        {
+          "label": "B",
+          "text": "K-means"
+        },
+        {
+          "label": "C",
+          "text": "DBSCAN"
+        },
+        {
+          "label": "D",
+          "text": "Complete Linkage"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "Complete Linkage（全链接）是层次聚类中定义簇间距离的标准方法之一，取两个簇中最远点对的距离作为簇间距离。同类方法还有 Single Linkage（最近点对）和 Average Linkage（平均距离）。A 是 GMM 的训练算法，B/C 是其他聚类方法，不属于簇间距离的定义方式。",
+      "topic": "机器学习——聚类",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "某多分类任务中，类别 A 有 1000 个样本，类别 B 有 10 个样本。若使用 Micro-F1 计算，主要反映的是哪个类别的性能？",
+      "options": [
+        {
+          "label": "A",
+          "text": "两者权重相同"
+        },
+        {
+          "label": "B",
+          "text": "取决于具体的 F1 计算公式"
+        },
+        {
+          "label": "C",
+          "text": "类别 B"
+        },
+        {
+          "label": "D",
+          "text": "类别 A"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "Micro-F1 将所有类别的 TP/FP/FN 汇总后统一计算 Precision 和 Recall，样本数多的类别贡献更大。类别 A 有 1000 个样本远超类别 B 的 10 个，因此 Micro-F1 主要反映类别 A 的性能。如果需要平等对待各类别，应使用 Macro-F1（对每个类别的 F1 取算术平均）。",
+      "topic": "机器学习——评价指标",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q011",
+      "source_number": 11,
+      "type": "single",
+      "stem": "在 PyTorch 中，以下哪个函数用于执行优化器的一步更新？",
+      "options": [
+        {
+          "label": "A",
+          "text": "optimizer.zero_grad()"
+        },
+        {
+          "label": "B",
+          "text": "optimizer.backward()"
+        },
+        {
+          "label": "C",
+          "text": "optimizer.step()"
+        },
+        {
+          "label": "D",
+          "text": "optimizer.update()"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "PyTorch 训练三步曲：`optimizer.zero_grad()` 清零梯度 → `loss.backward()` 计算梯度 → `optimizer.step()` 根据梯度更新参数。A 项用于清零梯度，B 项不存在（backward 是 tensor 的方法），D 项不是 PyTorch 标准 API。",
+      "topic": "深度学习——PyTorch",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "工程师需要计算一个复杂函数在某区间上的定积分。以下关于蒙特卡洛积分与黎曼积分的对比，说法正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "蒙特卡洛积分仅适用于低维积分问题，高维时应使用黎曼积分"
+        },
+        {
+          "label": "B",
+          "text": "蒙特卡洛积分的收敛速度为 $O(N^{-2})$，黎曼积分为 $O(N^{-1/2})$"
+        },
+        {
+          "label": "C",
+          "text": "蒙特卡洛积分的计算复杂度远低于黎曼积分，因此总是首选"
+        },
+        {
+          "label": "D",
+          "text": "蒙特卡洛积分的收敛速度为 $O(N^{-1/2})$，黎曼积分（等距划分）为 $O(N^{-2})$"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "蒙特卡洛积分基于大数定律，收敛速度为 $O(N^{-1/2})$，与维度无关，这是其在高维积分中的优势。黎曼积分（等距划分，复合梯形法则）在一维下收敛速度为 $O(N^{-2})$，但高维时采样点数呈指数增长（维度灾难）。A 项说反了，B 项两个速度对调了，C 项”总是首选”过于绝对。",
+      "topic": "数学——数值计算",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$O(N^{-1/2})$",
+        "$O(N^{-2})$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "适合高维稀疏向量相似度计算的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "余弦相似度"
+        },
+        {
+          "label": "B",
+          "text": "切比雪夫距离"
+        },
+        {
+          "label": "C",
+          "text": "欧氏距离"
+        },
+        {
+          "label": "D",
+          "text": "曼哈顿距离"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "高维稀疏向量中大量维度为零，余弦相似度只关注非零维度的方向一致性，不受向量模长和零值维度影响，是文本检索（TF-IDF、BoW）等高维稀疏场景的标准选择。欧氏距离和曼哈顿距离在高维稀疏空间中区分度下降，切比雪夫距离只看最大差异维度，信息利用不充分。",
+      "topic": "机器学习——距离度量",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "Transformer 的编码器-解码器注意力（Encoder-Decoder Attention）中，查询（Query）来自哪里？",
+      "options": [
+        {
+          "label": "A",
+          "text": "输入序列"
+        },
+        {
+          "label": "B",
+          "text": "解码器的上一层的输出"
+        },
+        {
+          "label": "C",
+          "text": "位置编码"
+        },
+        {
+          "label": "D",
+          "text": "编码器的输出"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "在 Encoder-Decoder Attention 中，Query 来自解码器当前层的上一层输出，Key 和 Value 来自编码器的最终输出。这样解码器的每个位置都能”关注”到编码器的所有位置，实现源语言到目标语言的对齐。",
+      "topic": "深度学习——Transformer",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q015",
+      "source_number": 15,
+      "type": "single",
+      "stem": "给定两个向量 $\\vec{a}$ 和 $\\vec{b}$，它们的余弦相似度为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "1.0"
+        },
+        {
+          "label": "B",
+          "text": "0.87"
+        },
+        {
+          "label": "C",
+          "text": "0.97"
+        },
+        {
+          "label": "D",
+          "text": "0.67"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "余弦相似度公式为 $\\cos\\theta = \\frac{\\vec{a} \\cdot \\vec{b}}{\\lvert\\vec{a}\\rvert \\cdot \\lvert\\vec{b}\\rvert}$，代入原题给出的具体向量值计算得 $0.97$。余弦相似度衡量两个向量方向的一致性，取值范围为 $[-1, 1]$，$1$ 表示完全同向，$-1$ 表示完全反向，$0$ 表示正交。",
+      "topic": "数学——线性代数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$\\vec{a}$",
+        "$\\vec{b}$"
+      ],
+      "solution_formulas": [
+        "$\\cos\\theta = \\frac{\\vec{a} \\cdot \\vec{b}}{\\lvert\\vec{a}\\rvert \\cdot \\lvert\\vec{b}\\rvert}$",
+        "$0.97$",
+        "$[-1, 1]$",
+        "$1$",
+        "$-1$",
+        "$0$",
+        "余弦相似度公式为 $\\cos\\theta = \\frac{\\vec{a} \\cdot \\vec{b}}{\\lvert\\vec{a}\\rvert \\cdot \\lvert\\vec{b}\\rvert}$，代入原题给出的具体向量值计算得 $0.97$。余弦相似度衡量两个向量方向的一致性，取值范围为 $[-1, 1]$，$1$ 表示完全同向，$-1$ 表示完全反向，$0$ 表示正交。"
+      ],
+      "review_status": "needs_review",
+      "review_note": "题干提到两个向量，但来源正文缺少具体向量值，无法独立作答。"
+    },
+    {
+      "id": "AIEXAM-20260422-Q016",
+      "source_number": 16,
+      "type": "multiple",
+      "stem": "多模态大模型中，常见的视觉-语言连接器（Connector）包括？",
+      "options": [
+        {
+          "label": "A",
+          "text": "MLP（多层感知机）"
+        },
+        {
+          "label": "B",
+          "text": "线性投影层（Linear Projection）"
+        },
+        {
+          "label": "C",
+          "text": "卷积池化层"
+        },
+        {
+          "label": "D",
+          "text": "Q-Former"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "A 正确，LLaVA 使用 MLP 将视觉特征映射到语言空间。B 正确，线性投影是最简单的连接方式，多个模型采用。D 正确，BLIP-2 提出的 Q-Former 通过可学习查询向量从视觉编码器中提取定长特征。C 卷积池化层不是主流的视觉-语言连接器架构，它更多用于视觉编码器内部的特征提取阶段。",
+      "topic": "大模型——多模态",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q017",
+      "source_number": 17,
+      "type": "multiple",
+      "stem": "适用于机器学习中度量两个特征向量的相似度的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "欧氏距离"
+        },
+        {
+          "label": "B",
+          "text": "余弦相似度"
+        },
+        {
+          "label": "C",
+          "text": "汉明距离"
+        },
+        {
+          "label": "D",
+          "text": "KL 散度"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A 正确，欧氏距离是最常用的向量距离度量。B 正确，余弦相似度衡量方向一致性，广泛用于文本和推荐系统。C 正确，汉明距离用于二进制/离散特征向量的比较（如局部敏感哈希）。D 不正确，KL 散度用于度量两个概率分布之间的差异，不是特征向量的相似度指标，且不满足对称性和三角不等式。",
+      "topic": "机器学习——距离度量",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "设 $X_1, X_2, \\ldots, X_n \\sim N(\\mu, \\sigma^2)$，下面正确的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$\\mu$ 的 MLE 是样本均值 $\\bar{X}$"
+        },
+        {
+          "label": "B",
+          "text": "$\\mu$ 的 MLE 是无偏的"
+        },
+        {
+          "label": "C",
+          "text": "$\\sigma^2$ 的 MLE 是 $\\frac{1}{n}\\sum_{i=1}^{n}(X_i - \\bar{X})^2$"
+        },
+        {
+          "label": "D",
+          "text": "$\\sigma^2$ 的 MLE 是无偏的"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A 正确，对正态分布的对数似然求导令其为零，$\\hat{\\mu} = \\bar{X}$。B 正确，$E[\\bar{X}] = \\mu$，样本均值是 $\\mu$ 的无偏估计。C 正确，$\\hat{\\sigma}^2 = \\frac{1}{n}\\sum(X_i - \\bar{X})^2$。D 不正确，$E[\\hat{\\sigma}^2] = \\frac{n-1}{n}\\sigma^2$，MLE 方差估计是有偏的，无偏版本需除以 $n-1$。",
+      "topic": "数学——概率统计",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$X_1, X_2, \\ldots, X_n \\sim N(\\mu, \\sigma^2)$"
+      ],
+      "solution_formulas": [
+        "$\\hat{\\mu} = \\bar{X}$",
+        "$E[\\bar{X}] = \\mu$",
+        "$\\mu$",
+        "$\\hat{\\sigma}^2 = \\frac{1}{n}\\sum(X_i - \\bar{X})^2$",
+        "$E[\\hat{\\sigma}^2] = \\frac{n-1}{n}\\sigma^2$",
+        "$n-1$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "以下关于反向传播计算效率的说法正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "反向传播的计算量大约是前向传播的 2 倍"
+        },
+        {
+          "label": "B",
+          "text": "符号微分跟数值微分是两种计算体系，在一个模型训练时只能使用其中一种"
+        },
+        {
+          "label": "C",
+          "text": "反向传播需要存储所有中间层的激活值，因此显存消耗大"
+        },
+        {
+          "label": "D",
+          "text": "相比于数值微分，符号微分计算梯度的速度快"
+        }
+      ],
+      "answer": [
+        "A",
+        "C"
+      ],
+      "explanation": "A 正确，反向传播对每个算子需要计算其所有输入的梯度，计算量约为前向传播的 2 倍（经验值）。C 正确，反向传播依赖链式法则，需要保存前向过程中各层的激活值用于梯度计算，这是显存消耗的主要来源（梯度检查点技术可缓解）。B 不正确，深度学习实际使用的是自动微分（AD），并非严格的符号微分或数值微分，且两者并非互斥。D 不正确，符号微分会产生表达式膨胀（expression swell），对于深层网络反而可能更慢。",
+      "topic": "深度学习——反向传播",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260422-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "你维护的在线问答服务（vLLM）在晚高峰出现：TTFT 从 0.9s 升至 2.4s，decode tokens/s 基本不变，平均输入长度从 700 升至 2200，GPU 利用率接近满载。你本班次可立即执行哪些动作？",
+      "options": [
+        {
+          "label": "A",
+          "text": "对超长输入先走”摘要压缩链路”，再送主模型"
+        },
+        {
+          "label": "B",
+          "text": "增大 temperature 到 1.2"
+        },
+        {
+          "label": "C",
+          "text": "把 max_new_tokens 从 512 调到 1024"
+        },
+        {
+          "label": "D",
+          "text": "开启/优化 prefix cache（固定 system prompt 场景）"
+        }
+      ],
+      "answer": [
+        "A",
+        "D"
+      ],
+      "explanation": "TTFT（Time To First Token）飙升但 decode 速度不变，说明瓶颈在 prefill 阶段，输入变长导致 prefill 计算量剧增。A 正确，对超长输入先做摘要压缩，缩短实际送入模型的序列长度，直接降低 prefill 计算量。D 正确，开启 prefix cache 可以复用固定 system prompt 的 KV Cache，避免重复计算。B 不正确，temperature 只影响采样策略，不改善 TTFT。C 不正确，增大 max_new_tokens 只会延长 decode 阶段，对 TTFT 没有帮助反而加重负载。",
+      "topic": "大模型——推理优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}

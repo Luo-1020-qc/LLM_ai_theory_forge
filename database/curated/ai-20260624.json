@@ -1,0 +1,757 @@
+{
+  "source": {
+    "id": "AIEXAM-20260624",
+    "exam_date": "2026-06-24",
+    "job_track": "互联网公司 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260624",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260624-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "Beam Search 的主要作用是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "搜索最优生成路径"
+        },
+        {
+          "label": "B",
+          "text": "减少生成时间"
+        },
+        {
+          "label": "C",
+          "text": "增加多样性"
+        },
+        {
+          "label": "D",
+          "text": "随机采样"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "Beam Search 维护多条候选路径按累积概率择优扩展，逼近全局最优生成序列。它牺牲速度换质量，不减少时间也不增加多样性。",
+      "topic": "大模型—生成策略",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "以下哪项不是 Embedding 在 RAG 中的核心作用？",
+      "options": [
+        {
+          "label": "A",
+          "text": "将查询与文档映射到同一语义空间"
+        },
+        {
+          "label": "B",
+          "text": "压缩文档存储空间，减少磁盘占用"
+        },
+        {
+          "label": "C",
+          "text": "通过余弦相似度计算语义相关性"
+        },
+        {
+          "label": "D",
+          "text": "支持跨语言检索"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "Embedding 向量本身还增加了额外存储开销，压缩存储不是其核心作用。",
+      "topic": "大模型—RAG",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q003",
+      "source_number": 3,
+      "type": "single",
+      "stem": "关于 Sigmoid 激活函数，下列说法错误的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "平滑可导，便于反向传播"
+        },
+        {
+          "label": "B",
+          "text": "易出现梯度消失"
+        },
+        {
+          "label": "C",
+          "text": "输出均值为 0，有利于加快收敛"
+        },
+        {
+          "label": "D",
+          "text": "输出范围 $(0,1)$，可用于二分类输出层"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "Sigmoid 输出范围 $(0,1)$，均值约 $0.5$ 而非 $0$，非零中心会使梯度更新呈锯齿状。",
+      "topic": "深度学习—激活函数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$(0,1)$",
+        "$0.5$",
+        "$0$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "多模态对齐中，对比损失与匹配损失的目标差异？",
+      "options": [
+        {
+          "label": "A",
+          "text": "对比损失只优化正样本对"
+        },
+        {
+          "label": "B",
+          "text": "两者完全相同"
+        },
+        {
+          "label": "C",
+          "text": "对比损失拉近正样本对、推远负样本对；匹配损失仅优化二分类边界"
+        },
+        {
+          "label": "D",
+          "text": "对比损失需大规模负采样，匹配损失只需 1 个负样本"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "对比损失（InfoNCE）在嵌入空间中建模样本间相对距离；匹配损失（ITM）是”是否匹配”的二分类，不关注负样本之间的距离。",
+      "topic": "大模型—多模态对齐",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "自注意力机制中 Q、K、V 通过什么方式得到？",
+      "options": [
+        {
+          "label": "A",
+          "text": "循环神经网络生成"
+        },
+        {
+          "label": "B",
+          "text": "输入向量与三个不同权重矩阵相乘"
+        },
+        {
+          "label": "C",
+          "text": "随机初始化后不变"
+        },
+        {
+          "label": "D",
+          "text": "直接从输入复制"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "$Q = XW_Q$，$K = XW_K$，$V = XW_V$，三个可学习的权重矩阵在训练中更新。",
+      "topic": "深度学习—Transformer",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$Q = XW_Q$",
+        "$K = XW_K$",
+        "$V = XW_V$",
+        "$Q = XW_Q$，$K = XW_K$，$V = XW_V$，三个可学习的权重矩阵在训练中更新。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "关于 Softmax 函数的输出特性，正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "所有输出之和等于 1"
+        },
+        {
+          "label": "B",
+          "text": "输出值可能为负"
+        },
+        {
+          "label": "C",
+          "text": "同一输入每次输出不同"
+        },
+        {
+          "label": "D",
+          "text": "输出与输入成线性关系"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "Softmax 将实数归一化为概率分布，输出非负且和为 1。",
+      "topic": "机器学习—逻辑回归",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "Transformer 中自注意力的主要作用？",
+      "options": [
+        {
+          "label": "A",
+          "text": "降维"
+        },
+        {
+          "label": "B",
+          "text": "生成词嵌入"
+        },
+        {
+          "label": "C",
+          "text": "捕获长距离依赖"
+        },
+        {
+          "label": "D",
+          "text": "映射到固定长度向量"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "自注意力让每个位置直接与全序列交互，高效捕获长距离依赖。",
+      "topic": "深度学习—Transformer",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q008",
+      "source_number": 8,
+      "type": "single",
+      "stem": "RNN 的主要特点是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "处理序列数据"
+        },
+        {
+          "label": "B",
+          "text": "以上都是"
+        },
+        {
+          "label": "C",
+          "text": "权重共享"
+        },
+        {
+          "label": "D",
+          "text": "具有记忆能力"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "RNN 通过循环结构处理序列（A），各时间步共享权重（C），隐藏状态保留历史信息（D），三者皆为其特点。",
+      "topic": "深度学习—RNN",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q009",
+      "source_number": 9,
+      "type": "single",
+      "stem": "$\\text{Var}(X) = 4$，则 $\\text{Var}(2X + 3)$ 的值是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$16$"
+        },
+        {
+          "label": "B",
+          "text": "$19$"
+        },
+        {
+          "label": "C",
+          "text": "$11$"
+        },
+        {
+          "label": "D",
+          "text": "$8$"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "$\\text{Var}(aX+b) = a^2 \\text{Var}(X) = 4 \\times 4 = 16$。",
+      "topic": "数学—概率",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$\\text{Var}(X) = 4$",
+        "$\\text{Var}(2X + 3)$",
+        "$\\text{Var}(X) = 4$，则 $\\text{Var}(2X + 3)$ 的值是？"
+      ],
+      "solution_formulas": [
+        "$\\text{Var}(aX+b) = a^2 \\text{Var}(X) = 4 \\times 4 = 16$",
+        "$\\text{Var}(aX+b) = a^2 \\text{Var}(X) = 4 \\times 4 = 16$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "PCA 降维，特征值总和为 100，前 5 个特征值为 35, 25, 15, 10, 8，累计贡献率 $\\geq 90\\%$ 最少保留几个主成分？",
+      "options": [
+        {
+          "label": "A",
+          "text": "3 个"
+        },
+        {
+          "label": "B",
+          "text": "4 个"
+        },
+        {
+          "label": "C",
+          "text": "2 个"
+        },
+        {
+          "label": "D",
+          "text": "5 个"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "累计贡献率：35%, 60%, 75%, 85%, 93%。保留 5 个才达到 $\\geq 90\\%$。",
+      "topic": "机器学习—PCA",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$\\geq 90\\%$"
+      ],
+      "solution_formulas": [
+        "$\\geq 90\\%$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q011",
+      "source_number": 11,
+      "type": "single",
+      "stem": "LSTM 的主要目的是解决什么问题？",
+      "options": [
+        {
+          "label": "A",
+          "text": "计算无法并行"
+        },
+        {
+          "label": "B",
+          "text": "过拟合"
+        },
+        {
+          "label": "C",
+          "text": "长距离依赖下的梯度消失或爆炸"
+        },
+        {
+          "label": "D",
+          "text": "输入特征降维"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "LSTM 通过门控机制控制信息流与梯度通路，缓解长序列梯度消失/爆炸。",
+      "topic": "深度学习—LSTM",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "$n$ 个独立同分布的几何分布随机变量之和服从什么分布？",
+      "options": [
+        {
+          "label": "A",
+          "text": "几何分布"
+        },
+        {
+          "label": "B",
+          "text": "正态分布"
+        },
+        {
+          "label": "C",
+          "text": "泊松分布"
+        },
+        {
+          "label": "D",
+          "text": "负二项分布"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "几何分布刻画”首次成功所需试验次数”，$n$ 个之和即”第 $n$ 次成功所需试验次数”，为负二项分布。",
+      "topic": "数学—概率分布",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$n$"
+      ],
+      "solution_formulas": [
+        "$n$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "Flash Decoding 针对 LLM 推理哪个阶段的优化？",
+      "options": [
+        {
+          "label": "A",
+          "text": "Decode"
+        },
+        {
+          "label": "B",
+          "text": "Embedding"
+        },
+        {
+          "label": "C",
+          "text": "Tokenization"
+        },
+        {
+          "label": "D",
+          "text": "Prefill"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "Flash Decoding 对长上下文 KV 沿序列维度切分并行计算注意力，专门加速 Decode 阶段。",
+      "topic": "大模型—推理优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "ReLU 相比 Sigmoid 的主要优势不包括？",
+      "options": [
+        {
+          "label": "A",
+          "text": "缓解梯度消失"
+        },
+        {
+          "label": "B",
+          "text": "计算速度更快"
+        },
+        {
+          "label": "C",
+          "text": "稀疏激活"
+        },
+        {
+          "label": "D",
+          "text": "输出以零为中心"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "ReLU 输出恒非负，不是零中心，这反而是它的缺点。",
+      "topic": "深度学习—激活函数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q015",
+      "source_number": 15,
+      "type": "single",
+      "stem": "Multi-Head Attention 参数量和 FLOPs？",
+      "options": [
+        {
+          "label": "A",
+          "text": "参数量 $3d^2 + d^2$，FLOPs 与序列长度线性"
+        },
+        {
+          "label": "B",
+          "text": "参数量与序列长度相关"
+        },
+        {
+          "label": "C",
+          "text": "参数量 $4d^2$，FLOPs 主要项 $O(n^2 d^2)$"
+        },
+        {
+          "label": "D",
+          "text": "参数量 $4d^2$（忽略 bias），FLOPs 中与序列长度相关的主要项为 $O(n^2 d)$"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "Q/K/V 三个投影各 $d^2$，输出投影 $d^2$，共 $4d^2$，与 $n$ 无关。FLOPs 含 $O(nd^2)$ 投影和 $O(n^2 d)$ 注意力计算，后者是高阶主项。\n### 二、多选题",
+      "topic": "深度学习—Transformer",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$d^2$",
+        "$4d^2$",
+        "$n$",
+        "$O(nd^2)$",
+        "$O(n^2 d)$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q016",
+      "source_number": 16,
+      "type": "multiple",
+      "stem": "深层网络中倾向使用 ReLU 而不是 Sigmoid 的原因？",
+      "options": [
+        {
+          "label": "A",
+          "text": "Sigmoid 两端饱和导致梯度消失"
+        },
+        {
+          "label": "B",
+          "text": "Sigmoid 输出非零中心，梯度更新锯齿状"
+        },
+        {
+          "label": "C",
+          "text": "ReLU 计算涉及指数运算，比 Sigmoid 高效"
+        },
+        {
+          "label": "D",
+          "text": "ReLU 正区间导数恒为 1，利于梯度回传"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "C 说反了，含指数运算的是 Sigmoid。",
+      "topic": "深度学习—激活函数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q017",
+      "source_number": 17,
+      "type": "multiple",
+      "stem": "基于 K 近邻关系归组的常见挑战？",
+      "options": [
+        {
+          "label": "A",
+          "text": "对异常点和噪声敏感"
+        },
+        {
+          "label": "B",
+          "text": "大规模数据下近邻搜索开销高"
+        },
+        {
+          "label": "C",
+          "text": "高维空间中近邻关系不稳定"
+        },
+        {
+          "label": "D",
+          "text": "不同 K 取值导致结果差异大"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "四项都是 KNN 类方法的已知挑战。",
+      "topic": "机器学习—KNN",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "反向传播算法的优势包括？",
+      "options": [
+        {
+          "label": "A",
+          "text": "高效计算梯度"
+        },
+        {
+          "label": "B",
+          "text": "实现简单"
+        },
+        {
+          "label": "C",
+          "text": "适用于深度网络"
+        },
+        {
+          "label": "D",
+          "text": "计算复杂度低"
+        }
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "反向传播利用链式法则复用中间结果，计算量与前向传播同阶。B”实现简单”不是其相对优势。",
+      "topic": "深度学习—反向传播",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "哪些矩阵一定可逆？",
+      "options": [
+        {
+          "label": "A",
+          "text": "单位矩阵"
+        },
+        {
+          "label": "B",
+          "text": "满秩方阵"
+        },
+        {
+          "label": "C",
+          "text": "零矩阵"
+        },
+        {
+          "label": "D",
+          "text": "行列式不为 0 的方阵"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "零矩阵行列式为 0、秩为 0，不可逆。",
+      "topic": "数学—线性代数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260624-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "哪些情况可能导致模型对齐失效输出有害内容？",
+      "options": [
+        {
+          "label": "A",
+          "text": "RLHF 数据质量不足"
+        },
+        {
+          "label": "B",
+          "text": "Temperature 设置过高"
+        },
+        {
+          "label": "C",
+          "text": "训练数据含大量有害言论"
+        },
+        {
+          "label": "D",
+          "text": "攻击者使用越狱提示词"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "四种情形都可能导致有害输出。",
+      "topic": "大模型—对齐安全",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}

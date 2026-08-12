@@ -1,0 +1,800 @@
+{
+  "source": {
+    "id": "AIEXAM-20260423",
+    "exam_date": "2026-04-23",
+    "job_track": "互联网公司留学生 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260423",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260423-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "量化（Quantization）技术中，将 FP16 转为 INT8 主要压缩了什么？",
+      "options": [
+        {
+          "label": "A",
+          "text": "注意力机制的头数"
+        },
+        {
+          "label": "B",
+          "text": "模型的层数"
+        },
+        {
+          "label": "C",
+          "text": "权重的存储位宽"
+        },
+        {
+          "label": "D",
+          "text": "Token 词表的长度"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "FP16 使用 16 位存储每个权重，INT8 使用 8 位，量化的核心就是降低权重的存储位宽从而减少显存占用和加速推理。量化不改变模型结构（头数、层数不变），也不影响词表大小。",
+      "topic": "大模型——量化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "对于输入为 $227 \\times 227 \\times 3$ 的图像，使用一个卷积层，包含 96 个 $11 \\times 11$ 的卷积核，步长为 4，无填充（padding = 0），输出特征图的大小和深度分别是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$54 \\times 54 \\times 96$"
+        },
+        {
+          "label": "B",
+          "text": "$56 \\times 56 \\times 96$"
+        },
+        {
+          "label": "C",
+          "text": "$55 \\times 55 \\times 11$"
+        },
+        {
+          "label": "D",
+          "text": "$55 \\times 55 \\times 96$"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "卷积输出尺寸公式为 $\\lfloor (W - K) / S \\rfloor + 1 = \\lfloor (227 - 11) / 4 \\rfloor + 1 = 55$，深度等于卷积核数量 96，所以输出为 $55 \\times 55 \\times 96$。",
+      "topic": "深度学习——CNN",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$227 \\times 227 \\times 3$",
+        "$11 \\times 11$",
+        "对于输入为 $227 \\times 227 \\times 3$ 的图像，使用一个卷积层，包含 96 个 $11 \\times 11$ 的卷积核，步长为 4，无填充（padding = 0），输出特征图的大小和深度分别是？"
+      ],
+      "solution_formulas": [
+        "$\\lfloor (W - K) / S \\rfloor + 1 = \\lfloor (227 - 11) / 4 \\rfloor + 1 = 55$",
+        "$55 \\times 55 \\times 96$",
+        "卷积输出尺寸公式为 $\\lfloor (W - K) / S \\rfloor + 1 = \\lfloor (227 - 11) / 4 \\rfloor + 1 = 55$，深度等于卷积核数量 96，所以输出为 $55 \\times 55 \\times 96$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q003",
+      "source_number": 3,
+      "type": "single",
+      "stem": "在原始 Transformer 的多头注意力机制中，多个头间的输出是如何结合的？",
+      "options": [
+        {
+          "label": "A",
+          "text": "取最大值"
+        },
+        {
+          "label": "B",
+          "text": "拼接后经过线性变换"
+        },
+        {
+          "label": "C",
+          "text": "逐元素相加"
+        },
+        {
+          "label": "D",
+          "text": "取平均"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "原始 Transformer 论文明确定义：\\(\\text{MultiHead}(Q,K,V) = \\text{Concat}(\\text{head\\_1}, \\ldots, \\text{head\\_h}) W^O\\)，即将各头输出在特征维度上拼接（Concat），再通过线性变换矩阵 $W^O$ 投影回原始维度。",
+      "topic": "深度学习——Transformer",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$W^O$",
+        "原始 Transformer 论文明确定义：\\(\\text{MultiHead}(Q,K,V) = \\text{Concat}(\\text{head\\_1}, \\ldots, \\text{head\\_h}) W^O\\)，即将各头输出在特征维度上拼接（Concat），再通过线性变换矩阵 $W^O$ 投影回原始维度。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "关于 Transformer 中的多头注意力（MHA）的表述，哪一项是正确的？",
+      "options": [
+        {
+          "label": "A",
+          "text": "多个头共享相同的查询、键、值权重矩阵"
+        },
+        {
+          "label": "B",
+          "text": "每个头独立学习不同的线性投影，最后将注意力输出拼接"
+        },
+        {
+          "label": "C",
+          "text": "头数越多，模型推理速度一定越快"
+        },
+        {
+          "label": "D",
+          "text": "每个头关注输入序列的同一局部特征"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "每个注意力头拥有独立的 $W^Q, W^K, W^V$ 投影矩阵，学习不同的子空间表示，最后拼接输出。A 错在”共享”——各头权重独立；C 错在头数增多会增加计算量；D 错在多头的目的恰恰是让不同头关注不同的特征子空间。",
+      "topic": "深度学习——Transformer",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$W^Q, W^K, W^V$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "以下关于凸函数的说法，正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "凸函数的局部最小值一定是全局最小值"
+        },
+        {
+          "label": "B",
+          "text": "凸函数的二阶导数可以为负"
+        },
+        {
+          "label": "C",
+          "text": "凸函数一定没有最小值"
+        },
+        {
+          "label": "D",
+          "text": "所有多项式函数都是凸函数"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "凸函数的核心性质之一是局部最优等于全局最优。B 错：凸函数要求 $f’‘(x) \\geq 0$。C 错：$f(x) = x^2$ 是凸函数且有最小值 $0$。D 错：$f(x) = x^3$ 是多项式但不是凸函数。",
+      "topic": "数学——凸优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$f’‘(x) \\geq 0$",
+        "$f(x) = x^2$",
+        "$0$",
+        "$f(x) = x^3$",
+        "凸函数的核心性质之一是局部最优等于全局最优。B 错：凸函数要求 $f’‘(x) \\geq 0$。C 错：$f(x) = x^2$ 是凸函数且有最小值 $0$。D 错：$f(x) = x^3$ 是多项式但不是凸函数。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "对于回归问题，假设真实值和预测值的误差分布符合正态分布且均值为 0，以下哪个指标最能反映模型的整体预测精度？",
+      "options": [
+        {
+          "label": "A",
+          "text": "最大绝对误差（Max Error）"
+        },
+        {
+          "label": "B",
+          "text": "中位数绝对误差"
+        },
+        {
+          "label": "C",
+          "text": "极差（Range）"
+        },
+        {
+          "label": "D",
+          "text": "均方误差（MSE）"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "误差服从均值为 $0$ 的正态分布时，MSE 等价于误差的方差，是正态分布下最大似然估计的充分统计量，最能全面反映整体预测精度。最大绝对误差和极差只关注极端值，中位数绝对误差对异常值鲁棒但丢失了分布的完整信息。",
+      "topic": "机器学习——评价指标",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$0$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "关于 Pass@k（代码生成常用）中 “k” 的含义，正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "把 $k$ 道题的平均正确率作为指标"
+        },
+        {
+          "label": "B",
+          "text": "从 $k$ 个模型中选最强的一个"
+        },
+        {
+          "label": "C",
+          "text": "生成时把 top_k 设置为 $k$"
+        },
+        {
+          "label": "D",
+          "text": "对同一题生成 $n$ 个候选（$n \\geq k$），随机抽取 $k$ 个，$k$ 个中至少有一个通过就算成功"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "Pass@k 的定义是：对同一个问题生成 $n$（$n \\geq k$）个候选解，随机抽取 $k$ 个，只要其中至少有一个通过所有测试用例就算成功。它衡量的是”给模型 $k$ 次机会能否解出该题”的概率。与题目数量、模型数量、采样参数 top_k 均无关。",
+      "topic": "大模型——评价指标",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$n$",
+        "$n \\geq k$",
+        "$k$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q008",
+      "source_number": 8,
+      "type": "single",
+      "stem": "以下推理代码速度较慢，最有效的优化方向是什么？\n`generated = input_ids\nfor _ in range(max_new_tokens):\nout = model(input_ids=generated)\nnext_token = out.logits[:, -1, :].argmax(dim=-1, keepdim=True)\ngenerated = torch.cat([generated, next_token], dim=1)\n`",
+      "options": [
+        {
+          "label": "A",
+          "text": "每步都重新 tokenize"
+        },
+        {
+          "label": "B",
+          "text": "将 `max_new_tokens` 增大"
+        },
+        {
+          "label": "C",
+          "text": "把 `argmax` 改成 `topk`"
+        },
+        {
+          "label": "D",
+          "text": "使用 `past_key_values`（KV Cache）避免重复计算历史上下文"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "代码每步将完整 `generated` 序列传入模型，重新计算所有历史 token 的注意力，计算量随序列长度二次增长。使用 KV Cache 后，每步只传入新 token，历史 Key/Value 从缓存读取，将每步计算量降为常数级。",
+      "topic": "大模型——推理优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "`generated = input_ids",
+        "out = model(input_ids=generated)",
+        "next_token = out.logits[:, -1, :].argmax(dim=-1, keepdim=True)",
+        "generated = torch.cat([generated, next_token], dim=1)"
+      ],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q009",
+      "source_number": 9,
+      "type": "single",
+      "stem": "关于多头注意力（MHA）和分组查询注意力（GQA）的区别，下列说法正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "GQA 只能用于解码器"
+        },
+        {
+          "label": "B",
+          "text": "MHA 比 GQA 参数量更少"
+        },
+        {
+          "label": "C",
+          "text": "GQA 中每个头有自己的 K 和 V，而 MHA 共享"
+        },
+        {
+          "label": "D",
+          "text": "GQA 中多个查询头共享一组 K 和 V"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "GQA（Grouped Query Attention）的核心是将查询头分组，每组共享一套 K/V 投影，减少 KV Cache 的显存占用。A 错：GQA 不限于解码器；B 错：GQA 的 K/V 参数更少，MHA 参数量更多；C 恰好说反了。",
+      "topic": "大模型——注意力机制",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "关于旋转位置编码（RoPE）的表述，正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "RoPE 仅适用于编码器，不适用于自回归解码器"
+        },
+        {
+          "label": "B",
+          "text": "RoPE 无法处理超出预训练长度的序列"
+        },
+        {
+          "label": "C",
+          "text": "RoPE 通过旋转矩阵对查询和键向量进行变换，使内积蕴含相对位置信息"
+        },
+        {
+          "label": "D",
+          "text": "RoPE 将绝对位置信息直接加到词嵌入中"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "RoPE 对 Q 和 K 向量分别乘以与位置相关的旋转矩阵，使得 $q_m^T k_n$ 的内积自然包含相对位置 $m - n$ 的信息。A 错：LLaMA 等解码器广泛使用 RoPE；B 错：可通过 NTK-aware 缩放、YaRN 等扩展上下文长度；D 是原始 Transformer 的绝对位置编码方式。",
+      "topic": "大模型——位置编码",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$q_m^T k_n$",
+        "$m - n$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q011",
+      "source_number": 11,
+      "type": "single",
+      "stem": "设计用于图像分类的 CNN，隐藏层需兼顾计算效率和缓解梯度消失，输出层用于多分类，下列激活函数搭配最合理的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "隐藏层用 ReLU，输出层用 Softmax"
+        },
+        {
+          "label": "B",
+          "text": "隐藏层用 Sigmoid，输出层用 ReLU"
+        },
+        {
+          "label": "C",
+          "text": "隐藏层用 Tanh，输出层用 Sigmoid"
+        },
+        {
+          "label": "D",
+          "text": "隐藏层用 Softmax，输出层用 Tanh"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "ReLU 计算高效且正区间梯度恒为 $1$，有效缓解梯度消失；Softmax 将输出映射为概率分布，适合多分类。B 中 Sigmoid 有梯度消失问题，ReLU 无界不适合输出层。C 中 Sigmoid 用于二分类而非多分类。D 中 Softmax 不适合隐藏层。",
+      "topic": "深度学习——激活函数",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$1$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "关于模型推理前向计算与训练前向计算的区别，下列说法错误的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "推理前向计算仅需输出最终结果，训练前向计算需保留中间特征用于反向传播"
+        },
+        {
+          "label": "B",
+          "text": "推理前向计算可复用 KV Cache，训练前向计算无需缓存 K/V 向量"
+        },
+        {
+          "label": "C",
+          "text": "推理前向计算与训练前向计算的计算逻辑完全一致，仅输入数据不同"
+        },
+        {
+          "label": "D",
+          "text": "推理前向计算的批量大小通常小于训练，以平衡延迟和吞吐量"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "C 错误。推理和训练的前向计算存在多处差异：推理时关闭 Dropout、使用 BatchNorm 的 running statistics 而非 batch statistics、可使用 KV Cache 进行增量计算、无需保留计算图。这些都是计算逻辑层面的区别。",
+      "topic": "深度学习——模型推理",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "对于函数 $f(x) = \\frac{1}{1 + 25x^2}$，在区间 $[-1, 1]$ 上取等距节点进行高次插值，当节点数 $n$ 增大时，插值多项式在区间两端会出现什么现象？",
+      "options": [
+        {
+          "label": "A",
+          "text": "收敛到 $f(x)$"
+        },
+        {
+          "label": "B",
+          "text": "插值多项式趋于零"
+        },
+        {
+          "label": "C",
+          "text": "振荡加剧，误差变大"
+        },
+        {
+          "label": "D",
+          "text": "插值多项式趋于直线"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "这是经典的 Runge 现象。对 Runge 函数使用等距节点进行高次多项式插值时，随着 $n$ 增大，插值多项式在区间两端产生剧烈振荡，最大误差趋于无穷。解决方案是使用 Chebyshev 节点（非等距）。",
+      "topic": "数学——数值计算",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$f(x) = \\frac{1}{1 + 25x^2}$",
+        "$[-1, 1]$",
+        "$n$",
+        "对于函数 $f(x) = \\frac{1}{1 + 25x^2}$，在区间 $[-1, 1]$ 上取等距节点进行高次插值，当节点数 $n$ 增大时，插值多项式在区间两端会出现什么现象？"
+      ],
+      "solution_formulas": [
+        "$n$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "若向量组 ${v_1, v_2, \\ldots, v_k}$ 线性无关，则以下说法正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "不存在不全为零的系数使线性组合为零"
+        },
+        {
+          "label": "B",
+          "text": "可由更少向量生成同一空间"
+        },
+        {
+          "label": "C",
+          "text": "任意两个向量线性相关"
+        },
+        {
+          "label": "D",
+          "text": "向量个数大于维度"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "线性无关的定义就是 $c_1 v_1 + \\cdots + c_k v_k = 0$ 仅当所有 $c_i = 0$ 时成立。B 错：线性无关说明没有冗余。C 错：线性无关的子集也线性无关。D 错：线性无关要求向量个数不超过空间维度。",
+      "topic": "数学——线性代数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "${v_1, v_2, \\ldots, v_k}$"
+      ],
+      "solution_formulas": [
+        "$c_1 v_1 + \\cdots + c_k v_k = 0$",
+        "$c_i = 0$",
+        "线性无关的定义就是 $c_1 v_1 + \\cdots + c_k v_k = 0$ 仅当所有 $c_i = 0$ 时成立。B 错：线性无关说明没有冗余。C 错：线性无关的子集也线性无关。D 错：线性无关要求向量个数不超过空间维度。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q015",
+      "source_number": 15,
+      "type": "single",
+      "stem": "在线性分类模型中，预测函数为 $y = w^T x + b$，设 $w = (2, 3)^T$，$x = (1, 2)^T$，$b = 4$，计算模型输出 $y$：",
+      "options": [
+        {
+          "label": "A",
+          "text": "10"
+        },
+        {
+          "label": "B",
+          "text": "12"
+        },
+        {
+          "label": "C",
+          "text": "11"
+        },
+        {
+          "label": "D",
+          "text": "13"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "$y = 2 \\times 1 + 3 \\times 2 + 4 = 2 + 6 + 4 = 12$。",
+      "topic": "机器学习——线性模型",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$y = w^T x + b$",
+        "$w = (2, 3)^T$",
+        "$x = (1, 2)^T$",
+        "$b = 4$",
+        "$y$",
+        "在线性分类模型中，预测函数为 $y = w^T x + b$，设 $w = (2, 3)^T$，$x = (1, 2)^T$，$b = 4$，计算模型输出 $y$："
+      ],
+      "solution_formulas": [
+        "$y = 2 \\times 1 + 3 \\times 2 + 4 = 2 + 6 + 4 = 12$",
+        "$y = 2 \\times 1 + 3 \\times 2 + 4 = 2 + 6 + 4 = 12$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q016",
+      "source_number": 16,
+      "type": "multiple",
+      "stem": "影响 GPU 内核占用率的因素包括以下哪些选项？",
+      "options": [
+        {
+          "label": "A",
+          "text": "线程块使用的共享内存大小"
+        },
+        {
+          "label": "B",
+          "text": "线程块的维度设置"
+        },
+        {
+          "label": "C",
+          "text": "每个线程使用的寄存器数量"
+        },
+        {
+          "label": "D",
+          "text": "GPU 核心的时钟频率"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A 正确：共享内存是 SM 上的有限资源，单个线程块使用越多，SM 能同时调度的线程块数越少。B 正确：线程块维度决定每块的线程数，影响 SM 上的 warp 调度。C 正确：寄存器越多，SM 上能活跃的线程总数越少。D 错误：时钟频率影响执行速度，不影响占用率。",
+      "topic": "深度学习——GPU计算",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q017",
+      "source_number": 17,
+      "type": "multiple",
+      "stem": "多 Agent 协作架构中，关于规划和协作策略正确的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "若所有子任务相互独立且可并行，吞吐量可近似达到单 Agent 的 $n$ 倍；若存在依赖链，则受限于关键路径"
+        },
+        {
+          "label": "B",
+          "text": "主 Agent 在任务分解时应考虑子任务之间的数据依赖关系"
+        },
+        {
+          "label": "C",
+          "text": "当检测到某个子任务 Agent 执行失败时，可根据任务重要性决定重试还是终止整个流程"
+        },
+        {
+          "label": "D",
+          "text": "为减少通信开销，所有子任务应尽可能并行执行，即使存在依赖关系"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A 正确：独立子任务可完全并行，有依赖时受关键路径约束（Amdahl 定律）。B 正确：必须分析数据依赖。C 正确：容错策略应根据业务重要性灵活处理。D 错误：有依赖关系的子任务强行并行会导致数据不一致。",
+      "topic": "大模型——多Agent系统",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "在大语言模型推理阶段，以下哪些技术可以实际降低单 token 的生成延迟？",
+      "options": [
+        {
+          "label": "A",
+          "text": "对模型进行 INT8 权重量化，配合 GPU Tensor Core 执行"
+        },
+        {
+          "label": "B",
+          "text": "使用 KV Cache 避免重复计算历史 token 的 Attention"
+        },
+        {
+          "label": "C",
+          "text": "在推理服务中增大 Batch Size 并启用连续批处理（Continuous Batching）"
+        },
+        {
+          "label": "D",
+          "text": "采用 FlashAttention / FlashAttention-2 实现 Attention 计算"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "A 正确：INT8 量化配合 Tensor Core 可提速约 $2$ 倍。B 正确：KV Cache 避免重复计算，显著降低延迟。C 错误：增大 Batch Size 和连续批处理的目标是提高吞吐量，单 token 延迟可能不降反升。D 正确：FlashAttention 通过 IO-aware 分块计算和 kernel fusion 加速。",
+      "topic": "大模型——推理优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$2$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "两台处理节点无故障连续运行时间 $X$ 和 $Y$（单位：百小时）相互独立，分别服从参数为 $\\lambda_1 = 2$ 和 $\\lambda_2 = 3$ 的指数分布。定义 $Z = \\min(X, Y)$，以下正确的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "第一个节点先故障的概率为 $\\frac{2}{5}$"
+        },
+        {
+          "label": "B",
+          "text": "$Z$ 的数学期望为 $5$ 百小时"
+        },
+        {
+          "label": "C",
+          "text": "$P(Z > 1) = e^{-5}$"
+        },
+        {
+          "label": "D",
+          "text": "$Z$ 服从参数为 $5$ 的指数分布"
+        }
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "A 正确：$P(X < Y) = \\frac{\\lambda_1}{\\lambda_1 + \\lambda_2} = \\frac{2}{5}$。B 错误：$E[Z] = \\frac{1}{\\lambda_1 + \\lambda_2} = \\frac{1}{5}$ 百小时 = 20 小时，不是 5 百小时。C 正确：$P(Z > 1) = e^{-(\\lambda_1 + \\lambda_2) \\cdot 1} = e^{-5}$。D 正确：独立指数分布的最小值仍服从指数分布，参数为 $\\lambda_1 + \\lambda_2 = 5$。",
+      "topic": "数学——概率论",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$X$",
+        "$Y$",
+        "$\\lambda_1 = 2$",
+        "$\\lambda_2 = 3$",
+        "$Z = \\min(X, Y)$",
+        "两台处理节点无故障连续运行时间 $X$ 和 $Y$（单位：百小时）相互独立，分别服从参数为 $\\lambda_1 = 2$ 和 $\\lambda_2 = 3$ 的指数分布。定义 $Z = \\min(X, Y)$，以下正确的有？"
+      ],
+      "solution_formulas": [
+        "$P(X < Y) = \\frac{\\lambda_1}{\\lambda_1 + \\lambda_2} = \\frac{2}{5}$",
+        "$E[Z] = \\frac{1}{\\lambda_1 + \\lambda_2} = \\frac{1}{5}$",
+        "$P(Z > 1) = e^{-(\\lambda_1 + \\lambda_2) \\cdot 1} = e^{-5}$",
+        "$\\lambda_1 + \\lambda_2 = 5$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260423-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "混合精度训练中，使用 FP16 计算时出现数值不稳定问题，以下分析正确的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "Softmax 计算 $e^{x_i}$ 时，当 $x_i$ 较大在 FP16 中容易溢出"
+        },
+        {
+          "label": "B",
+          "text": "可以使用 max-shift 技巧：先减去 $\\max(x)$ 再计算指数，避免溢出"
+        },
+        {
+          "label": "C",
+          "text": "对于 BatchNorm 层，使用 FP32 存储移动均值和方差可以提高数值稳定性"
+        },
+        {
+          "label": "D",
+          "text": "LayerNorm 在混合精度训练中完全没有数值风险"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A 正确：FP16 最大值约 65504，$e^{11}$ 就超过该范围。B 正确：max-shift 是标准的数值稳定技巧，使指数输入 $\\leq 0$。C 正确：BatchNorm 的累积统计量用 FP16 会因精度不足导致累积误差。D 错误：LayerNorm 内部也涉及方差计算和除法，FP16 下可能数值不稳定。",
+      "topic": "深度学习——混合精度训练",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$e^{11}$",
+        "$\\leq 0$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}

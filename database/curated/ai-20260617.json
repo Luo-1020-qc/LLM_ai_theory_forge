@@ -1,0 +1,774 @@
+{
+  "source": {
+    "id": "AIEXAM-20260617",
+    "exam_date": "2026-06-17",
+    "job_track": "互联网公司 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260617",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260617-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "使用 MLP 对每月降雨量进行预测，输出层的激活函数推荐使用什么？",
+      "options": [
+        {
+          "label": "A",
+          "text": "ReLU"
+        },
+        {
+          "label": "B",
+          "text": "Tanh"
+        },
+        {
+          "label": "C",
+          "text": "Sigmoid"
+        },
+        {
+          "label": "D",
+          "text": "不使用激活函数"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "降雨量预测是回归任务，输出层需要产生任意实数。ReLU 截断负值，Sigmoid/Tanh 压缩到有限区间，都会限制取值范围。回归任务输出层通常不加激活函数（线性输出）。",
+      "topic": "深度学习—激活函数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "关于重计算策略的时间换空间原理，下列说法错误的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "重计算仅适用于模型推理阶段，不适用于训练阶段"
+        },
+        {
+          "label": "B",
+          "text": "缓存的关键中间特征越少，显存越低，但重复计算时间越长"
+        },
+        {
+          "label": "C",
+          "text": "不会改变模型输出结果，仅影响计算时间和显存"
+        },
+        {
+          "label": "D",
+          "text": "核心是”按需重构中间特征”，而非”全程缓存”"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "重计算（梯度检查点）正是为训练阶段反向传播服务的：前向时只保留少量激活，反向时按需重算中间特征。A 将适用阶段说反了。",
+      "topic": "大模型—显存优化",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q003",
+      "source_number": 3,
+      "type": "single",
+      "stem": "隐藏层使用 Tanh 激活函数时，初始化权重应注意什么？",
+      "options": [
+        {
+          "label": "A",
+          "text": "必须初始化为 0"
+        },
+        {
+          "label": "B",
+          "text": "必须为很大的值"
+        },
+        {
+          "label": "C",
+          "text": "应随机初始化为较小的值（如 Xavier）"
+        },
+        {
+          "label": "D",
+          "text": "必须全部为负数"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "全零导致对称性无法打破；过大使 Tanh 饱和造成梯度消失。Xavier 初始化按扇入扇出调整方差，适配 Tanh 等对称激活函数。",
+      "topic": "深度学习—参数初始化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "对数几率（Logit）的范围是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$(-\\infty, +\\infty)$"
+        },
+        {
+          "label": "B",
+          "text": "$(0, 1)$"
+        },
+        {
+          "label": "C",
+          "text": "$(-1, 1)$"
+        },
+        {
+          "label": "D",
+          "text": "$(0, +\\infty)$"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "概率 $p \\in (0,1)$，几率 $p/(1-p) \\in (0,+\\infty)$，取对数后映射到 $(-\\infty,+\\infty)$。",
+      "topic": "机器学习—逻辑回归",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$p \\in (0,1)$",
+        "$p/(1-p) \\in (0,+\\infty)$",
+        "$(-\\infty,+\\infty)$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "混淆矩阵为 $\\begin{bmatrix}50 & 10\\5 & 35\\end{bmatrix}$，精确率是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$50/55$"
+        },
+        {
+          "label": "B",
+          "text": "$50/60$"
+        },
+        {
+          "label": "C",
+          "text": "$35/45$"
+        },
+        {
+          "label": "D",
+          "text": "$85/100$"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "$\\text{Precision} = \\text{TP}/(\\text{TP}+\\text{FP}) = 50/(50+5) = 50/55$。",
+      "topic": "机器学习—评价指标",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$\\begin{bmatrix}50 & 10\\5 & 35\\end{bmatrix}$"
+      ],
+      "solution_formulas": [
+        "$\\text{Precision} = \\text{TP}/(\\text{TP}+\\text{FP}) = 50/(50+5) = 50/55$",
+        "$\\text{Precision} = \\text{TP}/(\\text{TP}+\\text{FP}) = 50/(50+5) = 50/55$。"
+      ],
+      "review_status": "needs_review",
+      "review_note": "混淆矩阵行列约定与 LaTeX 行分隔损坏，答案依赖约定。"
+    },
+    {
+      "id": "AIEXAM-20260617-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "已知三个节点的 Lagrange 二次插值多项式 $P_2(x)$，增加一个节点后构造三次多项式 $P_3(x)$，正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "构造 $P_3$ 时需重新计算所有差商"
+        },
+        {
+          "label": "B",
+          "text": "$P_3$ 的 Lagrange 基函数与 $P_2$ 相同"
+        },
+        {
+          "label": "C",
+          "text": "在原三个节点上 $P_3$ 与 $P_2$ 的值相同"
+        },
+        {
+          "label": "D",
+          "text": "二者的差等于三点差商"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "插值多项式在节点处必须等于函数值，所以在原三个节点上 $P_3 = P_2 = f$。",
+      "topic": "数学—数值计算",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$P_2(x)$",
+        "$P_3(x)$"
+      ],
+      "solution_formulas": [
+        "$P_3 = P_2 = f$",
+        "插值多项式在节点处必须等于函数值，所以在原三个节点上 $P_3 = P_2 = f$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "线性变换的核心性质是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "保持向量正交性"
+        },
+        {
+          "label": "B",
+          "text": "保持线性组合不变"
+        },
+        {
+          "label": "C",
+          "text": "保持向量方向不变"
+        },
+        {
+          "label": "D",
+          "text": "保持向量长度不变"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "线性变换的定义性质是 $T(\\alpha u + \\beta v) = \\alpha T(u) + \\beta T(v)$，即保持线性组合。",
+      "topic": "数学—线性代数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$T(\\alpha u + \\beta v) = \\alpha T(u) + \\beta T(v)$",
+        "线性变换的定义性质是 $T(\\alpha u + \\beta v) = \\alpha T(u) + \\beta T(v)$，即保持线性组合。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q008",
+      "source_number": 8,
+      "type": "single",
+      "stem": "$w = [1, 2, 3]$，$x = [2, 1, 3]$，$b = 1$，求 $y = w^T x + b$？",
+      "options": [
+        {
+          "label": "A",
+          "text": "13"
+        },
+        {
+          "label": "B",
+          "text": "10"
+        },
+        {
+          "label": "C",
+          "text": "12"
+        },
+        {
+          "label": "D",
+          "text": "11"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "$w^T x + b = 1 \\times 2 + 2 \\times 1 + 3 \\times 3 + 1 = 14$… 实际按题面 $2+2+9+1=14$——但原题给定答案 C=12，应为 $w=[1,2,3], x=[2,1,2], b=1$ 得 $2+2+6+1=11$。以原卷答案 C 为准。",
+      "topic": "数学—线性代数",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$w = [1, 2, 3]$",
+        "$x = [2, 1, 3]$",
+        "$b = 1$",
+        "$y = w^T x + b$",
+        "$w = [1, 2, 3]$，$x = [2, 1, 3]$，$b = 1$，求 $y = w^T x + b$？"
+      ],
+      "solution_formulas": [
+        "$w^T x + b = 1 \\times 2 + 2 \\times 1 + 3 \\times 3 + 1 = 14$",
+        "$2+2+9+1=14$",
+        "$w=[1,2,3], x=[2,1,2], b=1$",
+        "$2+2+6+1=11$",
+        "$w^T x + b = 1 \\times 2 + 2 \\times 1 + 3 \\times 3 + 1 = 14$… 实际按题面 $2+2+9+1=14$——但原题给定答案 C=12，应为 $w=[1,2,3], x=[2,1,2], b=1$ 得 $2+2+6+1=11$。以原卷答案 C 为准。"
+      ],
+      "review_status": "needs_review",
+      "review_note": "按题面计算结果为 14，选项无 14，且来源答案/解析互相矛盾。"
+    },
+    {
+      "id": "AIEXAM-20260617-Q009",
+      "source_number": 9,
+      "type": "single",
+      "stem": "梯度下降中损失函数的作用是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "记录训练总时间"
+        },
+        {
+          "label": "B",
+          "text": "自动增加数据量"
+        },
+        {
+          "label": "C",
+          "text": "决定测试集最高分数上限"
+        },
+        {
+          "label": "D",
+          "text": "作为优化目标，计算梯度指明参数更新方向"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "损失函数量化预测与真实值的差距，梯度下降对其求导并沿负梯度更新参数。",
+      "topic": "机器学习—优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "“数据污染（Data Contamination）”指什么？",
+      "options": [
+        {
+          "label": "A",
+          "text": "评测集出现在训练语料中导致评分虚高"
+        },
+        {
+          "label": "B",
+          "text": "训练数据含过多错别字"
+        },
+        {
+          "label": "C",
+          "text": "输出含敏感词汇"
+        },
+        {
+          "label": "D",
+          "text": "数据库遭病毒攻击"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "数据污染指评测基准泄漏进训练语料，模型”见过答案”导致评分虚高。",
+      "topic": "大模型—模型评测",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q011",
+      "source_number": 11,
+      "type": "single",
+      "stem": "回归斜率 $0.5$，运动 $6$ 小时体重减少 $4$ kg，求截距？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$1$"
+        },
+        {
+          "label": "B",
+          "text": "$-1$"
+        },
+        {
+          "label": "C",
+          "text": "$2$"
+        },
+        {
+          "label": "D",
+          "text": "$0.5$"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "$y = 0.5x + b$，代入 $x=6, y=4$，得 $b = 4 - 3 = 1$。",
+      "topic": "机器学习—线性回归",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$0.5$",
+        "$6$",
+        "$4$"
+      ],
+      "solution_formulas": [
+        "$y = 0.5x + b$",
+        "$x=6, y=4$",
+        "$b = 4 - 3 = 1$",
+        "$y = 0.5x + b$，代入 $x=6, y=4$，得 $b = 4 - 3 = 1$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "排查模型未在 NPU 上运行时，优先检查什么？",
+      "options": [
+        {
+          "label": "A",
+          "text": "推理速度是否低于 CPU"
+        },
+        {
+          "label": "B",
+          "text": "输入数据格式"
+        },
+        {
+          "label": "C",
+          "text": "训练精度"
+        },
+        {
+          "label": "D",
+          "text": "转换日志中 unsupported op/fallback/compile fail"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "模型”没跑在 NPU 上”通常是算子不被支持而 fallback 到 CPU，查转换日志最直接。",
+      "topic": "大模型—部署优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "HAC（层次凝聚聚类）的增量更新能力，最准确的说法是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "只能处理静态数据"
+        },
+        {
+          "label": "B",
+          "text": "层次合并具有全局依赖性，严格增量更新困难"
+        },
+        {
+          "label": "C",
+          "text": "新增样本不需距离计算"
+        },
+        {
+          "label": "D",
+          "text": "可高效逐样本在线更新"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "HAC 每步合并依赖全局簇间距离，新样本会改变后续合并决策，严格增量更新困难。",
+      "topic": "机器学习—聚类",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "图像检索中特征向量相似度度量，正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "对特征加常数后余弦相似度不变"
+        },
+        {
+          "label": "B",
+          "text": "归一化后欧几里得距离与余弦相似度单调相关"
+        },
+        {
+          "label": "C",
+          "text": "曼哈顿距离适合稀疏特征"
+        },
+        {
+          "label": "D",
+          "text": "余弦相似度能区分两个不同向量与查询的相似度"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "归一化为单位向量后 $\\lVert u - v \\rVert^2 = 2(1 - \\cos(u,v))$，欧氏距离与余弦相似度严格单调相关。",
+      "topic": "机器学习—相似度度量",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$\\lVert u - v \\rVert^2 = 2(1 - \\cos(u,v))$",
+        "归一化为单位向量后 $\\lVert u - v \\rVert^2 = 2(1 - \\cos(u,v))$，欧氏距离与余弦相似度严格单调相关。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q015",
+      "source_number": 15,
+      "type": "single",
+      "stem": "预训练 $10^{12}$ tokens，SFT 用 $10^{9}$ tokens，SFT 占预训练的比例？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$0.01\\%$"
+        },
+        {
+          "label": "B",
+          "text": "$0.1\\%$"
+        },
+        {
+          "label": "C",
+          "text": "$1\\%$"
+        },
+        {
+          "label": "D",
+          "text": "$10\\%$"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "$10^9 / 10^{12} = 0.001 = 0.1\\%$。\n### 二、多选题",
+      "topic": "大模型—训练流程",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$10^{12}$",
+        "$10^{9}$"
+      ],
+      "solution_formulas": [
+        "$10^9 / 10^{12} = 0.001 = 0.1\\%$",
+        "$10^9 / 10^{12} = 0.001 = 0.1\\%$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q016",
+      "source_number": 16,
+      "type": "multiple",
+      "stem": "关于浮点数运算，正确的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "机器精度决定最小相对舍入误差"
+        },
+        {
+          "label": "B",
+          "text": "浮点数可精确表示所有十进制小数"
+        },
+        {
+          "label": "C",
+          "text": "浮点加法不满足结合律"
+        },
+        {
+          "label": "D",
+          "text": "浮点乘法满足交换律"
+        }
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "B 错误，如 $0.1$ 在二进制下无限循环，无法精确表示。",
+      "topic": "数学—数值计算",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$0.1$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q017",
+      "source_number": 17,
+      "type": "multiple",
+      "stem": "哪种激活函数适合处理梯度消失问题？",
+      "options": [
+        {
+          "label": "A",
+          "text": "Sigmoid"
+        },
+        {
+          "label": "B",
+          "text": "Leaky ReLU"
+        },
+        {
+          "label": "C",
+          "text": "Tanh"
+        },
+        {
+          "label": "D",
+          "text": "ReLU"
+        }
+      ],
+      "answer": [
+        "B",
+        "D"
+      ],
+      "explanation": "ReLU 正区间导数恒为 1 不衰减；Leaky ReLU 负区间也有小斜率，进一步避免神经元死亡。Sigmoid/Tanh 两端饱和，深层仍存在梯度消失。",
+      "topic": "深度学习—激活函数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "Top5 中常有 2-3 条不相关文档，哪些”当日可上线”改动有效？",
+      "options": [
+        {
+          "label": "A",
+          "text": "chunk 改为按段落语义切分加 overlap"
+        },
+        {
+          "label": "B",
+          "text": "仅把 temperature 降为 0"
+        },
+        {
+          "label": "C",
+          "text": "检索后加 rerank，控制到 Top 3"
+        },
+        {
+          "label": "D",
+          "text": "强制引用片段 ID，未命中证据则拒答"
+        }
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "问题出在检索召回了不相关文档，调 temperature 只影响生成随机性，治标不治本。",
+      "topic": "大模型—RAG",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "权重量化 INT4 + KV Cache 量化 INT8 混合策略，正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "量化后可支持更长生成序列"
+        },
+        {
+          "label": "B",
+          "text": "模型精度提升，延迟增加"
+        },
+        {
+          "label": "C",
+          "text": "显存占用降低"
+        },
+        {
+          "label": "D",
+          "text": "长文本生成时量化误差可能累积"
+        }
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "B 错误，量化通常降低精度、降低延迟，描述恰好相反。",
+      "topic": "大模型—量化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260617-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "关于最大似然估计 MLE，正确的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "似然函数表示观测样本的联合概率（视为参数的函数）"
+        },
+        {
+          "label": "B",
+          "text": "MLE 一定是无偏估计"
+        },
+        {
+          "label": "C",
+          "text": "通常对似然取对数便于求导"
+        },
+        {
+          "label": "D",
+          "text": "MLE 目标是最大化似然函数"
+        }
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "B 错误，MLE 不保证无偏，如高斯方差的 MLE 是有偏的。",
+      "topic": "机器学习—参数估计",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}

@@ -1,0 +1,788 @@
+{
+  "source": {
+    "id": "AIEXAM-20260724",
+    "exam_date": "2026-07-24",
+    "job_track": "互联网公司 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260724",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260724-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "设随机变量 $X\\sim N(1,2)$、$Y\\sim N(2,3)$，且 $X,Y$ 相互独立。令 $Z=2X-Y$，则 $Z$ 的方差为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$7$"
+        },
+        {
+          "label": "B",
+          "text": "$11$"
+        },
+        {
+          "label": "C",
+          "text": "$5$"
+        },
+        {
+          "label": "D",
+          "text": "$13$"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "独立随机变量的协方差为 $0$，因此\n\\[\\operatorname{Var}(Z)=2^2\\operatorname{Var}(X)+(-1)^2\\operatorname{Var}(Y)=4\\times2+3=11.\\]\n均值不影响方差；若不独立，还需要加入 $2\\times2\\times(-1)\\operatorname{Cov}(X,Y)$。",
+      "topic": "数学—概率论/随机变量线性组合",
+      "difficulty": "简单",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$X\\sim N(1,2)$",
+        "$Y\\sim N(2,3)$",
+        "$X,Y$",
+        "$Z=2X-Y$",
+        "$Z$",
+        "设随机变量 $X\\sim N(1,2)$、$Y\\sim N(2,3)$，且 $X,Y$ 相互独立。令 $Z=2X-Y$，则 $Z$ 的方差为？"
+      ],
+      "solution_formulas": [
+        "$0$",
+        "$2\\times2\\times(-1)\\operatorname{Cov}(X,Y)$",
+        "\\[\\operatorname{Var}(Z)=2^2\\operatorname{Var}(X)+(-1)^2\\operatorname{Var}(Y)=4\\times2+3=11.\\]"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "在训练大模型时使用 Activation Checkpointing（激活检查点）的主要目的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "减少模型参数量"
+        },
+        {
+          "label": "B",
+          "text": "提高推理吞吐量"
+        },
+        {
+          "label": "C",
+          "text": "通过反向传播时重算部分前向结果来降低激活显存"
+        },
+        {
+          "label": "D",
+          "text": "消除梯度通信"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "Activation Checkpointing 只保存部分层的激活，反向传播需要时重新执行相应前向计算，用额外计算换取更低的激活显存。它不会减少参数量，也不是面向推理阶段的优化。",
+      "topic": "大模型—训练显存优化",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q003",
+      "source_number": 3,
+      "type": "single",
+      "stem": "随机变量 $X$ 的概率密度为 $f(x)=c(1-x^2)$（$-1\\le x\\le1$），其他位置为 $0$。常数 $c$ 为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$\\dfrac12$"
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac23$"
+        },
+        {
+          "label": "C",
+          "text": "$\\dfrac34$"
+        },
+        {
+          "label": "D",
+          "text": "$1$"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "概率密度在全定义域上的积分必须为 $1$：\n\\[1=c\\int_{-1}^{1}(1-x^2)\\,dx =c\\left[x-\\frac{x^3}{3}\\right]_{-1}^{1} =c\\cdot\\frac43,\\]\n故 $c=\\dfrac34$。",
+      "topic": "数学—概率密度",
+      "difficulty": "简单",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$X$",
+        "$f(x)=c(1-x^2)$",
+        "$-1\\le x\\le1$",
+        "$0$",
+        "$c$",
+        "随机变量 $X$ 的概率密度为 $f(x)=c(1-x^2)$（$-1\\le x\\le1$），其他位置为 $0$。常数 $c$ 为？"
+      ],
+      "solution_formulas": [
+        "$1$",
+        "$c=\\dfrac34$",
+        "\\[1=c\\int_{-1}^{1}(1-x^2)\\,dx =c\\left[x-\\frac{x^3}{3}\\right]_{-1}^{1} =c\\cdot\\frac43,\\]",
+        "故 $c=\\dfrac34$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "L2 正则化提高模型稳定性的主要原因是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "限制权重过大，使模型对输入扰动不那么敏感"
+        },
+        {
+          "label": "B",
+          "text": "自动删除所有无关特征"
+        },
+        {
+          "label": "C",
+          "text": "保证训练损失降为 $0$"
+        },
+        {
+          "label": "D",
+          "text": "将所有权重变成完全相同的值"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "L2 正则化在目标函数中加入权重平方和惩罚，倾向于得到较小、较平滑的参数，降低模型方差以及对噪声的敏感程度。它通常不会产生大量严格为 $0$ 的权重，也不保证训练误差为 $0$。",
+      "topic": "机器学习—正则化",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$0$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "三分类任务的真实标签为 one-hot 向量 $[0,1,0]$，模型预测概率为 $[0.1,0.8,0.1]$，单样本交叉熵损失为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$-\\log 0.1$"
+        },
+        {
+          "label": "B",
+          "text": "$-\\log 0.8$"
+        },
+        {
+          "label": "C",
+          "text": "$-\\log 0.2$"
+        },
+        {
+          "label": "D",
+          "text": "$0.8$"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "多分类交叉熵为 $-\\sum_i y_i\\log p_i$。one-hot 标签只有真实类别对应项为 $1$，所以损失就是该类别预测概率的负对数，即 $-\\log0.8$。",
+      "topic": "机器学习—交叉熵",
+      "difficulty": "简单",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$[0,1,0]$",
+        "$[0.1,0.8,0.1]$"
+      ],
+      "solution_formulas": [
+        "$-\\sum_i y_i\\log p_i$",
+        "$1$",
+        "$-\\log0.8$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "在对不同量纲的特征做 PCA 前，通常先进行标准化，其主要原因是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "使 PCA 变成非线性方法"
+        },
+        {
+          "label": "B",
+          "text": "保证所有主成分的方差相同"
+        },
+        {
+          "label": "C",
+          "text": "避免大尺度特征仅因量纲较大而主导主成分"
+        },
+        {
+          "label": "D",
+          "text": "将特征数量直接减少一半"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "PCA 寻找方差最大的方向。若不同特征量纲相差很大，数值尺度大的特征会主导协方差矩阵。标准化让各特征在可比尺度上参与主成分提取，但不会使 PCA 非线性。",
+      "topic": "机器学习—PCA/数据预处理",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "多模态模型中的 Late Fusion（后期融合）通常是指？",
+      "options": [
+        {
+          "label": "A",
+          "text": "在输入层直接拼接所有模态的原始数据"
+        },
+        {
+          "label": "B",
+          "text": "各模态由独立编码器处理，在决策层融合预测结果或高层表示"
+        },
+        {
+          "label": "C",
+          "text": "只保留信息量最大的一个模态"
+        },
+        {
+          "label": "D",
+          "text": "每一层都执行跨模态注意力"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "Late Fusion 先让不同模态相对独立地编码或完成预测，再在较后的决策层进行融合。输入级拼接属于 Early Fusion；每层跨模态交互则属于更深层的中间融合。",
+      "topic": "多模态—融合策略",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q008",
+      "source_number": 8,
+      "type": "single",
+      "stem": "神经网络隐藏层的主要作用之一是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "只能复制输入特征"
+        },
+        {
+          "label": "B",
+          "text": "保证模型目标函数是凸函数"
+        },
+        {
+          "label": "C",
+          "text": "通过非线性变换学习更高阶的特征表示"
+        },
+        {
+          "label": "D",
+          "text": "使模型不再需要训练数据"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "隐藏层把线性变换与激活函数组合起来，逐层构造更抽象、更高阶的非线性特征。若所有层都没有非线性激活，多层线性映射仍等价于单个线性映射。",
+      "topic": "深度学习—表示学习",
+      "difficulty": "入门",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q009",
+      "source_number": 9,
+      "type": "single",
+      "stem": "面对没有任何标签的数据，希望算法自动发现类别结构，应优先采用哪类方法？",
+      "options": [
+        {
+          "label": "A",
+          "text": "监督学习"
+        },
+        {
+          "label": "B",
+          "text": "强化学习"
+        },
+        {
+          "label": "C",
+          "text": "无监督学习"
+        },
+        {
+          "label": "D",
+          "text": "在线蒸馏"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "无标签数据上的自动分组是典型的聚类问题，属于无监督学习。监督学习需要标签，强化学习需要环境反馈的奖励信号。",
+      "topic": "机器学习—学习范式",
+      "difficulty": "入门",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "两个评分者采用的评分尺度不同，但希望衡量两组评分的线性一致程度，较合适的指标是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "均方误差"
+        },
+        {
+          "label": "B",
+          "text": "曼哈顿距离"
+        },
+        {
+          "label": "C",
+          "text": "Pearson 相关系数"
+        },
+        {
+          "label": "D",
+          "text": "准确率"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "Pearson 相关系数衡量两个变量的线性相关程度，对正比例缩放和平移不敏感，适合比较不同评分尺度下的变化趋势。均方误差和曼哈顿距离会直接受到尺度差异影响。",
+      "topic": "数学—统计相关性",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q011",
+      "source_number": 11,
+      "type": "single",
+      "stem": "若 PagedAttention 的 block size 设置为 $1$，最可能带来的问题是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "KV Cache 完全无法共享"
+        },
+        {
+          "label": "B",
+          "text": "必然产生严重的块内碎片"
+        },
+        {
+          "label": "C",
+          "text": "每个序列只能保存一个 token"
+        },
+        {
+          "label": "D",
+          "text": "页表元数据开销增大，并可能因访问过于离散而降低访存效率"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "block size 为 $1$ 几乎消除了块内未使用空间，但每个 token 都需要独立的块映射，页表等元数据数量最大，物理块访问也更零散。工程上需要在内部碎片和管理、访存开销之间折中。",
+      "topic": "大模型—PagedAttention/KV Cache",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$1$"
+      ],
+      "solution_formulas": [
+        "$1$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "在语言模型能够合理建模数据的前提下，高质量、自然且连贯的文本通常表现为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "困惑度更高"
+        },
+        {
+          "label": "B",
+          "text": "困惑度恒为 $1$"
+        },
+        {
+          "label": "C",
+          "text": "困惑度更低"
+        },
+        {
+          "label": "D",
+          "text": "困惑度与文本质量完全无关"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "困惑度是平均负对数似然的指数形式。模型对自然、连贯文本赋予的条件概率通常更高，因此其负对数似然和困惑度更低。跨模型、跨词表直接比较困惑度时则需要谨慎。",
+      "topic": "大模型—困惑度",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "某 decoder-only 模型使用长度为 $20$ 的滑动窗口注意力。Prefill 输入 $30$ 个 token，随后 Decode 生成 $15$ 个 token。若实现始终只保留窗口内 KV，则最终 KV Cache 长度和单个新 token 可见的上下文长度分别为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$20,20$"
+        },
+        {
+          "label": "B",
+          "text": "$30,20$"
+        },
+        {
+          "label": "C",
+          "text": "$45,45$"
+        },
+        {
+          "label": "D",
+          "text": "$15,20$"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "序列总长度已经超过窗口大小，但旧 KV 会被窗口机制淘汰，所以最终缓存最多保留 $20$ 个 token；每个新 token 的注意力也只覆盖最近 $20$ 个位置。Prefill 和 Decode 的长度不会突破固定窗口上限。",
+      "topic": "大模型—滑动窗口注意力/KV Cache",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$20$",
+        "$30$",
+        "$15$"
+      ],
+      "solution_formulas": [
+        "$20$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "对实矩阵作奇异值分解 $A=U\\Sigma V^T$，下列说法正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$U$、$V$ 可以取为正交矩阵"
+        },
+        {
+          "label": "B",
+          "text": "$\\Sigma$ 的奇异值可以为负数"
+        },
+        {
+          "label": "C",
+          "text": "只有方阵才能进行 SVD"
+        },
+        {
+          "label": "D",
+          "text": "$U$、$V$ 必须相同"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "完整 SVD 中，$U$ 和 $V$ 分别由左右奇异向量组成，可取为正交矩阵；$\\Sigma$ 对角线上的奇异值非负。任意矩形矩阵都可以做 SVD，且一般没有 $U=V$。",
+      "topic": "数学—线性代数/SVD",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$A=U\\Sigma V^T$",
+        "对实矩阵作奇异值分解 $A=U\\Sigma V^T$，下列说法正确的是？"
+      ],
+      "solution_formulas": [
+        "$U$",
+        "$V$",
+        "$\\Sigma$",
+        "$U=V$",
+        "完整 SVD 中，$U$ 和 $V$ 分别由左右奇异向量组成，可取为正交矩阵；$\\Sigma$ 对角线上的奇异值非负。任意矩形矩阵都可以做 SVD，且一般没有 $U=V$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q015",
+      "source_number": 15,
+      "type": "single",
+      "stem": "关于余弦相似度和欧氏距离，下列说法正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "余弦相似度主要比较方向，欧氏距离同时受到方向和向量长度影响"
+        },
+        {
+          "label": "B",
+          "text": "二者都只考虑向量长度"
+        },
+        {
+          "label": "C",
+          "text": "二者都完全忽略向量长度"
+        },
+        {
+          "label": "D",
+          "text": "余弦相似度只能用于一维向量"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "余弦相似度对正比例缩放不敏感，关注夹角；欧氏距离是两向量差的模，方向和长度变化都会影响结果。若向量先做 L2 归一化，二者才存在单调对应关系。\n### 二、多选题",
+      "topic": "机器学习—向量度量",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q016",
+      "source_number": 16,
+      "type": "multiple",
+      "stem": "关于 Activation Checkpointing，下列说法正确的是哪些？",
+      "options": [
+        {
+          "label": "A",
+          "text": "反向传播时通常需要重算未保存的前向激活，因此增加计算开销"
+        },
+        {
+          "label": "B",
+          "text": "它会减少模型参数个数"
+        },
+        {
+          "label": "C",
+          "text": "它主要通过压缩优化器状态来节省显存"
+        },
+        {
+          "label": "D",
+          "text": "它可以显著减少训练时保存激活所需的显存"
+        }
+      ],
+      "answer": [
+        "A",
+        "D"
+      ],
+      "explanation": "* A 正确：未保存的中间激活要在反向阶段重新计算，训练时间通常增加。\n* B 错误：模型结构和参数数量没有改变。\n* C 错误：优化器状态压缩属于低精度优化器、状态分片等技术解决的问题。\n* D 正确：少保存激活正是 Checkpointing 的核心收益。",
+      "topic": "大模型—训练显存优化",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q017",
+      "source_number": 17,
+      "type": "multiple",
+      "stem": "关于大模型训练与推理显存优化，下列说法正确的是哪些？",
+      "options": [
+        {
+          "label": "A",
+          "text": "PagedAttention 的核心用途是训练阶段重算激活"
+        },
+        {
+          "label": "B",
+          "text": "PagedAttention 可降低推理阶段 KV Cache 的内存碎片并支持灵活分配"
+        },
+        {
+          "label": "C",
+          "text": "Activation Checkpointing 通过重计算减少训练激活显存"
+        },
+        {
+          "label": "D",
+          "text": "低位宽量化 KV Cache 可以降低推理缓存占用"
+        }
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "* A 错误：PagedAttention 主要服务于推理阶段的 KV Cache 管理，不是激活重算技术。\n* B 正确：分页式分配减少连续大块内存需求和碎片，并便于共享物理块。\n* C 正确：Checkpointing 是典型的“以算换存”。\n* D 正确：KV 元素位宽降低后，每个 token 的缓存字节数随之减少。",
+      "topic": "大模型—显存优化",
+      "difficulty": "中等",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "关于 ResNet 中的 Shortcut（捷径连接），下列说法正确的是哪些？",
+      "options": [
+        {
+          "label": "A",
+          "text": "它为梯度提供更直接的传播路径，有助于缓解深层网络中的梯度消失和退化问题"
+        },
+        {
+          "label": "B",
+          "text": "它要求每个残差分支都不使用非线性激活"
+        },
+        {
+          "label": "C",
+          "text": "它只能用于图像分类中的卷积网络"
+        },
+        {
+          "label": "D",
+          "text": "残差思想已广泛用于 MLP、CNN、RNN 等多类网络结构"
+        }
+      ],
+      "answer": [
+        "A",
+        "D"
+      ],
+      "explanation": "* A 正确：恒等捷径使信息和梯度能够沿较短路径传播，深层模型更易优化。\n* B 错误：残差分支内部可以包含卷积、线性层、归一化和非线性激活。\n* C 错误：残差连接并不局限于视觉任务。\n* D 正确：MLP、CNN、RNN 以及 Transformer 都广泛借鉴了残差思想。",
+      "topic": "深度学习—残差连接",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "在注意力机制中用余弦相似度替代未经缩放的点积，下列判断正确的是哪些？",
+      "options": [
+        {
+          "label": "A",
+          "text": "余弦相似度仍然完整保留了 Query 和 Key 的模长信息"
+        },
+        {
+          "label": "B",
+          "text": "余弦值域受限，若没有合适的温度缩放，Softmax 分布可能过于平缓"
+        },
+        {
+          "label": "C",
+          "text": "点积同时包含方向相似性与向量模长信息"
+        },
+        {
+          "label": "D",
+          "text": "余弦相似度等价于先对两个向量做 L2 归一化再计算点积"
+        }
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "* A 错误：归一化会去掉模长信息。\n* B 正确：余弦值被限制在 $[-1,1]$，直接送入 Softmax 可能缺少足够的 logit 动态范围，常搭配可学习温度。\n* C 正确：$q^Tk=\\lVert q\\rVert\\lVert k\\rVert\\cos\\theta$，既含夹角也含模长。\n* D 正确：$\\cos(q,k)=\\dfrac{q^Tk}{\\lVert q\\rVert\\lVert k\\rVert}$，就是归一化向量的点积。",
+      "topic": "深度学习—注意力/相似度",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$[-1,1]$",
+        "$q^Tk=\\lVert q\\rVert\\lVert k\\rVert\\cos\\theta$",
+        "$\\cos(q,k)=\\dfrac{q^Tk}{\\lVert q\\rVert\\lVert k\\rVert}$",
+        "* C 正确：$q^Tk=\\lVert q\\rVert\\lVert k\\rVert\\cos\\theta$，既含夹角也含模长。",
+        "* D 正确：$\\cos(q,k)=\\dfrac{q^Tk}{\\lVert q\\rVert\\lVert k\\rVert}$，就是归一化向量的点积。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260724-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "关于多模态模型的训练与网络分支，下列说法正确的是哪些？",
+      "options": [
+        {
+          "label": "A",
+          "text": "对不同模态或任务分支进行梯度归一化，可以帮助平衡各分支的更新尺度"
+        },
+        {
+          "label": "B",
+          "text": "多模态联合训练中可能出现某个模态梯度占主导的失衡现象"
+        },
+        {
+          "label": "C",
+          "text": "对很大的正输入，Swish 的导数趋近于 $1$"
+        },
+        {
+          "label": "D",
+          "text": "对部分冗余分支进行结构化裁剪可以降低计算量，但通常需要评估或微调以控制精度损失"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "* A 正确：梯度归一化或动态加权能缓解不同任务、模态梯度尺度差异。\n* B 正确：模态质量、损失尺度和收敛速度不同，都可能造成训练失衡。\n* C 正确：$\\operatorname{Swish}(x)=x\\sigma(x)$，当 $x\\to+\\infty$ 时 $\\sigma(x)\\to1$、$\\sigma’(x)\\to0$，故导数趋近 $1$。\n* D 正确：分支裁剪可以减少参数和计算，但裁剪后的模型通常需要验证，必要时再微调恢复性能。",
+      "topic": "多模态—训练平衡/激活函数/模型压缩",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$\\operatorname{Swish}(x)=x\\sigma(x)$",
+        "$x\\to+\\infty$",
+        "$\\sigma(x)\\to1$",
+        "$\\sigma’(x)\\to0$",
+        "$1$",
+        "* C 正确：$\\operatorname{Swish}(x)=x\\sigma(x)$，当 $x\\to+\\infty$ 时 $\\sigma(x)\\to1$、$\\sigma’(x)\\to0$，故导数趋近 $1$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}

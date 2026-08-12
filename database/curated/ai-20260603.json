@@ -1,0 +1,780 @@
+{
+  "source": {
+    "id": "AIEXAM-20260603",
+    "exam_date": "2026-06-03",
+    "job_track": "互联网公司 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260603",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260603-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "CUDA 中的双缓冲（Double Buffering）技术主要用于解决什么问题？",
+      "options": [
+        {
+          "label": "A",
+          "text": "减少显存占用"
+        },
+        {
+          "label": "B",
+          "text": "掩盖访存延迟（Hide Latency）"
+        },
+        {
+          "label": "C",
+          "text": "避免死锁"
+        },
+        {
+          "label": "D",
+          "text": "提高计算精度"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "双缓冲用两块缓冲区交替读写，让数据搬运（访存）与计算重叠进行，从而掩盖访存延迟。它不减少显存占用（反而多占一块缓冲），与死锁、计算精度无关。",
+      "topic": "大模型——CUDA并行优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "考虑一个深层神经网络，所有隐藏层都使用 ReLU 激活函数。在训练过程中，发现某些神经元的输出始终为 0，且梯度也为 0，这种现象被称为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "梯度消失"
+        },
+        {
+          "label": "B",
+          "text": "神经元死亡"
+        },
+        {
+          "label": "C",
+          "text": "梯度爆炸"
+        },
+        {
+          "label": "D",
+          "text": "过拟合"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "ReLU 在输入为负时输出恒为 0 且导数为 0，一旦某神经元落入该区域便无法再更新权重，称为”神经元死亡”（Dead ReLU）。梯度消失是整体梯度逐层衰减，与单个神经元彻底失活不同。",
+      "topic": "深度学习——激活函数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q003",
+      "source_number": 3,
+      "type": "single",
+      "stem": "在某些算子融合优化的底层实现中，需要通过迭代法快速计算平方根。设目标是求 $\\sqrt{a}$ 的近似值，将其转化为求函数 $f(x) = x^2 - a$ 的正根。若使用牛顿迭代法，且选取初始点 $x_0$，则单次迭代后的值 $x_1$ 为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$\\frac{1}{2}(x_0 + \\frac{a}{x_0})$"
+        },
+        {
+          "label": "B",
+          "text": "$x_0 - \\frac{a}{2x_0}$"
+        },
+        {
+          "label": "C",
+          "text": "$\\frac{x_0}{2} + a$"
+        },
+        {
+          "label": "D",
+          "text": "$x_0 - \\frac{x_0^2}{2a}$"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "牛顿迭代公式 $x_1 = x_0 - \\frac{f(x_0)}{f’(x_0)}$，其中 $f(x) = x^2 - a$，$f’(x) = 2x$。代入得 $x_1 = x_0 - \\frac{x_0^2 - a}{2x_0} = \\frac{1}{2}(x_0 + \\frac{a}{x_0})$。",
+      "topic": "数学——数值计算（牛顿迭代）",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$\\sqrt{a}$",
+        "$f(x) = x^2 - a$",
+        "$x_0$",
+        "$x_1$",
+        "在某些算子融合优化的底层实现中，需要通过迭代法快速计算平方根。设目标是求 $\\sqrt{a}$ 的近似值，将其转化为求函数 $f(x) = x^2 - a$ 的正根。若使用牛顿迭代法，且选取初始点 $x_0$，则单次迭代后的值 $x_1$ 为？"
+      ],
+      "solution_formulas": [
+        "$x_1 = x_0 - \\frac{f(x_0)}{f’(x_0)}$",
+        "$f(x) = x^2 - a$",
+        "$f’(x) = 2x$",
+        "$x_1 = x_0 - \\frac{x_0^2 - a}{2x_0} = \\frac{1}{2}(x_0 + \\frac{a}{x_0})$",
+        "牛顿迭代公式 $x_1 = x_0 - \\frac{f(x_0)}{f’(x_0)}$，其中 $f(x) = x^2 - a$，$f’(x) = 2x$。代入得 $x_1 = x_0 - \\frac{x_0^2 - a}{2x_0} = \\frac{1}{2}(x_0 + \\frac{a}{x_0})$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "在一个垃圾文本自动过滤系统中，基于朴素贝叶斯模型，系统提取了文本中的两个特征词 $w_1$ 和 $w_2$。已知 $P(\\text{spam}) = 0.3$，垃圾文本中包含 $w_1$ 的概率为 0.8，包含 $w_2$ 的概率为 0.6；正常文本中包含 $w_1$ 的概率为 0.1，包含 $w_2$ 的概率为 0.2。假设特征在类条件独立，一段同时包含 $w_1$ 和 $w_2$ 的文本是垃圾文本的概率最接近？",
+      "options": [
+        {
+          "label": "A",
+          "text": "0.75"
+        },
+        {
+          "label": "B",
+          "text": "0.85"
+        },
+        {
+          "label": "C",
+          "text": "0.90"
+        },
+        {
+          "label": "D",
+          "text": "0.91"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "垃圾联合得分 $0.3 \\times 0.8 \\times 0.6 = 0.144$，正常联合得分 $0.7 \\times 0.1 \\times 0.2 = 0.014$。后验 $\\frac{0.144}{0.144 + 0.014} \\approx 0.911$，最接近 0.91。",
+      "topic": "机器学习——朴素贝叶斯",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$w_1$",
+        "$w_2$",
+        "$P(\\text{spam}) = 0.3$",
+        "在一个垃圾文本自动过滤系统中，基于朴素贝叶斯模型，系统提取了文本中的两个特征词 $w_1$ 和 $w_2$。已知 $P(\\text{spam}) = 0.3$，垃圾文本中包含 $w_1$ 的概率为 0.8，包含 $w_2$ 的概率为 0.6；正常文本中包含 $w_1$ 的概率为 0.1，包含 $w_2$ 的概率为 0.2。假设特征在类条件独立，一段同时包含 $w_1$ 和 $w_2$ 的文本是垃圾文本的概率最接近？"
+      ],
+      "solution_formulas": [
+        "$0.3 \\times 0.8 \\times 0.6 = 0.144$",
+        "$0.7 \\times 0.1 \\times 0.2 = 0.014$",
+        "$\\frac{0.144}{0.144 + 0.014} \\approx 0.911$",
+        "垃圾联合得分 $0.3 \\times 0.8 \\times 0.6 = 0.144$，正常联合得分 $0.7 \\times 0.1 \\times 0.2 = 0.014$。后验 $\\frac{0.144}{0.144 + 0.014} \\approx 0.911$，最接近 0.91。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "关于 Adam 中偏置校正（bias correction）的作用，下列说法最准确的是哪一项？",
+      "options": [
+        {
+          "label": "A",
+          "text": "用于防止梯度爆炸，因此可以替代梯度裁剪"
+        },
+        {
+          "label": "B",
+          "text": "用于修正一阶矩和二阶矩在训练初期因初始化为 0 而产生的估计偏小问题"
+        },
+        {
+          "label": "C",
+          "text": "用于让 Adam 退化成 SGD，从而提高泛化能力"
+        },
+        {
+          "label": "D",
+          "text": "用于减少模型参数数量，提高推理速度"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "Adam 的一阶矩 $m_t$、二阶矩 $v_t$ 初始化为 0，训练初期指数滑动平均被拉向 0 使估计偏小。偏置校正 $\\hat{m}_t = m_t / (1 - \\beta_1^t)$、$\\hat{v}_t = v_t / (1 - \\beta_2^t)$ 正是为修正这一初期偏差。",
+      "topic": "深度学习——优化器",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$m_t$",
+        "$v_t$",
+        "$\\hat{m}_t = m_t / (1 - \\beta_1^t)$",
+        "$\\hat{v}_t = v_t / (1 - \\beta_2^t)$",
+        "Adam 的一阶矩 $m_t$、二阶矩 $v_t$ 初始化为 0，训练初期指数滑动平均被拉向 0 使估计偏小。偏置校正 $\\hat{m}_t = m_t / (1 - \\beta_1^t)$、$\\hat{v}_t = v_t / (1 - \\beta_2^t)$ 正是为修正这一初期偏差。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "以下哪项不是 Transformer 优于传统 RNN 的典型特征？",
+      "options": [
+        {
+          "label": "A",
+          "text": "推理时的单步解码时间复杂度更低"
+        },
+        {
+          "label": "B",
+          "text": "更高的训练并行度"
+        },
+        {
+          "label": "C",
+          "text": "更强的长距离依赖建模能力"
+        },
+        {
+          "label": "D",
+          "text": "训练层数较深的模型时更好地避免梯度消失问题"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "自回归推理时 Transformer 每生成一个 token 需对已有序列做注意力，单步复杂度随序列长度增长，并不比 RNN 的 $O(1)$ 单步更低（这正是 KV Cache 要优化的痛点）。而训练并行度、长距离依赖、缓解梯度消失都是 Transformer 相对 RNN 的真实优势。",
+      "topic": "深度学习——Transformer",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$O(1)$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "下列哪项不是量化的目的？",
+      "options": [
+        {
+          "label": "A",
+          "text": "减小模型体积"
+        },
+        {
+          "label": "B",
+          "text": "提升推理吞吐量"
+        },
+        {
+          "label": "C",
+          "text": "提高训练收敛速度"
+        },
+        {
+          "label": "D",
+          "text": "适配移动端硬件"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "量化将高精度权重转为低位宽整数，面向的是推理阶段的体积压缩、吞吐提升与端侧部署。训练收敛速度由优化器与学习率等决定，量化并不以加速训练收敛为目的。",
+      "topic": "大模型——量化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q008",
+      "source_number": 8,
+      "type": "single",
+      "stem": "在大模型 KV Cache 压缩技术中，若利用二次多项式拟合一段 Token 的 Attention Score 趋势，其范德蒙德矩阵（Vandermonde Matrix）的条件数（Condition Number）随节点增加而迅速增大，这会导致？",
+      "options": [
+        {
+          "label": "A",
+          "text": "拟合残差（Residual）变为 0"
+        },
+        {
+          "label": "B",
+          "text": "硬件加速器的吞吐量线性提升"
+        },
+        {
+          "label": "C",
+          "text": "自动微分失效"
+        },
+        {
+          "label": "D",
+          "text": "计算结果的数值稳定性变差"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "条件数刻画输入扰动被放大的程度，条件数越大问题越病态。范德蒙德矩阵条件数随节点数迅速增大，求解时浮点误差被严重放大，导致数值稳定性变差。",
+      "topic": "数学——数值计算（条件数）",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q009",
+      "source_number": 9,
+      "type": "single",
+      "stem": "交叉熵损失函数通常与哪个激活函数配合使用？",
+      "options": [
+        {
+          "label": "A",
+          "text": "Tanh"
+        },
+        {
+          "label": "B",
+          "text": "Softmax"
+        },
+        {
+          "label": "C",
+          "text": "Sigmoid"
+        },
+        {
+          "label": "D",
+          "text": "ReLU"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "多分类交叉熵的标准搭配是 Softmax，它把输出归一化为概率分布，与交叉熵求导后梯度形式简洁为 $\\hat{y} - y$。",
+      "topic": "深度学习——损失函数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$\\hat{y} - y$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "对于类别不平衡的分类任务，哪种损失函数可以缓解不平衡问题？",
+      "options": [
+        {
+          "label": "A",
+          "text": "交叉熵损失"
+        },
+        {
+          "label": "B",
+          "text": "Focal Loss"
+        },
+        {
+          "label": "C",
+          "text": "Hinge 损失"
+        },
+        {
+          "label": "D",
+          "text": "均方误差"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "Focal Loss 在交叉熵前乘调制因子 $(1 - p_t)^\\gamma$，降低大量易分负样本的权重，让模型聚焦于难分的少数类样本，专为类别不平衡设计。",
+      "topic": "深度学习——损失函数（Focal Loss）",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$(1 - p_t)^\\gamma$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q011",
+      "source_number": 11,
+      "type": "single",
+      "stem": "在智能体（Agent）的记忆机制中，短期记忆用于存储当前对话上下文，长期记忆用于存储用户偏好、历史任务记录等持久化信息。某客服 Agent 在多轮对话中无法识别用户重复提出的”网络延迟”问题，下列改进方案最合理的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "将用户关于”网络延迟”的关键信息结构化存入长期记忆，并为该类条目设计基于语义检索的触发策略"
+        },
+        {
+          "label": "B",
+          "text": "调整对话轮次截断策略，适当增大短期记忆窗口"
+        },
+        {
+          "label": "C",
+          "text": "引入专门的”网络质量排障”工具"
+        },
+        {
+          "label": "D",
+          "text": "优化提示词，在系统提示中显式强调”关注用户反复提及的问题”"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "问题本质是跨多轮、跨会话的持久信息无法被复用，对应的正是长期记忆。将故障信息结构化写入长期记忆并配语义检索触发，能让 Agent 在后续对话中主动联想引用。增大短期窗口、加工具、改提示词都只在单次会话内缓解，无法持久化。",
+      "topic": "大模型——Agent记忆机制",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "RNN 在处理长序列时的主要问题是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "梯度消失／爆炸"
+        },
+        {
+          "label": "B",
+          "text": "计算复杂度高"
+        },
+        {
+          "label": "C",
+          "text": "内存占用大"
+        },
+        {
+          "label": "D",
+          "text": "参数过多"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "RNN 沿时间步反复连乘相同权重，梯度在长序列上呈指数衰减或膨胀，导致梯度消失/爆炸，这是 LSTM、GRU 乃至 Transformer 出现的根本动因。",
+      "topic": "深度学习——RNN",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "随机变量 $X$ 的概率分布为 $P(X=1)=0.2, P(X=2)=0.5, P(X=3)=0.3$。它的期望 $E(X)$ 是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "2.1"
+        },
+        {
+          "label": "B",
+          "text": "2.0"
+        },
+        {
+          "label": "C",
+          "text": "1.8"
+        },
+        {
+          "label": "D",
+          "text": "2.5"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "期望按定义加权求和 $E(X) = 1 \\times 0.2 + 2 \\times 0.5 + 3 \\times 0.3 = 2.1$。",
+      "topic": "数学——概率（期望）",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$X$",
+        "$P(X=1)=0.2, P(X=2)=0.5, P(X=3)=0.3$",
+        "$E(X)$",
+        "随机变量 $X$ 的概率分布为 $P(X=1)=0.2, P(X=2)=0.5, P(X=3)=0.3$。它的期望 $E(X)$ 是？"
+      ],
+      "solution_formulas": [
+        "$E(X) = 1 \\times 0.2 + 2 \\times 0.5 + 3 \\times 0.3 = 2.1$",
+        "期望按定义加权求和 $E(X) = 1 \\times 0.2 + 2 \\times 0.5 + 3 \\times 0.3 = 2.1$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "某服务台处理请求的时间服从指数分布。已知处理某个请求已经花去了 10 分钟还没结束，它还需要再处理至少 5 分钟的概率，与一个全新请求需要处理至少 5 分钟的概率相比？",
+      "options": [
+        {
+          "label": "A",
+          "text": "无法比较"
+        },
+        {
+          "label": "B",
+          "text": "两者相等"
+        },
+        {
+          "label": "C",
+          "text": "前者大于后者"
+        },
+        {
+          "label": "D",
+          "text": "前者小于后者"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "指数分布具有无记忆性 $P(X > s+t \\mid X > s) = P(X > t)$。已处理 10 分钟的条件不会改变剩余时间的分布，因此两者概率相等。",
+      "topic": "数学——概率（指数分布无记忆性）",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$P(X > s+t \\mid X > s) = P(X > t)$",
+        "指数分布具有无记忆性 $P(X > s+t \\mid X > s) = P(X > t)$。已处理 10 分钟的条件不会改变剩余时间的分布，因此两者概率相等。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q015",
+      "source_number": 15,
+      "type": "single",
+      "stem": "所谓的”死亡神经元”现象，在反向传播视角看，是指？",
+      "options": [
+        {
+          "label": "A",
+          "text": "该神经元的偏置项过大"
+        },
+        {
+          "label": "B",
+          "text": "该神经元的激活函数爆炸"
+        },
+        {
+          "label": "C",
+          "text": "该神经元的输出恒为 0，且无论输入如何，梯度恒为 0，权重永远不再更新"
+        },
+        {
+          "label": "D",
+          "text": "该神经元的权重变成了 NaN"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "从反向传播看，ReLU 在负区间导数为 0，一旦神经元长期落入负区间，回传梯度恒为 0，权重不再更新而”永久死亡”。",
+      "topic": "深度学习——激活函数（Dead ReLU）",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q016",
+      "source_number": 16,
+      "type": "multiple",
+      "stem": "激活函数的选择需要考虑哪些因素？",
+      "options": [
+        {
+          "label": "A",
+          "text": "训练数据的特点"
+        },
+        {
+          "label": "B",
+          "text": "计算资源限制"
+        },
+        {
+          "label": "C",
+          "text": "网络的深度"
+        },
+        {
+          "label": "D",
+          "text": "任务类型（分类／回归）"
+        }
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "B 计算资源决定能否承受 Sigmoid/Tanh 的指数运算还是用廉价的 ReLU；C 网络深度影响梯度传播，深层网络偏好 ReLU 类以缓解梯度消失；D 任务类型决定输出层激活（分类用 Softmax/Sigmoid，回归用线性）。A 训练数据的分布特点主要影响预处理与归一化，并不直接决定激活函数的选择。",
+      "topic": "深度学习——激活函数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q017",
+      "source_number": 17,
+      "type": "multiple",
+      "stem": "关于截断误差和舍入误差的区别，下列说法正确的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "截断误差是由”近似替代”产生的，舍入误差是由”有限精度运算”产生的"
+        },
+        {
+          "label": "B",
+          "text": "截断误差只存在于无穷级数近似中，舍入误差只存在于小数运算中"
+        },
+        {
+          "label": "C",
+          "text": "截断误差是系统性误差，舍入误差是随机性误差"
+        },
+        {
+          "label": "D",
+          "text": "截断误差可以通过增加近似项数减小，舍入误差可以通过提高计算精度减小"
+        }
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "A 正确，截断误差源于用有限近似代替精确数学过程，舍入误差源于有限字长。C 正确，截断误差方向通常确定属系统性，舍入误差随机抖动。D 正确，增加项数减小截断误差，提高精度减小舍入误差。B 错误，截断误差不止存在于级数（数值积分、离散化等均有），描述过于绝对。",
+      "topic": "数学——数值计算（误差分析）",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "在进行数据分析前，需要对数据质量进行评估。数据质量评估通常需要检查哪些方面？",
+      "options": [
+        {
+          "label": "A",
+          "text": "一致性（数据是否矛盾）"
+        },
+        {
+          "label": "B",
+          "text": "完整性（是否有缺失值）"
+        },
+        {
+          "label": "C",
+          "text": "准确性（数据是否正确）"
+        },
+        {
+          "label": "D",
+          "text": "时效性（数据是否及时更新）"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "一致性、完整性、准确性、时效性都是公认的数据质量核心维度，四者都需评估。",
+      "topic": "机器学习——数据质量",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "在无监督学习中，以下关于聚类和降维的描述正确的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "DBSCAN 聚类算法不需要预先指定聚类数"
+        },
+        {
+          "label": "B",
+          "text": "K-Means 保证找到全局最优的聚类结果"
+        },
+        {
+          "label": "C",
+          "text": "PCA 降维后的主成分之间是相互正交的"
+        },
+        {
+          "label": "D",
+          "text": "t-SNE 是一种非线性降维方法，适合高维数据的可视化"
+        },
+        {
+          "label": "E",
+          "text": "K-Means 算法需要预先指定聚类数 K"
+        }
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "A 正确，DBSCAN 基于密度自动确定簇数。C 正确，PCA 主成分是协方差矩阵的特征向量，彼此正交。D 正确，t-SNE 是非线性降维。E 正确，K-Means 必须预先给定 K。B 错误，K-Means 依赖初始化只能收敛到局部最优。",
+      "topic": "机器学习——聚类与降维",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260603-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "以下关于大模型计算量与参数量关系的说法，哪些正确？",
+      "options": [
+        {
+          "label": "A",
+          "text": "参数量相同的模型，MoE 架构每个 token 的实际计算量低于 Dense 模型，因为每个 token 只激活部分专家"
+        },
+        {
+          "label": "B",
+          "text": "注意力层的计算量与序列长度呈 $O(n^2)$ 关系，FFN 层与呈 $O(n)$ 关系；当 $n$ 足够大时注意力计算量可超过 FFN"
+        },
+        {
+          "label": "C",
+          "text": "对于 Decoder-only 模型，一次完整前向传播的 FLOP 约为 $2P$（$P$ 为参数量），来自每个参数参与一次乘加运算（2 FLOP）"
+        },
+        {
+          "label": "D",
+          "text": "模型推理时的 FLOP 与训练前向传播相同，因此推理速度是训练速度的三倍"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A 正确，MoE 每个 token 仅路由到少数专家，激活 FLOP 低于同参数量 Dense。B 正确，自注意力对序列长度是 $O(n^2)$，FFN 是 $O(n)$。C 正确，每 token 前向约 $2P$ FLOP 是业界常用估计。D 错误，混淆了计算量与速度，且忽略 KV Cache、显存带宽等因素。",
+      "topic": "大模型——计算量与参数量",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$O(n^2)$",
+        "$O(n)$",
+        "$2P$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}

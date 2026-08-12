@@ -1,0 +1,785 @@
+{
+  "source": {
+    "id": "AIEXAM-20260701",
+    "exam_date": "2026-07-01",
+    "job_track": "互联网公司 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260701",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260701-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "用于衡量两个概率分布向量相似度的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "欧氏距离"
+        },
+        {
+          "label": "B",
+          "text": "KL 散度"
+        },
+        {
+          "label": "C",
+          "text": "余弦相似度"
+        },
+        {
+          "label": "D",
+          "text": "曼哈顿距离"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "KL 散度专门用于衡量两个概率分布之间的差异，是分布相似度的标准度量。欧氏距离、曼哈顿距离、余弦相似度衡量的是一般向量的几何相似度，不针对概率分布归一化后的信息差异。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "下列哪一项最接近经典线性回归中的外生性要求？",
+      "options": [
+        {
+          "label": "A",
+          "text": "所有特征都必须服从标准正态分布"
+        },
+        {
+          "label": "B",
+          "text": "样本数必须等于特征数"
+        },
+        {
+          "label": "C",
+          "text": "误差项的条件期望为零"
+        },
+        {
+          "label": "D",
+          "text": "特征必须两两独立"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "外生性即给定解释变量后误差项均值为零，保证误差与特征无系统性相关，是最小二乘无偏的核心假设。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q003",
+      "source_number": 3,
+      "type": "single",
+      "stem": "采用滑动窗口注意力部署一个支持 128K 上下文的文本分析模型时，其关键逻辑是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "将历史 Token 的 KV 压缩到一个向量"
+        },
+        {
+          "label": "B",
+          "text": "对每个 KV 进行 INT4 量化，减少显存占用"
+        },
+        {
+          "label": "C",
+          "text": "使用稀疏注意力，随机丢弃 N% 的 KV"
+        },
+        {
+          "label": "D",
+          "text": "保留最近 N 个 Token 的 KV，丢弃老的 KV"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "滑动窗口注意力让每个位置只关注最近固定长度窗口内的 Token，因此只需保留最近 $N$ 个 Token 的 KV 缓存、丢弃更早的，从而把显存占用限制为常数。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$N$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "给定三个向量 $a$、$b$、$c$，分别计算它们之间的余弦相似度和内积，关于排序哪项正确？",
+      "options": [
+        {
+          "label": "A",
+          "text": "余弦相似度与内积排序相同"
+        },
+        {
+          "label": "B",
+          "text": "余弦相似度与内积排序相反"
+        },
+        {
+          "label": "C",
+          "text": "余弦相似度排序相同，内积因模长差异排序不同"
+        },
+        {
+          "label": "D",
+          "text": "两者排序均相同"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "余弦相似度消除了模长影响，而内积受模长影响。因此向量模长不同时两者排序可能不一致。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$a$",
+        "$b$",
+        "$c$"
+      ],
+      "solution_formulas": [],
+      "review_status": "needs_review",
+      "review_note": "题干缺少 a、b、c 三个向量的具体数据，无法独立作答。"
+    },
+    {
+      "id": "AIEXAM-20260701-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "为了检验并尽量避免”近似泄露”，下列方法最有效的是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "看模型答对率是否异常高"
+        },
+        {
+          "label": "B",
+          "text": "用语义向量检索／MinHash 等近似重复检测"
+        },
+        {
+          "label": "C",
+          "text": "检查训练集是否出现过评测集的文件名"
+        },
+        {
+          "label": "D",
+          "text": "纯完全字符串匹配去重"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "同义改写、轻微编辑不会被精确字符串匹配捕获，需要语义向量检索或 MinHash 等近似重复检测才能发现语义／字面相近的样本。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "若随机变量 $X$ 在区间 $[0,4]$ 上服从均匀分布，则 $X$ 落在 $[1,3]$ 内的概率以及 $X$ 的期望分别为：",
+      "options": [
+        {
+          "label": "A",
+          "text": "$1/2$，$2$"
+        },
+        {
+          "label": "B",
+          "text": "$1/2$，$4$"
+        },
+        {
+          "label": "C",
+          "text": "$3/4$，$2$"
+        },
+        {
+          "label": "D",
+          "text": "$1/4$，$2$"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "均匀分布落入子区间的概率等于长度比 $(3-1)/(4-0)=1/2$；期望为区间中点 $(0+4)/2=2$。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$X$",
+        "$[0,4]$",
+        "$[1,3]$"
+      ],
+      "solution_formulas": [
+        "$(3-1)/(4-0)=1/2$",
+        "$(0+4)/2=2$",
+        "均匀分布落入子区间的概率等于长度比 $(3-1)/(4-0)=1/2$；期望为区间中点 $(0+4)/2=2$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "BERT 属于以下哪种主架构？",
+      "options": [
+        {
+          "label": "A",
+          "text": "Encoder-Decoder"
+        },
+        {
+          "label": "B",
+          "text": "Decoder-only"
+        },
+        {
+          "label": "C",
+          "text": "Prefix Decoder"
+        },
+        {
+          "label": "D",
+          "text": "Encoder-only"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "BERT 仅使用 Transformer 的编码器堆叠，通过双向自注意力做掩码语言建模，属于 Encoder-only。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q008",
+      "source_number": 8,
+      "type": "single",
+      "stem": "在样本严重不均衡（正类 1%，负类 99%）的场景下，以下哪种处理最有效？",
+      "options": [
+        {
+          "label": "A",
+          "text": "只保留正类样本训练"
+        },
+        {
+          "label": "B",
+          "text": "对正类过采样（如 SMOTE）或对负类欠采样，配合 F1 或 AUC-PR 评估"
+        },
+        {
+          "label": "C",
+          "text": "直接训练，以准确率为优化目标"
+        },
+        {
+          "label": "D",
+          "text": "将学习率调大以让模型更快收敛到正类"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "类别不平衡下应通过过采样／欠采样平衡分布，并改用对少数类敏感的 F1、AUC-PR 等指标评估。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q009",
+      "source_number": 9,
+      "type": "single",
+      "stem": "已知某数据集服从正态分布，均值 $\\mu=50$，标准差 $\\sigma=10$。若某数据的 Z-score 为 $2.5$，则原始值是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "70"
+        },
+        {
+          "label": "B",
+          "text": "75"
+        },
+        {
+          "label": "C",
+          "text": "80"
+        },
+        {
+          "label": "D",
+          "text": "65"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "由 $x = \\mu + z \\cdot \\sigma = 50 + 2.5 \\times 10 = 75$。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$\\mu=50$",
+        "$\\sigma=10$",
+        "$2.5$",
+        "已知某数据集服从正态分布，均值 $\\mu=50$，标准差 $\\sigma=10$。若某数据的 Z-score 为 $2.5$，则原始值是？"
+      ],
+      "solution_formulas": [
+        "$x = \\mu + z \\cdot \\sigma = 50 + 2.5 \\times 10 = 75$",
+        "由 $x = \\mu + z \\cdot \\sigma = 50 + 2.5 \\times 10 = 75$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "逻辑回归为什么通常不使用 MSE 作为损失函数？",
+      "options": [
+        {
+          "label": "A",
+          "text": "会导致梯度消失且函数是非凸的"
+        },
+        {
+          "label": "B",
+          "text": "不支持梯度下降"
+        },
+        {
+          "label": "C",
+          "text": "无法处理 0-1 标签"
+        },
+        {
+          "label": "D",
+          "text": "计算量太大"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "把 Sigmoid 输出代入 MSE 后损失关于参数非凸，存在多个局部极小；且饱和区导数极小会造成梯度消失。因此逻辑回归用交叉熵，其损失是凸的且梯度形式良好。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q011",
+      "source_number": 11,
+      "type": "single",
+      "stem": "下列哪个性质是线性变换必须满足的基本条件？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$T(0) \\neq 0$"
+        },
+        {
+          "label": "B",
+          "text": "$T(x) = x^2$"
+        },
+        {
+          "label": "C",
+          "text": "$T(u+v) = T(u) + T(v)$"
+        },
+        {
+          "label": "D",
+          "text": "$T(x) = e^x$"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "线性变换需满足可加性 $T(u+v) = T(u) + T(v)$ 与齐次性 $T(\\alpha u) = \\alpha T(u)$，C 正是可加性。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$T(u+v) = T(u) + T(v)$",
+        "$T(\\alpha u) = \\alpha T(u)$",
+        "线性变换需满足可加性 $T(u+v) = T(u) + T(v)$ 与齐次性 $T(\\alpha u) = \\alpha T(u)$，C 正是可加性。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "数据来自正态分布 $N(\\mu, \\sigma^2)$ 且 $\\mu$ 已知，MLE 估计方差时使用：",
+      "options": [
+        {
+          "label": "A",
+          "text": "样本极差"
+        },
+        {
+          "label": "B",
+          "text": "分母为 $n-1$ 的样本方差"
+        },
+        {
+          "label": "C",
+          "text": "样本中位数"
+        },
+        {
+          "label": "D",
+          "text": "分母为 $n$ 的样本方差"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "已知 $\\mu$ 时对数似然对 $\\sigma^2$ 求导，得 MLE 为 $\\frac{1}{n}\\sum(x_i - \\mu)^2$，分母为 $n$。分母 $n-1$ 是无偏修正（未知 $\\mu$ 时用样本均值才需要），并非 MLE。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$N(\\mu, \\sigma^2)$",
+        "$\\mu$"
+      ],
+      "solution_formulas": [
+        "$\\mu$",
+        "$\\sigma^2$",
+        "$\\frac{1}{n}\\sum(x_i - \\mu)^2$",
+        "$n$",
+        "$n-1$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "测量误差服从均匀分布 $U[0, \\theta]$，观测样本为 ${0.3, 0.7, 1.2, 0.5}$。则 $\\theta$ 的 MLE 估计是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "1.5"
+        },
+        {
+          "label": "B",
+          "text": "0.5"
+        },
+        {
+          "label": "C",
+          "text": "1.2"
+        },
+        {
+          "label": "D",
+          "text": "0.8"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "$U[0,\\theta]$ 的似然为 $(1/\\theta)^n$，前提是所有样本满足 $x_i \\leq \\theta$。似然随 $\\theta$ 增大而减小，故取满足约束的最小 $\\theta$，即 $\\max(x_i) = 1.2$。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$U[0, \\theta]$",
+        "${0.3, 0.7, 1.2, 0.5}$",
+        "$\\theta$"
+      ],
+      "solution_formulas": [
+        "$U[0,\\theta]$",
+        "$(1/\\theta)^n$",
+        "$x_i \\leq \\theta$",
+        "$\\theta$",
+        "$\\max(x_i) = 1.2$",
+        "$U[0,\\theta]$ 的似然为 $(1/\\theta)^n$，前提是所有样本满足 $x_i \\leq \\theta$。似然随 $\\theta$ 增大而减小，故取满足约束的最小 $\\theta$，即 $\\max(x_i) = 1.2$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "在将文本特征转换为向量时，Word2Vec 相比于 One-hot 编码的主要优势是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "能够处理 OOV（未登录词）"
+        },
+        {
+          "label": "B",
+          "text": "能够捕捉词语间的语义相似度"
+        },
+        {
+          "label": "C",
+          "text": "计算速度更快"
+        },
+        {
+          "label": "D",
+          "text": "向量维度更高"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "Word2Vec 通过上下文学习得到低维稠密向量，语义相近的词在向量空间中距离更近。One-hot 各词正交、无法反映语义。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q015",
+      "source_number": 15,
+      "type": "single",
+      "stem": "PCA 对特征的尺度非常敏感。在使用 PCA 降维前，通常需要对数据进行什么预处理？",
+      "options": [
+        {
+          "label": "A",
+          "text": "标准化（均值为 0，方差为 1）"
+        },
+        {
+          "label": "B",
+          "text": "对数变换"
+        },
+        {
+          "label": "C",
+          "text": "二值化"
+        },
+        {
+          "label": "D",
+          "text": "归一化（缩放到 $[0,1]$）"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "PCA 基于协方差矩阵，量纲大的特征方差天然更大，会主导主成分方向。标准化使各特征均值 0、方差 1，消除量纲影响，是 PCA 前的标准做法。\n### 二、多选题",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q016",
+      "source_number": 16,
+      "type": "multiple",
+      "stem": "以下哪些是贝叶斯定理在 AI 与机器学习中的直接应用？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$L_2$ 正则化等价于高斯先验的 MAP 估计"
+        },
+        {
+          "label": "B",
+          "text": "贝叶斯优化用于超参数搜索"
+        },
+        {
+          "label": "C",
+          "text": "支持向量机的间隔最大化"
+        },
+        {
+          "label": "D",
+          "text": "朴素贝叶斯分类器"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "* A：加高斯先验做 MAP 估计，对数先验项恰好是 $L_2$ 正则\n* B：贝叶斯优化用高斯过程对目标函数建立后验，本质是贝叶斯推断\n* C：SVM 间隔最大化来自凸优化，与贝叶斯定理无关\n* D：朴素贝叶斯分类器直接由贝叶斯定理推导",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$L_2$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q017",
+      "source_number": 17,
+      "type": "multiple",
+      "stem": "关于向量检索中的近似最近邻（ANN）算法，以下哪些描述正确？",
+      "options": [
+        {
+          "label": "A",
+          "text": "IVF 搜索时只查询查询向量所在的一个聚类，召回率与聚类数量成反比"
+        },
+        {
+          "label": "B",
+          "text": "HNSW 基于可导航小世界图，ef_construction 越大索引质量越高但构建越慢"
+        },
+        {
+          "label": "C",
+          "text": "HNSW 搜索参数 ef 越大，召回率越高但查询延迟也越高"
+        },
+        {
+          "label": "D",
+          "text": "乘积量化（PQ）将向量分解为多个子空间独立量化，可大幅降低内存但引入量化误差"
+        }
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "* A 错误：IVF 搜索时会探查 nprobe 个最近聚类而非只查一个\n* B 正确：ef_construction 越大候选越充分、索引质量越高\n* C 正确：ef 越大候选集越大，召回率与延迟同时增加\n* D 正确：PQ 切分子空间分别量化以压缩内存，代价是量化误差",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "在构建可重复、可审计的训练流水线时，下列哪些做法应作为工程规范？",
+      "options": [
+        {
+          "label": "A",
+          "text": "对训练数据记录样本唯一 ID 与版本号，把数据切分策略写入元数据"
+        },
+        {
+          "label": "B",
+          "text": "只记录最终模型权重，中间 checkpoint 仅保留摘要"
+        },
+        {
+          "label": "C",
+          "text": "固定所有随机源并记录 seed，但允许启用 cuDNN 非确定性算法"
+        },
+        {
+          "label": "D",
+          "text": "每次训练开始时记录完整环境快照并把依赖哈希存入元数据"
+        }
+      ],
+      "answer": [
+        "A",
+        "D"
+      ],
+      "explanation": "* A 正确：数据唯一 ID + 版本号 + 切分策略入元数据，是可追溯基础\n* B 错误：不保留完整 checkpoint 无法从中间状态精确恢复\n* C 错误：固定 seed 却启用非确定性算法会引入不可复现随机性\n* D 正确：完整环境快照与依赖哈希保证跨机复现",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "$A$ 是 $n \\times n$ 实对称矩阵，$I$ 为单位矩阵。下列哪些性质必定正确？",
+      "options": [
+        {
+          "label": "A",
+          "text": "存在正交矩阵 $P$，使 $P^TAP$ 为对角矩阵"
+        },
+        {
+          "label": "B",
+          "text": "若 $A^k = 0$ 对某正整数 $k$ 成立，则 $A$ 必为零矩阵"
+        },
+        {
+          "label": "C",
+          "text": "$A$ 的秩等于其非零特征值个数（重根按重数计）"
+        },
+        {
+          "label": "D",
+          "text": "矩阵 $e^A$ 总是正定矩阵"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "* A：实对称矩阵必可正交对角化\n* B：$A^k = 0$ 得特征值 $\\lambda^k = 0$，故所有特征值为 0，实对称矩阵可对角化所以 $A = 0$\n* C：可对角化矩阵的秩等于非零特征值个数\n* D：$e^A$ 的特征值为 $e^{\\lambda_i} > 0$，且 $e^A$ 仍对称，故恒正定",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$A$",
+        "$n \\times n$",
+        "$I$"
+      ],
+      "solution_formulas": [
+        "$A^k = 0$",
+        "$\\lambda^k = 0$",
+        "$A = 0$",
+        "$e^A$",
+        "$e^{\\lambda_i} > 0$",
+        "* B：$A^k = 0$ 得特征值 $\\lambda^k = 0$，故所有特征值为 0，实对称矩阵可对角化所以 $A = 0$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260701-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "关于学习率调度，以下策略合理的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "预热：训练初期使用较小学习率，逐渐增加到设定值"
+        },
+        {
+          "label": "B",
+          "text": "Step Decay：每隔几个 Epoch 将学习率乘以衰减因子"
+        },
+        {
+          "label": "C",
+          "text": "余弦退火：学习率按余弦曲线周期性变化"
+        },
+        {
+          "label": "D",
+          "text": "指数衰减：随迭代次数指数级降低学习率"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "四者都是标准的学习率调度策略。Warmup 稳定早期训练；Step Decay 阶梯式衰减；余弦退火平滑下降配合热重启；指数衰减平滑降低学习率。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# 本地练习进度（用户私有数据，不应纳入版本管理）
+/database/ai_practice.sqlite3
+/database/ai_practice.sqlite3-shm
+/database/ai_practice.sqlite3-wal
+
+# SQLite 只提交正式题库文件，不提交运行时共享内存/预写日志
+/database/ai_question_bank.sqlite3-shm
+/database/ai_question_bank.sqlite3-wal
+
+# 临时文件
+/work/
+*.log
+.DS_Store

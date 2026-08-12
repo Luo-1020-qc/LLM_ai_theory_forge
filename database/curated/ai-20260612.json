@@ -1,0 +1,784 @@
+{
+  "source": {
+    "id": "AIEXAM-20260612",
+    "exam_date": "2026-06-12",
+    "job_track": "互联网公司 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260612",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260612-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "对比两张亮度差异较大的图片，判断内容是否相似，适合的相似度度量是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "余弦相似度"
+        },
+        {
+          "label": "B",
+          "text": "曼哈顿距离"
+        },
+        {
+          "label": "C",
+          "text": "汉明距离"
+        },
+        {
+          "label": "D",
+          "text": "欧氏距离"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "余弦相似度只看向量方向夹角，对整体亮度（幅度）缩放不敏感；两图亮度差异大但内容相似时方向接近，故最合适。欧氏、曼哈顿距离受幅度影响大，汉明距离用于离散编码比对。",
+      "topic": "机器学习——相似度度量",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "工厂抽检 5 个灯泡，寿命数据为 ${3, 0, 2, 0, 5}$ 年。合格品寿命服从指数分布（参数 $\\lambda$），不合格品寿命为 $0$。合格率 $p$ 的 MLE 估计是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "0.7"
+        },
+        {
+          "label": "B",
+          "text": "0.6"
+        },
+        {
+          "label": "C",
+          "text": "0.5"
+        },
+        {
+          "label": "D",
+          "text": "0.4"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "合格品寿命大于 $0$，5 个样本中非零的有 3 个（$3, 2, 5$ 年），为 $0$ 的有 2 个。合格率的最大似然估计即合格样本所占比例 $3/5 = 0.6$。",
+      "topic": "数学——概率统计/MLE",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "${3, 0, 2, 0, 5}$",
+        "$\\lambda$",
+        "$0$",
+        "$p$"
+      ],
+      "solution_formulas": [
+        "$0$",
+        "$3, 2, 5$",
+        "$3/5 = 0.6$",
+        "合格品寿命大于 $0$，5 个样本中非零的有 3 个（$3, 2, 5$ 年），为 $0$ 的有 2 个。合格率的最大似然估计即合格样本所占比例 $3/5 = 0.6$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q003",
+      "source_number": 3,
+      "type": "single",
+      "stem": "贝叶斯定理的正确表达式是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "$P(A \\mid B) = \\frac{P(B \\mid A) \\cdot P(A)}{P(B)}$"
+        },
+        {
+          "label": "B",
+          "text": "$P(A \\mid B) = \\frac{P(A) \\cdot P(B)}{P(B \\mid A)}$"
+        },
+        {
+          "label": "C",
+          "text": "$P(A \\mid B) = P(B \\mid A) \\cdot P(A)$"
+        },
+        {
+          "label": "D",
+          "text": "$P(A \\mid B) = \\frac{P(A \\cap B)}{P(A)}$"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "由条件概率定义 $P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}$ 与 $P(B \\mid A) = \\frac{P(A \\cap B)}{P(A)}$ 联立，得贝叶斯定理 $P(A \\mid B) = \\frac{P(B \\mid A) \\cdot P(A)}{P(B)}$。",
+      "topic": "数学——概率统计",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}$",
+        "$P(B \\mid A) = \\frac{P(A \\cap B)}{P(A)}$",
+        "$P(A \\mid B) = \\frac{P(B \\mid A) \\cdot P(A)}{P(B)}$",
+        "由条件概率定义 $P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}$ 与 $P(B \\mid A) = \\frac{P(A \\cap B)}{P(A)}$ 联立，得贝叶斯定理 $P(A \\mid B) = \\frac{P(B \\mid A) \\cdot P(A)}{P(B)}$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "使用 PCA 降维时需要决定保留多少个主成分。选择 PCA 主成分数量时，通常依据什么指标？",
+      "options": [
+        {
+          "label": "A",
+          "text": "后续模型的准确率"
+        },
+        {
+          "label": "B",
+          "text": "原始特征的数量"
+        },
+        {
+          "label": "C",
+          "text": "累计解释方差比例（如 85%-95%）"
+        },
+        {
+          "label": "D",
+          "text": "样本的数量"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "PCA 按特征值大小排序主成分，通常以累计解释方差比例为依据，保留到 85%~95% 即可在压缩维度的同时保留大部分信息。",
+      "topic": "机器学习——降维/PCA",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "训练一个两层全连接神经网络做回归任务，在使用反向传播更新参数时发现：损失几乎不下降，梯度在多层传递后逐渐趋近于 $0$。针对该现象，下列分析最合理的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "数据集过小，与反向传播无关"
+        },
+        {
+          "label": "B",
+          "text": "梯度爆炸，应使用梯度裁剪"
+        },
+        {
+          "label": "C",
+          "text": "学习率过高，应大幅调大学习率"
+        },
+        {
+          "label": "D",
+          "text": "梯度消失，常见于深层网络或饱和激活函数"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "损失不降且梯度逐层趋近 $0$ 是典型的梯度消失现象，常见于深层网络或 Sigmoid、Tanh 等导数小于 $1$ 的饱和激活函数，链式连乘后梯度指数衰减。",
+      "topic": "深度学习——反向传播",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$0$"
+      ],
+      "solution_formulas": [
+        "$0$",
+        "$1$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "在反向传播中，如果激活函数的导数长期小于 $1$，最可能导致的数值问题是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "梯度爆炸"
+        },
+        {
+          "label": "B",
+          "text": "维度崩溃"
+        },
+        {
+          "label": "C",
+          "text": "数值上溢"
+        },
+        {
+          "label": "D",
+          "text": "梯度消失"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "链式法则中梯度是各层导数连乘，导数长期小于 $1$ 会使梯度随层数指数衰减，导致梯度消失。",
+      "topic": "深度学习——反向传播",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$1$"
+      ],
+      "solution_formulas": [
+        "$1$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "在判断一个集合是否为向量空间时，以下哪一项是必须满足的条件？",
+      "options": [
+        {
+          "label": "A",
+          "text": "集合中所有向量的长度必须相等"
+        },
+        {
+          "label": "B",
+          "text": "集合中任意两个向量的和仍属于该集合"
+        },
+        {
+          "label": "C",
+          "text": "集合中存在零向量，并且对加法和数乘封闭"
+        },
+        {
+          "label": "D",
+          "text": "集合中任意一个向量与任意一个标量的乘积仍属于该集合"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "向量空间必须包含零向量，且对加法和数乘运算封闭，这是核心判定条件。B、D 各只覆盖了加法或数乘封闭的一部分，不完整。",
+      "topic": "数学——线性代数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q008",
+      "source_number": 8,
+      "type": "single",
+      "stem": "与普通 SGD 相比，Momentum 方法的主要作用是什么？",
+      "options": [
+        {
+          "label": "A",
+          "text": "保证全局最优解"
+        },
+        {
+          "label": "B",
+          "text": "不再需要设置学习率"
+        },
+        {
+          "label": "C",
+          "text": "引入历史梯度信息，减少震荡并加快收敛"
+        },
+        {
+          "label": "D",
+          "text": "自动减少训练数据噪声"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "Momentum 累积历史梯度方向形成动量，在一致方向上加速、在震荡方向上抵消，从而减少震荡并加快收敛。它不保证全局最优，也不取代学习率。",
+      "topic": "深度学习——优化器",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q009",
+      "source_number": 9,
+      "type": "single",
+      "stem": "对于多头注意力（MHA）和分组查询注意力（GQA），GQA 相较于 MHA 的结构变化在于：",
+      "options": [
+        {
+          "label": "A",
+          "text": "增加了 Value 头的维度"
+        },
+        {
+          "label": "B",
+          "text": "多个 Query 头共享一组 Key 和 Value 头"
+        },
+        {
+          "label": "C",
+          "text": "增加了 Key 和 Value 头的数目"
+        },
+        {
+          "label": "D",
+          "text": "减少了 Query 头的数量"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "GQA 介于 MHA 与 MQA 之间，将 Query 头分组，每组多个 Query 头共享一组 Key、Value 头，从而减少 KV Cache 显存，同时保留比 MQA 更强的表达力。",
+      "topic": "大模型——注意力机制",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "当数据分布呈现右偏（正偏）特征时，均值、中位数、众数三者的关系通常是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "均值 < 中位数 < 众数"
+        },
+        {
+          "label": "B",
+          "text": "均值 > 中位数 > 众数"
+        },
+        {
+          "label": "C",
+          "text": "无法确定"
+        },
+        {
+          "label": "D",
+          "text": "均值 = 中位数 = 众数"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "右偏分布尾部在右侧，少数极端大值把均值拉向右，故均值最大，众数（峰值）最小，关系为均值 > 中位数 > 众数。",
+      "topic": "数学——概率统计",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q011",
+      "source_number": 11,
+      "type": "single",
+      "stem": "原模型使用 MHA 有 $64$ 个注意力头，如果采用 MQA 替代 MHA，KV Cache 显存可减少多少倍？",
+      "options": [
+        {
+          "label": "A",
+          "text": "8 倍"
+        },
+        {
+          "label": "B",
+          "text": "64 倍"
+        },
+        {
+          "label": "C",
+          "text": "32 倍"
+        },
+        {
+          "label": "D",
+          "text": "4 倍"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "MHA 中每个注意力头各有独立的一组 Key、Value，共 $64$ 组；MQA 让所有 Query 头共享同一组 Key、Value，KV Cache 显存约变为原来的 $1/64$，即减少 $64$ 倍。",
+      "topic": "大模型——KV Cache",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$64$"
+      ],
+      "solution_formulas": [
+        "$64$",
+        "$1/64$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "对于输入为 $32 \\times 32 \\times 3$ 的图像，使用一个卷积层，包含 $16$ 个 $5 \\times 5$ 的卷积核，步长为 $1$，无填充，那么输出特征图的大小和深度分别是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$28 \\times 28 \\times 3$"
+        },
+        {
+          "label": "B",
+          "text": "$32 \\times 32 \\times 16$"
+        },
+        {
+          "label": "C",
+          "text": "$28 \\times 28 \\times 16$"
+        },
+        {
+          "label": "D",
+          "text": "$30 \\times 30 \\times 16$"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "输出边长 $(32 - 5)/1 + 1 = 28$，深度等于卷积核个数 $16$，故输出为 $28 \\times 28 \\times 16$。",
+      "topic": "深度学习——CNN",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$32 \\times 32 \\times 3$",
+        "$16$",
+        "$5 \\times 5$",
+        "$1$"
+      ],
+      "solution_formulas": [
+        "$(32 - 5)/1 + 1 = 28$",
+        "$16$",
+        "$28 \\times 28 \\times 16$",
+        "输出边长 $(32 - 5)/1 + 1 = 28$，深度等于卷积核个数 $16$，故输出为 $28 \\times 28 \\times 16$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "下列关于 Embeddings 的核心定义，正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "将离散数据（如单词、类别）映射到连续的低维向量空间"
+        },
+        {
+          "label": "B",
+          "text": "将离散数据映射到离散的低维向量空间"
+        },
+        {
+          "label": "C",
+          "text": "将连续数据映射到离散的高维向量空间"
+        },
+        {
+          "label": "D",
+          "text": "将连续数据映射到连续的高维向量空间"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "Embedding 的核心是把离散符号（词、类别 ID 等）映射为连续、稠密的低维向量，使语义相近的对象在向量空间中距离更近。",
+      "topic": "深度学习——Embedding",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "关于 SGD 的说法，错误的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "SGD 可能收敛速度较慢"
+        },
+        {
+          "label": "B",
+          "text": "SGD 需要设置学习率"
+        },
+        {
+          "label": "C",
+          "text": "SGD 使用整个数据集计算梯度"
+        },
+        {
+          "label": "D",
+          "text": "SGD 代表随机梯度下降"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "SGD（随机梯度下降）每步只用单个或小批量样本估计梯度，并非整个数据集（用整个数据集的是批量梯度下降），故 C 错误。",
+      "topic": "深度学习——优化器",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q015",
+      "source_number": 15,
+      "type": "single",
+      "stem": "对角矩阵 $A = \\text{diag}(1, 3, 3)$ 的行列式值为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "6"
+        },
+        {
+          "label": "B",
+          "text": "27"
+        },
+        {
+          "label": "C",
+          "text": "9"
+        },
+        {
+          "label": "D",
+          "text": "3"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "对角矩阵的行列式等于对角元素之积，$1 \\times 3 \\times 3 = 9$。",
+      "topic": "数学——线性代数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$A = \\text{diag}(1, 3, 3)$",
+        "对角矩阵 $A = \\text{diag}(1, 3, 3)$ 的行列式值为？"
+      ],
+      "solution_formulas": [
+        "$1 \\times 3 \\times 3 = 9$",
+        "对角矩阵的行列式等于对角元素之积，$1 \\times 3 \\times 3 = 9$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q016",
+      "source_number": 16,
+      "type": "multiple",
+      "stem": "以下关于凸函数的性质，正确的有：",
+      "options": [
+        {
+          "label": "A",
+          "text": "两个凸函数之和仍然是凸函数"
+        },
+        {
+          "label": "B",
+          "text": "凸函数的非负线性组合仍然是凸函数"
+        },
+        {
+          "label": "C",
+          "text": "凸函数的任意局部最小值都是全局最小值"
+        },
+        {
+          "label": "D",
+          "text": "凸函数与凹函数之和一定是凸函数"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "凸函数之和仍凸（A 对），非负线性组合仍凸（B 对），凸函数的局部最小值必为全局最小值（C 对）。凸函数与凹函数之和的凸凹性不确定，不一定是凸函数（D 错）。",
+      "topic": "数学——凸优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q017",
+      "source_number": 17,
+      "type": "multiple",
+      "stem": "若某层注意力权重接近均匀分布，可能由于：",
+      "options": [
+        {
+          "label": "A",
+          "text": "使用了因果掩码"
+        },
+        {
+          "label": "B",
+          "text": "输入序列所有 token 嵌入相同"
+        },
+        {
+          "label": "C",
+          "text": "查询和键的维度过高"
+        },
+        {
+          "label": "D",
+          "text": "注意力机制中 softmax 的温度参数设置过大"
+        }
+      ],
+      "answer": [
+        "B",
+        "D"
+      ],
+      "explanation": "所有 token 嵌入相同时打分相同，softmax 后权重均匀（B 对）；温度参数过大使分布更平滑、趋于均匀（D 对）。因果掩码只屏蔽未来位置，不会让权重均匀（A 错）；查询、键维度过高在未缩放时通常使点积方差变大、分布更尖锐而非均匀（C 错）。",
+      "topic": "大模型——注意力机制",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "以下关于线性相关与线性无关的说法，哪些正确？",
+      "options": [
+        {
+          "label": "A",
+          "text": "包含零向量的向量组必线性相关"
+        },
+        {
+          "label": "B",
+          "text": "$n$ 维向量空间中任意 $n+1$ 个向量必线性相关"
+        },
+        {
+          "label": "C",
+          "text": "若向量组线性相关，则其中每个向量都可由其余向量线性表示"
+        },
+        {
+          "label": "D",
+          "text": "单个非零向量构成的向量组线性无关"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "含零向量的向量组必线性相关（A 对）；$n$ 维空间中 $n+1$ 个向量必线性相关（B 对）；单个非零向量线性无关（D 对）。线性相关只保证至少存在一个向量可由其余表示，并非每个向量都能（C 错）。",
+      "topic": "数学——线性代数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$n$",
+        "$n+1$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "已知 $\\text{TP}=40$，$\\text{FP}=10$，$\\text{FN}=20$，$\\text{TN}=30$，下列正确的有：",
+      "options": [
+        {
+          "label": "A",
+          "text": "精确率 $P = 0.8$"
+        },
+        {
+          "label": "B",
+          "text": "召回率 $R = \\frac{2}{3}$"
+        },
+        {
+          "label": "C",
+          "text": "$\\text{TPR} = \\frac{2}{3}$"
+        },
+        {
+          "label": "D",
+          "text": "准确率 $= 0.8$"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "精确率 $P = \\frac{40}{40+10} = 0.8$（A 对）；召回率 $R = \\frac{40}{40+20} = \\frac{2}{3}$（B 对）；TPR 即召回率 $= \\frac{2}{3}$（C 对）；准确率 $= \\frac{40+30}{100} = 0.7$（D 错）。",
+      "topic": "机器学习——评价指标",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$\\text{TP}=40$",
+        "$\\text{FP}=10$",
+        "$\\text{FN}=20$",
+        "$\\text{TN}=30$",
+        "已知 $\\text{TP}=40$，$\\text{FP}=10$，$\\text{FN}=20$，$\\text{TN}=30$，下列正确的有："
+      ],
+      "solution_formulas": [
+        "$P = \\frac{40}{40+10} = 0.8$",
+        "$R = \\frac{40}{40+20} = \\frac{2}{3}$",
+        "$= \\frac{2}{3}$",
+        "$= \\frac{40+30}{100} = 0.7$",
+        "精确率 $P = \\frac{40}{40+10} = 0.8$（A 对）；召回率 $R = \\frac{40}{40+20} = \\frac{2}{3}$（B 对）；TPR 即召回率 $= \\frac{2}{3}$（C 对）；准确率 $= \\frac{40+30}{100} = 0.7$（D 错）。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260612-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "在设计大模型训练并行策略时，通常采用 3D 混合并行策略（TP + PP + DP）。这样设计的主要原因包括？",
+      "options": [
+        {
+          "label": "A",
+          "text": "提高扩展性"
+        },
+        {
+          "label": "B",
+          "text": "减少单一并行方式的通信瓶颈"
+        },
+        {
+          "label": "C",
+          "text": "充分利用多节点 GPU"
+        },
+        {
+          "label": "D",
+          "text": "自动减少模型参数"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "张量并行、流水线并行、数据并行结合可提高扩展性（A 对）、缓解单一并行方式的通信瓶颈（B 对）、充分利用多节点多 GPU 资源（C 对）。并行策略只改变计算与存储的切分方式，不会减少模型参数量（D 错）。",
+      "topic": "大模型——分布式训练",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}

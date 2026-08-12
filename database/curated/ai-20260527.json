@@ -1,0 +1,797 @@
+{
+  "source": {
+    "id": "AIEXAM-20260527",
+    "exam_date": "2026-05-27",
+    "job_track": "互联网公司 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260527",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260527-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "Swish 激活函数定义为 $f(x) = x \\cdot \\sigma(x)$。相比于 ReLU，Swish 的主要特点是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "它是非单调的"
+        },
+        {
+          "label": "B",
+          "text": "它是完全非负的"
+        },
+        {
+          "label": "C",
+          "text": "它的计算成本比 ReLU 低得多"
+        },
+        {
+          "label": "D",
+          "text": "它在负区间有平滑的曲线，可能保留更多信息"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "ReLU 在 $x < 0$ 时硬截断为 0，会导致 Dead ReLU 问题并丢失负区间梯度；Swish 在 $x < 0$ 时输出一个平滑的小负值，梯度全程连续，有助于保留信息和缓解神经元死亡。A 也属于 Swish 的特性但不是与 ReLU 对比时最被强调的实用优势；B 错，Swish 在负区间可取负值；C 错，Swish 需多算一次 sigmoid，计算更贵。",
+      "topic": "深度学习——激活函数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$f(x) = x \\cdot \\sigma(x)$",
+        "Swish 激活函数定义为 $f(x) = x \\cdot \\sigma(x)$。相比于 ReLU，Swish 的主要特点是？"
+      ],
+      "solution_formulas": [
+        "$x < 0$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "在使用 ZeRO1 优化的数据并行中，每个 GPU 计算完局部梯度后，通过哪两个基础通信算子实现梯度的聚合和分片？",
+      "options": [
+        {
+          "label": "A",
+          "text": "All-Gather 和 Broadcast"
+        },
+        {
+          "label": "B",
+          "text": "Broadcast 和 Reduce"
+        },
+        {
+          "label": "C",
+          "text": "Scatter 和 All-Reduce"
+        },
+        {
+          "label": "D",
+          "text": "Reduce-Scatter 和 All-Gather"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "ZeRO1 把优化器状态切片到各 GPU。反向后用 Reduce-Scatter 把全局梯度求和并按分片切给对应卡，更新完参数后再用 All-Gather 把各分片的最新参数收集到所有 GPU。All-Reduce = Reduce-Scatter + All-Gather，ZeRO 正是把这一对算子拆开搭配显存切片。",
+      "topic": "大模型——分布式训练",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "ZeRO1 把优化器状态切片到各 GPU。反向后用 Reduce-Scatter 把全局梯度求和并按分片切给对应卡，更新完参数后再用 All-Gather 把各分片的最新参数收集到所有 GPU。All-Reduce = Reduce-Scatter + All-Gather，ZeRO 正是把这一对算子拆开搭配显存切片。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q003",
+      "source_number": 3,
+      "type": "single",
+      "stem": "在表格数据处理中，若某列包含连续数值，另一列包含类别标签（如”男/女”），为了输入神经网络，通常的做法是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "全部归一化为 0 到 1 之间"
+        },
+        {
+          "label": "B",
+          "text": "连续数值归一化，类别标签 One-Hot 编码"
+        },
+        {
+          "label": "C",
+          "text": "全部转换为字符串"
+        },
+        {
+          "label": "D",
+          "text": "连续数值 One-Hot 编码，类别标签归一化"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "连续特征做归一化让量纲统一；类别标签是离散的，直接归一化会引入伪序关系，必须 One-Hot 展开成独立的指示位。",
+      "topic": "机器学习——特征工程",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "对大模型权重或激活值进行 INT8/FP8 量化时，通常假设数据近似正态分布。若设截断阈值 $\\alpha = 3\\sigma$，这种”3σ 截断法则”会导致大约多少比例的原始数据产生截断失真？",
+      "options": [
+        {
+          "label": "A",
+          "text": "约 5%"
+        },
+        {
+          "label": "B",
+          "text": "约 1%"
+        },
+        {
+          "label": "C",
+          "text": "约 0.1%"
+        },
+        {
+          "label": "D",
+          "text": "约 0.3%"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "正态分布 3σ 法则：$P(\\lvert X - \\mu \\rvert \\leq 3\\sigma) \\approx 99.73\\%$，所以落在区间外的比例约为 0.27%，最接近 0.3%。",
+      "topic": "数学——概率论",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$\\alpha = 3\\sigma$",
+        "对大模型权重或激活值进行 INT8/FP8 量化时，通常假设数据近似正态分布。若设截断阈值 $\\alpha = 3\\sigma$，这种”3σ 截断法则”会导致大约多少比例的原始数据产生截断失真？"
+      ],
+      "solution_formulas": [
+        "$P(\\lvert X - \\mu \\rvert \\leq 3\\sigma) \\approx 99.73\\%$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "构建线性回归模型时，发现训练误差很小但测试误差很大，最可能的原因是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "欠拟合"
+        },
+        {
+          "label": "B",
+          "text": "过拟合"
+        },
+        {
+          "label": "C",
+          "text": "数据量不足"
+        },
+        {
+          "label": "D",
+          "text": "特征太少"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "训练集表现好、测试集表现差是过拟合的标准定义——模型记住了训练数据的噪声而非泛化规律。",
+      "topic": "机器学习——偏差方差",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "对于任意两个随机变量 $X$ 和 $Y$，下列关于协方差与独立性的命题中，正确的一项是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "若 $D(X+Y) = D(X) + D(Y)$，则 $X$ 和 $Y$ 一定不相关"
+        },
+        {
+          "label": "B",
+          "text": "若协方差为 0（不相关），则一定相互独立"
+        },
+        {
+          "label": "C",
+          "text": "若相互独立，则协方差可能不为 0"
+        },
+        {
+          "label": "D",
+          "text": "若服从二维正态分布且不相关，则不一定相互独立"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "$D(X+Y) = D(X) + D(Y) + 2\\text{Cov}(X,Y)$，方差等式成立等价于 $\\text{Cov}(X,Y)=0$，即不相关，A 正确。B 反例：$X$ 均匀分布，$Y=X^2$，协方差为 0 但显然不独立。C 错，独立必不相关。D 错，二维正态下不相关与独立等价。",
+      "topic": "数学——概率论",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$X$",
+        "$Y$"
+      ],
+      "solution_formulas": [
+        "$D(X+Y) = D(X) + D(Y) + 2\\text{Cov}(X,Y)$",
+        "$\\text{Cov}(X,Y)=0$",
+        "$X$",
+        "$Y=X^2$",
+        "$D(X+Y) = D(X) + D(Y) + 2\\text{Cov}(X,Y)$，方差等式成立等价于 $\\text{Cov}(X,Y)=0$，即不相关，A 正确。B 反例：$X$ 均匀分布，$Y=X^2$，协方差为 0 但显然不独立。C 错，独立必不相关。D 错，二维正态下不相关与独立等价。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "已知 $\\vec{a}=(1,2)$，$\\vec{b}=(3,1)$，$\\vec{c}=(2,3)$，计算 $\\vec{d}=\\vec{a}-\\vec{b}+\\vec{c}$，则 $\\vec{d}$ 的值为：",
+      "options": [
+        {
+          "label": "A",
+          "text": "$(0, 4)$"
+        },
+        {
+          "label": "B",
+          "text": "$(2, 0)$"
+        },
+        {
+          "label": "C",
+          "text": "$(4, 2)$"
+        },
+        {
+          "label": "D",
+          "text": "$(0, 2)$"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "分量运算：第一维 $1-3+2=0$，第二维 $2-1+3=4$，所以 $\\vec{d}=(0,4)$。",
+      "topic": "数学——线性代数",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$\\vec{a}=(1,2)$",
+        "$\\vec{b}=(3,1)$",
+        "$\\vec{c}=(2,3)$",
+        "$\\vec{d}=\\vec{a}-\\vec{b}+\\vec{c}$",
+        "$\\vec{d}$",
+        "已知 $\\vec{a}=(1,2)$，$\\vec{b}=(3,1)$，$\\vec{c}=(2,3)$，计算 $\\vec{d}=\\vec{a}-\\vec{b}+\\vec{c}$，则 $\\vec{d}$ 的值为："
+      ],
+      "solution_formulas": [
+        "$1-3+2=0$",
+        "$2-1+3=4$",
+        "$\\vec{d}=(0,4)$",
+        "分量运算：第一维 $1-3+2=0$，第二维 $2-1+3=4$，所以 $\\vec{d}=(0,4)$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q008",
+      "source_number": 8,
+      "type": "single",
+      "stem": "已知对称矩阵 $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$，求解特征值和特征向量。",
+      "options": [
+        {
+          "label": "A",
+          "text": "$\\lambda_1=1$，$v_1=(1,-1)$；$\\lambda_2=3$，$v_2=(1,1)$"
+        },
+        {
+          "label": "B",
+          "text": "$\\lambda_1=3$，$v_1=(1,-1)$；$\\lambda_2=1$，$v_2=(1,1)$"
+        },
+        {
+          "label": "C",
+          "text": "$\\lambda_1=1$，$v_1=(1,-1)$；$\\lambda_2=3$，$v_2=(1,1)$"
+        },
+        {
+          "label": "D",
+          "text": "$\\lambda_1=2$，$v_1=(1,0)$；$\\lambda_2=2$，$v_2=(0,1)$"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "特征多项式 $(2-\\lambda)^2-1=0$，解得 $\\lambda=1$ 或 $\\lambda=3$。代入 $\\lambda=1$ 得 $v=(1,-1)$；代入 $\\lambda=3$ 得 $v=(1,1)$。",
+      "topic": "数学——线性代数",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$",
+        "已知对称矩阵 $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$，求解特征值和特征向量。"
+      ],
+      "solution_formulas": [
+        "$(2-\\lambda)^2-1=0$",
+        "$\\lambda=1$",
+        "$\\lambda=3$",
+        "$v=(1,-1)$",
+        "$v=(1,1)$",
+        "特征多项式 $(2-\\lambda)^2-1=0$，解得 $\\lambda=1$ 或 $\\lambda=3$。代入 $\\lambda=1$ 得 $v=(1,-1)$；代入 $\\lambda=3$ 得 $v=(1,1)$。"
+      ],
+      "review_status": "needs_review",
+      "review_note": "A、C 选项文本相同而来源给出单一答案，存在歧义。"
+    },
+    {
+      "id": "AIEXAM-20260527-Q009",
+      "source_number": 9,
+      "type": "single",
+      "stem": "循环神经网络（RNN）适合处理哪种类型的数据？",
+      "options": [
+        {
+          "label": "A",
+          "text": "图数据"
+        },
+        {
+          "label": "B",
+          "text": "图像"
+        },
+        {
+          "label": "C",
+          "text": "表格数据"
+        },
+        {
+          "label": "D",
+          "text": "序列数据"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "RNN 的隐状态按时间步递推，天然适配有顺序依赖的序列数据（文本、语音、时间序列）。图数据用 GNN，图像用 CNN，表格用 MLP/GBDT。",
+      "topic": "深度学习——RNN",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "处理包含较多异常值的数据集，且准备使用对距离敏感的算法（如 SVM/KNN），下列哪种特征缩放方法最具鲁棒性？",
+      "options": [
+        {
+          "label": "A",
+          "text": "Standardization（标准化）"
+        },
+        {
+          "label": "B",
+          "text": "RobustScaler（中位数 + IQR 缩放）"
+        },
+        {
+          "label": "C",
+          "text": "Min-Max Scaling（归一化）"
+        },
+        {
+          "label": "D",
+          "text": "Log Transformation（对数变换）"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "RobustScaler 用中位数代替均值、用 IQR 代替标准差，这两个统计量都是顺序统计量，不会被极端离群值拉偏。Standardization 的均值和方差对异常值极其敏感；Min-Max 受极值定义直接被异常值主导。",
+      "topic": "机器学习——特征工程",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q011",
+      "source_number": 11,
+      "type": "single",
+      "stem": "模型用 FP8 训练，工程上常见的数值稳定化操作是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "梯度缩放"
+        },
+        {
+          "label": "B",
+          "text": "去掉 dropout"
+        },
+        {
+          "label": "C",
+          "text": "使用更小的 batch size"
+        },
+        {
+          "label": "D",
+          "text": "增大学习率并减少权重衰减"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "FP8 动态范围远小于 FP32，小梯度容易下溢为零。Loss/梯度缩放把梯度推到 FP8 可表示范围内，反传后再缩回，是 FP16/FP8 混合精度训练的标配。",
+      "topic": "大模型——混合精度",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "空洞卷积（Dilated Convolution）的作用是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "增加感受野而不增加参数"
+        },
+        {
+          "label": "B",
+          "text": "提高特征图分辨率"
+        },
+        {
+          "label": "C",
+          "text": "以上都不对"
+        },
+        {
+          "label": "D",
+          "text": "减少计算量"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "空洞卷积在卷积核相邻采样点之间插入空洞（dilation rate $d$），$k \\times k$ 核的等效感受野变成 $(k + (k-1)(d-1))^2$，但权重数仍是 $k^2$。",
+      "topic": "深度学习——CNN",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$d$",
+        "$k \\times k$",
+        "$(k + (k-1)(d-1))^2$",
+        "$k^2$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "单机 8 卡 NVLink 高带宽互联，跨节点 IB 延迟较高。为最小化通信瓶颈，最合理的物理拓扑映射策略是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "所有并行策略随机分配，依赖 NCCL 自动路由"
+        },
+        {
+          "label": "B",
+          "text": "PP 放单机内，TP 跨节点"
+        },
+        {
+          "label": "C",
+          "text": "DP 放单机内，TP 和 PP 跨节点"
+        },
+        {
+          "label": "D",
+          "text": "TP 放单机内，PP 和 DP 跨节点"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "通信量从大到小：TP > DP > PP。TP 每层都要 All-Reduce 激活/梯度，频次最高且数据量大，必须放最快的 NVLink；PP 只在层边界传递激活，通信稀疏，跨节点 IB 即可。B/C 把 TP 放到 IB 上会直接拖垮训练吞吐。",
+      "topic": "大模型——分布式训练",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "如果 $D(X)=1$，$D(Y)=4$，$\\text{Cov}(X,Y)=2$，则 $X$ 和 $Y$ 的相关系数是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "0.5"
+        },
+        {
+          "label": "B",
+          "text": "0.25"
+        },
+        {
+          "label": "C",
+          "text": "1"
+        },
+        {
+          "label": "D",
+          "text": "2"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "相关系数 $\\rho = \\frac{\\text{Cov}(X,Y)}{\\sqrt{D(X)}\\sqrt{D(Y)}} = \\frac{2}{1 \\times 2} = 1$，说明完全正线性相关。",
+      "topic": "数学——概率论",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$D(X)=1$",
+        "$D(Y)=4$",
+        "$\\text{Cov}(X,Y)=2$",
+        "$X$",
+        "$Y$",
+        "如果 $D(X)=1$，$D(Y)=4$，$\\text{Cov}(X,Y)=2$，则 $X$ 和 $Y$ 的相关系数是？"
+      ],
+      "solution_formulas": [
+        "$\\rho = \\frac{\\text{Cov}(X,Y)}{\\sqrt{D(X)}\\sqrt{D(Y)}} = \\frac{2}{1 \\times 2} = 1$",
+        "相关系数 $\\rho = \\frac{\\text{Cov}(X,Y)}{\\sqrt{D(X)}\\sqrt{D(Y)}} = \\frac{2}{1 \\times 2} = 1$，说明完全正线性相关。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q015",
+      "source_number": 15,
+      "type": "single",
+      "stem": "对于函数 $f(x)=\\frac{1}{1+25x^2}$，在区间 $[-1,1]$ 上取等距节点进行高次插值，当节点数增大时会出现什么现象？",
+      "options": [
+        {
+          "label": "A",
+          "text": "插值多项式趋于直线"
+        },
+        {
+          "label": "B",
+          "text": "收敛到 $f(x)$"
+        },
+        {
+          "label": "C",
+          "text": "振荡加剧，误差变大"
+        },
+        {
+          "label": "D",
+          "text": "插值多项式趋于零"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "经典的 Runge 现象：等距节点高次插值在区间端点附近出现剧烈振荡，节点数越多振幅越大。规避方法是改用 Chebyshev 节点或分段低次插值。",
+      "topic": "数学——数值分析",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$f(x)=\\frac{1}{1+25x^2}$",
+        "$[-1,1]$",
+        "对于函数 $f(x)=\\frac{1}{1+25x^2}$，在区间 $[-1,1]$ 上取等距节点进行高次插值，当节点数增大时会出现什么现象？"
+      ],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q016",
+      "source_number": 16,
+      "type": "multiple",
+      "stem": "SmoothQuant 引入逐通道缩放 $\\text{diag}(s)$ 做变换 $Y = (X \\cdot \\text{diag}(s)^{-1}) \\cdot (\\text{diag}(s) \\cdot W)$，下列哪些说法正确：",
+      "options": [
+        {
+          "label": "A",
+          "text": "若原始 $X$ 的某通道存在离群值，选择 $s$ 为该通道的范数可将其压缩至 1 附近，降低激活量化难度"
+        },
+        {
+          "label": "B",
+          "text": "变换后权重行范数会随 $s$ 同比增大，需在”激活易量化”与”权重量化”之间寻找平衡"
+        },
+        {
+          "label": "C",
+          "text": "该变换只能用于全连接层，无法应用于注意力投影"
+        },
+        {
+          "label": "D",
+          "text": "该变换在浮点精度下与原始计算完全一致，不存在任何近似误差"
+        }
+      ],
+      "answer": [
+        "A",
+        "B"
+      ],
+      "explanation": "A 正确，SmoothQuant 核心思路是把激活的离群值”借”到权重上。B 正确，权重被放大后量化误差上升，需要 $\\alpha$ 因子平衡。C 错，注意力投影本身就是线性层，完全满足条件。D 错，虽然代数等价，但实际浮点乘除有舍入误差，且 SmoothQuant 目的就是为后续量化服务。",
+      "topic": "大模型——量化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$\\text{diag}(s)$",
+        "$Y = (X \\cdot \\text{diag}(s)^{-1}) \\cdot (\\text{diag}(s) \\cdot W)$",
+        "SmoothQuant 引入逐通道缩放 $\\text{diag}(s)$ 做变换 $Y = (X \\cdot \\text{diag}(s)^{-1}) \\cdot (\\text{diag}(s) \\cdot W)$，下列哪些说法正确："
+      ],
+      "solution_formulas": [
+        "$\\alpha$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q017",
+      "source_number": 17,
+      "type": "multiple",
+      "stem": "某电商平台用 DBSCAN 对高维用户行为聚类以识别异常用户，使用 DBSCAN 的原因包括：",
+      "options": [
+        {
+          "label": "A",
+          "text": "能够自动将异常用户标记为噪声点"
+        },
+        {
+          "label": "B",
+          "text": "不需要预先指定簇的数量"
+        },
+        {
+          "label": "C",
+          "text": "在高维数据中表现优异，不受维度灾难影响"
+        },
+        {
+          "label": "D",
+          "text": "能够发现任意形状的簇"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "A 正确，DBSCAN 把密度不足的样本标为噪声，天然适合异常检测。B 正确，相对 K-Means 无需预设 $K$。D 正确，基于密度连通性可识别非凸簇。C 错，高维空间下点间距离趋于均匀（维度灾难），密度概念退化。",
+      "topic": "机器学习——聚类",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$K$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "ReAct 架构在现代 AI Agent 系统中被广泛应用，以下正确的有：",
+      "options": [
+        {
+          "label": "A",
+          "text": "ReAct 循环可能陷入死循环，需要设计终止条件"
+        },
+        {
+          "label": "B",
+          "text": "通过显式的 Thought 步骤增强了模型的可解释性"
+        },
+        {
+          "label": "C",
+          "text": "Observation 可以来自外部工具调用结果、搜索引擎返回、API 响应等多种来源"
+        },
+        {
+          "label": "D",
+          "text": "Agent 的行动选择完全依赖预训练的模式，不需要工具调用"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A 正确，工程实现里必须设 max_steps、超时等熔断机制。B 正确，Thought 明文输出了推理链。C 正确，Observation 可承接任意外部信号。D 错，ReAct 的核心定义就是 Thought → Action → Observation 循环，其中 Action 一般就是工具调用。",
+      "topic": "大模型——Agent",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "在混合检索（BM25 + 向量相似度）的 RAG 系统中，下列说法正确的有：",
+      "options": [
+        {
+          "label": "A",
+          "text": "Embedding 归一化会影响余弦相似度与点积的等价性，混合检索需统一"
+        },
+        {
+          "label": "B",
+          "text": "Tokenizer 若兼容向量模型与 BM25 的分词规则，可以减少词频统计错位"
+        },
+        {
+          "label": "C",
+          "text": "对专业术语，若 BM25 权重过高，会压制向量的语义匹配能力"
+        },
+        {
+          "label": "D",
+          "text": "重排模型若与 Embedding 模型共享参数，更有利于端到端优化"
+        },
+        {
+          "label": "E",
+          "text": "文档切分策略只影响向量检索，不影响 BM25 效果"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A 正确，向量 L2 归一化后余弦与点积等价，混合检索的分数融合依赖度量一致。B 正确，对齐分词能减少两侧统计口径错位。C 正确，高 IDF 术语权重过高会让 BM25 主导排序。D 错，cross-encoder 和 bi-encoder 架构不同，共享参数会损失各自优势。E 错，BM25 同样依赖文档长度归一化。",
+      "topic": "大模型——RAG",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260527-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "下列哪些损失函数常用于分类问题？",
+      "options": [
+        {
+          "label": "A",
+          "text": "交叉熵损失"
+        },
+        {
+          "label": "B",
+          "text": "均方误差"
+        },
+        {
+          "label": "C",
+          "text": "平均绝对误差"
+        },
+        {
+          "label": "D",
+          "text": "焦点损失"
+        }
+      ],
+      "answer": [
+        "A",
+        "D"
+      ],
+      "explanation": "交叉熵是分类标配。Focal Loss 是 RetinaNet 提出的分类损失，专门解决类别不平衡。MSE 和 MAE 是回归损失。",
+      "topic": "深度学习——损失函数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}

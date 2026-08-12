@@ -1,0 +1,824 @@
+{
+  "source": {
+    "id": "AIEXAM-20260415",
+    "exam_date": "2026-04-15",
+    "job_track": "互联网公司 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260415",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260415-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "在标准的数据并行（DDP）训练过程中，每个 GPU 独立计算梯度后，为保持模型权重一致，需要在每次迭代结束时执行什么通信操作？",
+      "options": [
+        {
+          "label": "A",
+          "text": "Broadcast"
+        },
+        {
+          "label": "B",
+          "text": "All-Gather"
+        },
+        {
+          "label": "C",
+          "text": "Send/Recv"
+        },
+        {
+          "label": "D",
+          "text": "All-Reduce"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "DDP 中每个 GPU 独立前向+反向得到本地梯度，迭代结束时通过 All-Reduce 将所有 GPU 的梯度求和/平均后广播回每张卡，从而保证各卡参数一致。Broadcast 是单源广播，All-Gather 是拼接而非聚合，Send/Recv 是点对点通信，均不符合”梯度同步”的语义。",
+      "topic": "深度学习——分布式训练",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "在使用 K-Means 算法进行聚类之前，用户必须预先指定的关键参数是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "聚类中心的初始坐标"
+        },
+        {
+          "label": "B",
+          "text": "聚类的数量 $K$"
+        },
+        {
+          "label": "C",
+          "text": "数据的密度阈值"
+        },
+        {
+          "label": "D",
+          "text": "学习率"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "K-Means 的核心超参数是聚类数 $K$，必须在运行前指定。初始坐标通常由算法（如 K-Means++）自动选取，密度阈值属于 DBSCAN，学习率与 K-Means 无关。",
+      "topic": "机器学习——K-Means",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$K$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q003",
+      "source_number": 3,
+      "type": "single",
+      "stem": "设数据矩阵 $X \\in \\mathbb{R}^{n \\times d}$。若对数据进行线性映射 $Y = XW$，其中 $W \\in \\mathbb{R}^{d \\times k}$，则新的数据矩阵 $Y$ 的维度为：",
+      "options": [
+        {
+          "label": "A",
+          "text": "$d \\times k$"
+        },
+        {
+          "label": "B",
+          "text": "$n \\times k$"
+        },
+        {
+          "label": "C",
+          "text": "$k \\times n$"
+        },
+        {
+          "label": "D",
+          "text": "$d \\times n$"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "矩阵乘法维度规则：$(n \\times d) \\cdot (d \\times k)$，内维 $d$ 消去，结果维度为 $n \\times k$。",
+      "topic": "数学——线性代数",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$X \\in \\mathbb{R}^{n \\times d}$",
+        "$Y = XW$",
+        "$W \\in \\mathbb{R}^{d \\times k}$",
+        "$Y$",
+        "设数据矩阵 $X \\in \\mathbb{R}^{n \\times d}$。若对数据进行线性映射 $Y = XW$，其中 $W \\in \\mathbb{R}^{d \\times k}$，则新的数据矩阵 $Y$ 的维度为："
+      ],
+      "solution_formulas": [
+        "$(n \\times d) \\cdot (d \\times k)$",
+        "$d$",
+        "$n \\times k$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "给定输入向量为 $[1, 1, 1]$，经过标准 Softmax 函数处理后，输出的向量结果是多少？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$[1, 1, 1]$"
+        },
+        {
+          "label": "B",
+          "text": "$[0.5, 0.5, 0.5]$"
+        },
+        {
+          "label": "C",
+          "text": "$[0, 0, 1]$"
+        },
+        {
+          "label": "D",
+          "text": "$[\\frac{1}{3}, \\frac{1}{3}, \\frac{1}{3}]$"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "Softmax 将每个元素映射为 $\\frac{e^{z_i}}{\\sum_j e^{z_j}}$。三个输入相同时，$e^1 / (3 \\cdot e^1) = 1/3$，因此输出为 $[1/3, 1/3, 1/3]$。Softmax 输出之和为 1，排除 A（和为 3）和 B（和为 1.5）。",
+      "topic": "深度学习——Softmax",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$[1, 1, 1]$"
+      ],
+      "solution_formulas": [
+        "$\\frac{e^{z_i}}{\\sum_j e^{z_j}}$",
+        "$e^1 / (3 \\cdot e^1) = 1/3$",
+        "$[1/3, 1/3, 1/3]$",
+        "Softmax 将每个元素映射为 $\\frac{e^{z_i}}{\\sum_j e^{z_j}}$。三个输入相同时，$e^1 / (3 \\cdot e^1) = 1/3$，因此输出为 $[1/3, 1/3, 1/3]$。Softmax 输出之和为 1，排除 A（和为 3）和 B（和为 1.5）。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "K-Means 算法在迭代过程中，衡量样本点归属的核心准则是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "到质心的欧氏距离最小"
+        },
+        {
+          "label": "B",
+          "text": "样本点范围的密度最大"
+        },
+        {
+          "label": "C",
+          "text": "样本点间的余弦相似度"
+        },
+        {
+          "label": "D",
+          "text": "连通性"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "K-Means 在 E 步中将每个样本分配给欧氏距离最近的质心，M 步更新质心为簇内均值。密度最大是 DBSCAN 的思想，余弦相似度和连通性不是 K-Means 的度量方式。",
+      "topic": "机器学习——K-Means",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "在特征工程中，以下哪项操作通常用于减少特征维度并保留主要信息？",
+      "options": [
+        {
+          "label": "A",
+          "text": "特征降维"
+        },
+        {
+          "label": "B",
+          "text": "特征选择"
+        },
+        {
+          "label": "C",
+          "text": "特征编码"
+        },
+        {
+          "label": "D",
+          "text": "特征缩放"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "特征降维（如 PCA）通过线性/非线性变换将高维特征映射到低维空间，同时尽量保留主要信息。特征选择是挑选子集而非变换维度，特征编码是类别→数值转换，特征缩放是归一化/标准化，均不涉及”降维并保留信息”。",
+      "topic": "机器学习——特征工程",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "在一个极简的检索增强生成（RAG）系统中，用户查询 $q = [1, 2, 1]$。向量数据库中存储了两个文档嵌入 $d_1 = [2, 1, 0]$ 和 $d_2 = [1, 0, 2]$。系统使用最大内积搜索（MIPS）召回最相关的文档。请计算内积得分，并判断系统会召回哪个文档以及对应的得分是多少？",
+      "options": [
+        {
+          "label": "A",
+          "text": "召回 $d_1$，得分为 4"
+        },
+        {
+          "label": "B",
+          "text": "召回 $d_2$，得分为 4"
+        },
+        {
+          "label": "C",
+          "text": "召回 $d_1$，得分为 3"
+        },
+        {
+          "label": "D",
+          "text": "召回 $d_2$，得分为 5"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "$q \\cdot d_1 = 1 \\times 2 + 2 \\times 1 + 1 \\times 0 = 4$，$q \\cdot d_2 = 1 \\times 1 + 2 \\times 0 + 1 \\times 2 = 3$。MIPS 选内积最大的文档，$4 > 3$，因此召回 $d_1$，得分为 4。",
+      "topic": "大模型——RAG",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$q = [1, 2, 1]$",
+        "$d_1 = [2, 1, 0]$",
+        "$d_2 = [1, 0, 2]$",
+        "在一个极简的检索增强生成（RAG）系统中，用户查询 $q = [1, 2, 1]$。向量数据库中存储了两个文档嵌入 $d_1 = [2, 1, 0]$ 和 $d_2 = [1, 0, 2]$。系统使用最大内积搜索（MIPS）召回最相关的文档。请计算内积得分，并判断系统会召回哪个文档以及对应的得分是多少？"
+      ],
+      "solution_formulas": [
+        "$q \\cdot d_1 = 1 \\times 2 + 2 \\times 1 + 1 \\times 0 = 4$",
+        "$q \\cdot d_2 = 1 \\times 1 + 2 \\times 0 + 1 \\times 2 = 3$",
+        "$4 > 3$",
+        "$d_1$",
+        "$q \\cdot d_1 = 1 \\times 2 + 2 \\times 1 + 1 \\times 0 = 4$，$q \\cdot d_2 = 1 \\times 1 + 2 \\times 0 + 1 \\times 2 = 3$。MIPS 选内积最大的文档，$4 > 3$，因此召回 $d_1$，得分为 4。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q008",
+      "source_number": 8,
+      "type": "single",
+      "stem": "设样本 $x_1, x_2, \\ldots, x_n$ 来自正态总体 $N(\\mu, \\sigma^2)$，$\\mu$ 未知、$\\sigma^2$ 已知，若似然函数 $L(\\mu) = \\prod_{i=1}^{n} \\frac{1}{\\sqrt{2\\pi}\\sigma} \\exp!\\left(-\\frac{(x_i - \\mu)^2}{2\\sigma^2}\\right)$，则使 $L$ 最大的 $\\hat{\\mu}$ 满足",
+      "options": [
+        {
+          "label": "A",
+          "text": "$\\hat{\\mu} = \\frac{1}{n}\\sum_{i=1}^n x_i^2$"
+        },
+        {
+          "label": "B",
+          "text": "$\\hat{\\mu} = \\frac{\\sum x_i^2}{\\sum x_i}$"
+        },
+        {
+          "label": "C",
+          "text": "$\\hat{\\mu} = \\text{median}(x_1, \\ldots, x_n)$"
+        },
+        {
+          "label": "D",
+          "text": "$\\hat{\\mu} = \\bar{x} = \\frac{1}{n}\\sum_{i=1}^n x_i$"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "要最大化 $L$，等价于最小化指数上的 $\\sum(x_i - \\mu)^2$。对 $\\mu$ 求导并令其为零：$\\sum 2(x_i - \\mu) = 0$，即 $\\sum x_i = n\\mu$，解得 $\\hat{\\mu} = \\bar{x} = \\frac{1}{n}\\sum x_i$（样本均值），这正是正态分布均值的最大似然估计。",
+      "topic": "数学——概率统计",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$x_1, x_2, \\ldots, x_n$",
+        "$N(\\mu, \\sigma^2)$",
+        "$\\mu$",
+        "$\\sigma^2$",
+        "$L(\\mu) = \\prod_{i=1}^{n} \\frac{1}{\\sqrt{2\\pi}\\sigma} \\exp!\\left(-\\frac{(x_i - \\mu)^2}{2\\sigma^2}\\right)$",
+        "$L$",
+        "$\\hat{\\mu}$",
+        "设样本 $x_1, x_2, \\ldots, x_n$ 来自正态总体 $N(\\mu, \\sigma^2)$，$\\mu$ 未知、$\\sigma^2$ 已知，若似然函数 $L(\\mu) = \\prod_{i=1}^{n} \\frac{1}{\\sqrt{2\\pi}\\sigma} \\exp!\\left(-\\frac{(x_i - \\mu)^2}{2\\sigma^2}\\right)$，则使 $L$ 最大的 $\\hat{\\mu}$ 满足"
+      ],
+      "solution_formulas": [
+        "$L$",
+        "$\\sum(x_i - \\mu)^2$",
+        "$\\mu$",
+        "$\\sum 2(x_i - \\mu) = 0$",
+        "$\\sum x_i = n\\mu$",
+        "$\\hat{\\mu} = \\bar{x} = \\frac{1}{n}\\sum x_i$",
+        "要最大化 $L$，等价于最小化指数上的 $\\sum(x_i - \\mu)^2$。对 $\\mu$ 求导并令其为零：$\\sum 2(x_i - \\mu) = 0$，即 $\\sum x_i = n\\mu$，解得 $\\hat{\\mu} = \\bar{x} = \\frac{1}{n}\\sum x_i$（样本均值），这正是正态分布均值的最大似然估计。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q009",
+      "source_number": 9,
+      "type": "single",
+      "stem": "线性回归中关于 $R^2$（决定系数），下列说法正确的是",
+      "options": [
+        {
+          "label": "A",
+          "text": "增加无关特征会使 $R^2$ 降低"
+        },
+        {
+          "label": "B",
+          "text": "$R^2$ 是衡量模型对数据拟合优度的核心指标，取值范围 $[0, 1]$"
+        },
+        {
+          "label": "C",
+          "text": "$R^2$ 可以用于比较不同数据集上模型的优劣"
+        },
+        {
+          "label": "D",
+          "text": "$R^2$ 越接近 0，模型拟合越好"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "$R^2 = 1 - \\frac{SS_{\\text{res}}}{SS_{\\text{tot}}}$，衡量模型解释方差的比例，取值 $[0, 1]$，越接近 1 拟合越好。增加特征（哪怕无关）$R^2$ 只会不降（所以有调整 $R^2_{\\text{adj}}$），A 错；$R^2$ 依赖数据分布，不同数据集间不可直接比较，C 错；D 说反了。",
+      "topic": "机器学习——评价指标",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$R^2$"
+      ],
+      "solution_formulas": [
+        "$R^2 = 1 - \\frac{SS_{\\text{res}}}{SS_{\\text{tot}}}$",
+        "$[0, 1]$",
+        "$R^2$",
+        "$R^2_{\\text{adj}}$",
+        "$R^2 = 1 - \\frac{SS_{\\text{res}}}{SS_{\\text{tot}}}$，衡量模型解释方差的比例，取值 $[0, 1]$，越接近 1 拟合越好。增加特征（哪怕无关）$R^2$ 只会不降（所以有调整 $R^2_{\\text{adj}}$），A 错；$R^2$ 依赖数据分布，不同数据集间不可直接比较，C 错；D 说反了。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "评测长上下文能力时，为避免模型靠”猜测/泛化”蒙对，常见的高质量题型设计是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "在长文中埋入多个相似实体/数值，要求定位并做跨段整合（needle/multi-hop）"
+        },
+        {
+          "label": "B",
+          "text": "提问”这段话大意是什么”"
+        },
+        {
+          "label": "C",
+          "text": "把短文重复 10 遍凑成长文"
+        },
+        {
+          "label": "D",
+          "text": "测模型能输出多少 token"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "Needle-in-a-haystack 和 multi-hop 题型在长文中埋入多个相似但不同的细节，要求模型精确定位并整合跨段信息，无法靠泛化蒙对。B 只考摘要能力，C 重复文本无法测真正的长上下文理解，D 测的是生成长度而非理解能力。",
+      "topic": "大模型——评测方法",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q011",
+      "source_number": 11,
+      "type": "single",
+      "stem": "在特征选择（Feature Selection）过程中，当我们怀疑特征 $X$ 与目标变量 $Y$ 之间存在复杂的非线性相关性（例如 $y = x^2$ 或周期性关系），且 $X$ 并不服从正态分布时，下列哪种指标最为准确且稳健？",
+      "options": [
+        {
+          "label": "A",
+          "text": "斯皮尔曼等级相关系数（Spearman’s Rank Correlation）：利用变量的秩次进行线性相关性分析"
+        },
+        {
+          "label": "B",
+          "text": "方差分析（ANOVA F-value）：通过比较组间方差与组内方差的比值来检验均值差异"
+        },
+        {
+          "label": "C",
+          "text": "皮尔逊相关系数（Pearson Correlation Coefficient）：通过计算协方差与标准差的比值来衡量相关性"
+        },
+        {
+          "label": "D",
+          "text": "互信息（Mutual Information, MI）：基于信息熵理论，衡量已知 $X$ 的情况下 $Y$ 不确定性的减少程度"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "互信息（MI）不假设线性关系也不要求正态分布，能捕获任意形式的统计依赖，适合非线性、非正态场景。Pearson 和 Spearman 本质上衡量的是单调/线性关系，对 $y = x^2$ 这类对称非单调关系会给出接近 0 的值。ANOVA 适用于分类变量与连续变量之间的关系检验，不适合连续-连续的非线性依赖。",
+      "topic": "机器学习——特征工程",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$X$",
+        "$Y$",
+        "$y = x^2$",
+        "在特征选择（Feature Selection）过程中，当我们怀疑特征 $X$ 与目标变量 $Y$ 之间存在复杂的非线性相关性（例如 $y = x^2$ 或周期性关系），且 $X$ 并不服从正态分布时，下列哪种指标最为准确且稳健？"
+      ],
+      "solution_formulas": [
+        "$y = x^2$",
+        "互信息（MI）不假设线性关系也不要求正态分布，能捕获任意形式的统计依赖，适合非线性、非正态场景。Pearson 和 Spearman 本质上衡量的是单调/线性关系，对 $y = x^2$ 这类对称非单调关系会给出接近 0 的值。ANOVA 适用于分类变量与连续变量之间的关系检验，不适合连续-连续的非线性依赖。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "矩阵奇异值分解（SVD）无法直接应用于以下哪个场景？",
+      "options": [
+        {
+          "label": "A",
+          "text": "图像去噪"
+        },
+        {
+          "label": "B",
+          "text": "决策树分类"
+        },
+        {
+          "label": "C",
+          "text": "文本主题建模"
+        },
+        {
+          "label": "D",
+          "text": "推荐系统中用户-电影评分矩阵降维"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "SVD 可用于图像去噪（低秩近似）、文本主题建模（LSA/LSI）、推荐系统（矩阵分解）。决策树基于特征阈值递归划分，不涉及矩阵分解操作，SVD 无法直接应用。",
+      "topic": "数学——线性代数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "SmoothQuant 是一种常用的大模型量化方法，它的核心思想是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "将权重 scale 转移到 activation"
+        },
+        {
+          "label": "B",
+          "text": "将 activation scale 转移到权重"
+        },
+        {
+          "label": "C",
+          "text": "减少层数"
+        },
+        {
+          "label": "D",
+          "text": "减少 batch"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "SmoothQuant 的核心观察是 activation 的离群值比权重更难量化。它通过一个逐通道的平滑因子，将 activation 中的大 scale 数学等价地迁移到权重上，使 activation 分布更平滑、更易量化，同时权重稍微变难但仍可接受，从而实现高效的 W8A8 量化。",
+      "topic": "大模型——量化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "实数矩阵 $A$ 的零空间（Null Space）是指？",
+      "options": [
+        {
+          "label": "A",
+          "text": "与列空间正交的空间"
+        },
+        {
+          "label": "B",
+          "text": "矩阵的列向量张成的空间"
+        },
+        {
+          "label": "C",
+          "text": "满足 $Ax = 0$ 的所有 $x$ 构成的空间"
+        },
+        {
+          "label": "D",
+          "text": "矩阵的行向量张成的空间"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "零空间（Null Space）即核空间，定义为所有满足 $Ax = 0$ 的向量 $x$ 构成的子空间。A 描述的是左零空间（与列空间正交的是左零空间，与行空间正交的才是零空间），B 是列空间，D 是行空间。",
+      "topic": "数学——线性代数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$A$"
+      ],
+      "solution_formulas": [
+        "$Ax = 0$",
+        "$x$",
+        "零空间（Null Space）即核空间，定义为所有满足 $Ax = 0$ 的向量 $x$ 构成的子空间。A 描述的是左零空间（与列空间正交的是左零空间，与行空间正交的才是零空间），B 是列空间，D 是行空间。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q015",
+      "source_number": 15,
+      "type": "single",
+      "stem": "神经网络相比线性模型的优势在于",
+      "options": [
+        {
+          "label": "A",
+          "text": "参数更少"
+        },
+        {
+          "label": "B",
+          "text": "不需要激活函数"
+        },
+        {
+          "label": "C",
+          "text": "计算更简单"
+        },
+        {
+          "label": "D",
+          "text": "可以学习非线性关系"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "神经网络通过激活函数引入非线性，能拟合复杂的非线性映射，这是其相比线性模型的核心优势。神经网络参数通常更多（A 错）、依赖激活函数（B 错）、计算更复杂（C 错）。",
+      "topic": "深度学习——基础概念",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q016",
+      "source_number": 16,
+      "type": "multiple",
+      "stem": "并非所有图形计算单元都支持矩阵求逆算子，若不支持，可使用 Newton-Schulz 迭代法。设非奇异矩阵 $A$，使用 Newton-Schulz 迭代计算 $A^{-1}$：$X_{k+1} = X_k(2I - AX_k)$。记误差矩阵为 $E_k = I - AX_k$，下列说法正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "若 $|E_0| < 1$，则迭代二次收敛到 $A^{-1}$，且误差满足 $E_{k+1} = E_k^2$"
+        },
+        {
+          "label": "B",
+          "text": "若谱半径 $\\rho(E_0) < 1$，则迭代收敛到 $A^{-1}$"
+        },
+        {
+          "label": "C",
+          "text": "如果 $A$ 可逆，那么该迭代方法对初值不敏感"
+        },
+        {
+          "label": "D",
+          "text": "误差满足 $E_{k+1} = E_k^3$，收敛阶为 3"
+        }
+      ],
+      "answer": [
+        "A",
+        "B"
+      ],
+      "explanation": "由递推式可得 $E_{k+1} = I - AX_{k+1} = I - AX_k(2I - AX_k) = (I - AX_k)^2 = E_k^2$，即误差矩阵满足 $E_{k+1} = E_k^2$（二次收敛，非三次，D 错）。当 $|E_0| < 1$ 时，$|E_k| \\to 0$，A 正确。谱半径 $\\rho(E_0) < 1$ 保证 $E_k^{2^k} \\to 0$，B 正确。收敛条件要求初值使得 $|E_0| < 1$，初值选取至关重要，C 错。",
+      "topic": "数学——数值计算",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$A$",
+        "$A^{-1}$",
+        "$X_{k+1} = X_k(2I - AX_k)$",
+        "$E_k = I - AX_k$",
+        "并非所有图形计算单元都支持矩阵求逆算子，若不支持，可使用 Newton-Schulz 迭代法。设非奇异矩阵 $A$，使用 Newton-Schulz 迭代计算 $A^{-1}$：$X_{k+1} = X_k(2I - AX_k)$。记误差矩阵为 $E_k = I - AX_k$，下列说法正确的是？"
+      ],
+      "solution_formulas": [
+        "$E_{k+1} = I - AX_{k+1} = I - AX_k(2I - AX_k) = (I - AX_k)^2 = E_k^2$",
+        "$E_{k+1} = E_k^2$",
+        "$|E_0| < 1$",
+        "$|E_k| \\to 0$",
+        "$\\rho(E_0) < 1$",
+        "$E_k^{2^k} \\to 0$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q017",
+      "source_number": 17,
+      "type": "multiple",
+      "stem": "下面哪些优化器属于”自适应学习率（按参数/维度自适应缩放）”方法？",
+      "options": [
+        {
+          "label": "A",
+          "text": "SGD"
+        },
+        {
+          "label": "B",
+          "text": "Adam"
+        },
+        {
+          "label": "C",
+          "text": "AdamW"
+        },
+        {
+          "label": "D",
+          "text": "RMSprop"
+        }
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "Adam、AdamW、RMSprop 都维护梯度二阶矩的移动平均，用其对每个参数的学习率进行自适应缩放。SGD 对所有参数使用统一的全局学习率，不具备自适应特性。AdamW 是 Adam 的解耦权重衰减变体，自适应机制不变。",
+      "topic": "深度学习——优化器",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "关于神经网络的层，以下哪些说法是正确的？",
+      "options": [
+        {
+          "label": "A",
+          "text": "输入层通常不进行计算，只是传递数据"
+        },
+        {
+          "label": "B",
+          "text": "顶层可以有多个"
+        },
+        {
+          "label": "C",
+          "text": "输出层的神经元数量通常由任务决定（如分类类别数）"
+        },
+        {
+          "label": "D",
+          "text": "所有层的神经元数量必须相同"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "输入层仅传递原始特征，不含可训练参数，A 正确。多任务学习或多输出网络可以有多个输出头（顶层），B 正确。输出层神经元数由任务决定（二分类 1 个、多分类 $C$ 个、回归 1 个），C 正确。各层神经元数量可以不同，这正是网络架构设计的自由度，D 错误。",
+      "topic": "深度学习——基础概念",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$C$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "设 $X$ 和 $Y$ 是两个随机变量，$a$、$b$ 和 $c$ 是常数。以下关于期望性质的说法中，正确的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$E(XY) = E(X) \\cdot E(Y)$ 总是成立"
+        },
+        {
+          "label": "B",
+          "text": "$E(X^2) - [E(X)]^2 \\geq 0$ 恒成立"
+        },
+        {
+          "label": "C",
+          "text": "$E(aX + bY + c) = aE(X) + bE(Y) + c$"
+        },
+        {
+          "label": "D",
+          "text": "$[E(X)]^2 \\leq E(X^2)$ 恒成立"
+        }
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "$E(XY) = E(X)E(Y)$ 仅在 $X$、$Y$ 不相关时成立，相关时一般不等，A 错。$E(X^2) - [E(X)]^2 = \\text{Var}(X) \\geq 0$ 是方差的定义等价形式，恒成立，B 正确。期望的线性性 $E(aX + bY + c) = aE(X) + bE(Y) + c$ 对任意随机变量恒成立（无需独立），C 正确。由 B 可得 $[E(X)]^2 \\leq E(X^2)$（Jensen 不等式的特例），D 正确。",
+      "topic": "数学——概率统计",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$X$",
+        "$Y$",
+        "$a$",
+        "$b$",
+        "$c$"
+      ],
+      "solution_formulas": [
+        "$E(XY) = E(X)E(Y)$",
+        "$X$",
+        "$Y$",
+        "$E(X^2) - [E(X)]^2 = \\text{Var}(X) \\geq 0$",
+        "$E(aX + bY + c) = aE(X) + bE(Y) + c$",
+        "$[E(X)]^2 \\leq E(X^2)$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260415-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "关于插值多项式的说法，下列哪些是正确的？",
+      "options": [
+        {
+          "label": "A",
+          "text": "插值多项式在节点处的函数值一定等于给定函数值"
+        },
+        {
+          "label": "B",
+          "text": "对于给定的 $n+1$ 个互异节点，次数不超过 $n$ 的插值多项式存在且唯一"
+        },
+        {
+          "label": "C",
+          "text": "高次插值多项式通常能更好地逼近原函数"
+        },
+        {
+          "label": "D",
+          "text": "Lagrange 插值法和 Newton 插值法构造的插值多项式是相同的"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "插值条件要求多项式在节点处精确等于给定值，A 正确。$n+1$ 个互异节点唯一确定一个次数不超过 $n$ 的多项式（存在唯一性定理），B 正确。高次插值会出现 Runge 现象（端点附近剧烈振荡），通常不能更好逼近，C 错。Lagrange 和 Newton 只是同一多项式的不同表达形式，结果完全相同，D 正确。",
+      "topic": "数学——数值计算",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$n+1$",
+        "$n$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}

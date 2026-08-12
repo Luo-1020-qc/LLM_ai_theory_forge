@@ -1,0 +1,229 @@
+{
+  "source": {
+    "id": "AIEXAM-20260408",
+    "exam_date": "2026-04-08",
+    "job_track": "互联网公司 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260408",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 6,
+    "source_completeness": "excerpt",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260408-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "相关系数 r = -1 说明 X 和 Y：",
+      "options": [
+        {
+          "label": "A",
+          "text": "相互独立"
+        },
+        {
+          "label": "B",
+          "text": "存在线性函数关系"
+        },
+        {
+          "label": "C",
+          "text": "完全负线性相关"
+        },
+        {
+          "label": "D",
+          "text": "完全不相关"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "r = -1 表示两变量满足严格的负线性函数关系 y = ax + b（a < 0），即完全负线性相关。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "相关系数 r = -1 说明 X 和 Y："
+      ],
+      "solution_formulas": [
+        "r = -1 表示两变量满足严格的负线性函数关系 y = ax + b（a < 0），即完全负线性相关。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260408-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "对任意实矩阵 A，若 SVD 为 UΣV^T，则 A 的秩等于：",
+      "options": [
+        {
+          "label": "A",
+          "text": "Σ的迹"
+        },
+        {
+          "label": "B",
+          "text": "Σ对角线上非零奇异值的个数"
+        },
+        {
+          "label": "C",
+          "text": "U的行数"
+        },
+        {
+          "label": "D",
+          "text": "V的列数"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "矩阵的秩等于其非零奇异值的个数，这是 SVD 的基本性质。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260408-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "混合精度训练中 loss scaling 主要解决：",
+      "options": [
+        {
+          "label": "A",
+          "text": "梯度爆炸"
+        },
+        {
+          "label": "B",
+          "text": "梯度下溢"
+        },
+        {
+          "label": "C",
+          "text": "激活饱和"
+        },
+        {
+          "label": "D",
+          "text": "权重过大"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "FP16 能表示的最小正数约为 6×10^-8，反向传播中小梯度容易下溢为 0。Loss scaling 通过放大 loss 避免梯度下溢。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260408-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "关于 Layer Normalization 说法错误的是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "可分 Pre-LN 和 Post-LN"
+        },
+        {
+          "label": "B",
+          "text": "与 RMSNorm 相比，LN 去掉了减均值部分"
+        },
+        {
+          "label": "C",
+          "text": "LN 先算均值和方差再归一化"
+        },
+        {
+          "label": "D",
+          "text": "LN 可避免梯度消失/爆炸"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "是 RMSNorm 去掉了减均值的部分（只按 RMS 缩放），而不是 LN。B 说反了。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260408-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "关于注意力机制优化，正确的是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "SWA 无法捕获超窗口长距离依赖"
+        },
+        {
+          "label": "B",
+          "text": "SWA 层总显存与全注意力相同"
+        },
+        {
+          "label": "C",
+          "text": "Flash Attention 是低秩近似"
+        },
+        {
+          "label": "D",
+          "text": "线性注意力推理时可转化为 RNN 递推"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "线性注意力在推理时可转化为 RNN 递推形式，生成每个新 token 的计算量与上下文长度无关。A 错（多层堆叠扩大感受野），B 错（SWA 的 KV Cache 更小），C 错（Flash Attention 是 IO 优化，复杂度仍为 O(n^2)）。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260408-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "关于 Huber 损失函数，正确的是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "平衡了 MSE 对异常值的敏感性和 MAE 在零点的不可导性"
+        },
+        {
+          "label": "B",
+          "text": "存在不可导点"
+        },
+        {
+          "label": "C",
+          "text": "误差小时为线性，大时为二次"
+        },
+        {
+          "label": "D",
+          "text": "与 MSE 完全相同"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "Huber 在误差小时用平方（光滑），在误差大时用线性（对异常值不敏感），同时保持处处可导。",
+      "topic": "",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}

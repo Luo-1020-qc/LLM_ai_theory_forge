@@ -1,0 +1,799 @@
+{
+  "source": {
+    "id": "AIEXAM-20260715",
+    "exam_date": "2026-07-15",
+    "job_track": "互联网公司 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260715",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260715-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "在回归任务中，我们想要评估模型预测值与真实值之间的误差。如果数据中存在少量极端异常值（Outliers），以下哪个指标对异常值最敏感？",
+      "options": [
+        {
+          "label": "A",
+          "text": "平均绝对误差（MAE）"
+        },
+        {
+          "label": "B",
+          "text": "中位数绝对误差"
+        },
+        {
+          "label": "C",
+          "text": "均方根误差（RMSE）"
+        },
+        {
+          "label": "D",
+          "text": "绝对百分比误差（MAPE）"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "RMSE 先对误差取平方再求平均，平方运算会把大误差急剧放大，因此对极端异常值最敏感。MAE 与 MAPE 是一次项、对异常值线性响应；中位数绝对误差取中位数、几乎不受少量离群点影响，稳健性最强。",
+      "topic": "机器学习—评价指标",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "某单词在垃圾邮件中出现的概率是 $0.8$，在正常邮件中出现的概率是 $0.1$。已知邮箱中垃圾邮件占 $20\\%$。如果一封邮件包含该单词，它是垃圾邮件的概率是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$0.5$"
+        },
+        {
+          "label": "B",
+          "text": "$0.8$"
+        },
+        {
+          "label": "C",
+          "text": "$0.2$"
+        },
+        {
+          "label": "D",
+          "text": "$0.667$"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "由贝叶斯公式，\n\\[P(\\text{垃圾}\\mid\\text{含词}) =\\frac{0.8\\times0.2}{0.8\\times0.2+0.1\\times0.8} =\\frac{0.16}{0.24} =0.667.\\]\n分子是垃圾邮件且含该词的概率，分母是含该词的总概率。",
+      "topic": "数学—概率论/贝叶斯",
+      "difficulty": "简单",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$0.8$",
+        "$0.1$",
+        "$20\\%$"
+      ],
+      "solution_formulas": [
+        "\\[P(\\text{垃圾}\\mid\\text{含词}) =\\frac{0.8\\times0.2}{0.8\\times0.2+0.1\\times0.8} =\\frac{0.16}{0.24} =0.667.\\]"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q003",
+      "source_number": 3,
+      "type": "single",
+      "stem": "设样本 $X_1,X_2,\\ldots,X_n$ 来自泊松分布 $P(\\lambda)$，则 $\\lambda$ 的最大似然估计量与样本方差 $S^2$ 的关系为（ ）",
+      "options": [
+        {
+          "label": "A",
+          "text": "$E[X]\\ne\\lambda,\\ E[S^2]=\\lambda$"
+        },
+        {
+          "label": "B",
+          "text": "$E[X]\\ne\\lambda,\\ E[S^2]\\ne\\lambda$"
+        },
+        {
+          "label": "C",
+          "text": "$E[X]=\\lambda,\\ E[S^2]\\ne\\lambda$"
+        },
+        {
+          "label": "D",
+          "text": "$E[X]=E[S^2]=\\lambda$"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "泊松分布的均值与方差都等于 $\\lambda$。$\\lambda$ 的最大似然估计量是样本均值 $\\hat\\lambda=\\bar X$，满足 $E[\\bar X]=\\lambda$；若 $S^2$ 表示分母为 $n-1$ 的无偏样本方差，则 $E[S^2]=\\operatorname{Var}(X)=\\lambda$。故两者期望都等于 $\\lambda$。\n原题记号说明：原文选项写作 $E[X]$，而题干询问的是 $\\lambda$ 的最大似然估计量，结合原文解析应将这里的 $X$ 理解为 $\\hat\\lambda=\\bar X$。",
+      "topic": "数学—概率论/参数估计",
+      "difficulty": "中等",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$X_1,X_2,\\ldots,X_n$",
+        "$P(\\lambda)$",
+        "$\\lambda$",
+        "$S^2$"
+      ],
+      "solution_formulas": [
+        "$\\lambda$",
+        "$\\hat\\lambda=\\bar X$",
+        "$E[\\bar X]=\\lambda$",
+        "$S^2$",
+        "$n-1$",
+        "$E[S^2]=\\operatorname{Var}(X)=\\lambda$",
+        "$E[X]$",
+        "$X$",
+        "泊松分布的均值与方差都等于 $\\lambda$。$\\lambda$ 的最大似然估计量是样本均值 $\\hat\\lambda=\\bar X$，满足 $E[\\bar X]=\\lambda$；若 $S^2$ 表示分母为 $n-1$ 的无偏样本方差，则 $E[S^2]=\\operatorname{Var}(X)=\\lambda$。故两者期望都等于 $\\lambda$。",
+        "原题记号说明：原文选项写作 $E[X]$，而题干询问的是 $\\lambda$ 的最大似然估计量，结合原文解析应将这里的 $X$ 理解为 $\\hat\\lambda=\\bar X$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "某团队用 t-SNE 将 $10$ 万条 $768$ 维向量降维至 $2$ 维进行可视化，发现聚类边界清晰，但降维后的 $2$ 维向量直接输入 LightGBM 训练下游分类任务，准确率显著低于原始 $768$ 维。以下说法正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "可视化与训练任务的目标冲突，应分别用 t-SNE（2D）和 PCA（50D）各降维一次"
+        },
+        {
+          "label": "B",
+          "text": "t-SNE 降维后的低维特征更适合模型训练，应检查 LightGBM 参数设置"
+        },
+        {
+          "label": "C",
+          "text": "t-SNE 计算复杂度 $O(n^2)$，$10$ 万样本规模下应改用 UMAP"
+        },
+        {
+          "label": "D",
+          "text": "t-SNE 保留局部邻域结构但破坏全局距离，$2$ 维坐标无绝对意义，不适合特征工程输入"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "t-SNE 优化的是局部邻域的相似性，坐标轴与全局距离都没有稳定含义，只适合可视化，不能当作特征喂给下游模型。D 抓住了本质原因；A、C 是转移话题的干扰项，B 与现象矛盾。",
+      "topic": "机器学习—降维",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$10$",
+        "$768$",
+        "$2$"
+      ],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "在 $M_{2\\times2}$（$2\\times2$ 矩阵空间）中，映射 $T(A)=A^T$（转置）是线性的吗？",
+      "options": [
+        {
+          "label": "A",
+          "text": "否，因为转置改变了元素位置"
+        },
+        {
+          "label": "B",
+          "text": "否，因为 $(AB)^T=B^TA^T$"
+        },
+        {
+          "label": "C",
+          "text": "是"
+        },
+        {
+          "label": "D",
+          "text": "否，因为转置不可逆"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "转置满足 $(A+B)^T=A^T+B^T$ 与 $(cA)^T=cA^T$，同时满足可加性与齐次性，因此是线性映射。B 说的乘法转置规律与“是否线性”无关，D 中转置其实可逆（自身为逆），均为干扰项。",
+      "topic": "数学—线性代数/线性变换",
+      "difficulty": "入门",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$M_{2\\times2}$",
+        "$2\\times2$",
+        "$T(A)=A^T$",
+        "在 $M_{2\\times2}$（$2\\times2$ 矩阵空间）中，映射 $T(A)=A^T$（转置）是线性的吗？"
+      ],
+      "solution_formulas": [
+        "$(A+B)^T=A^T+B^T$",
+        "$(cA)^T=cA^T$",
+        "转置满足 $(A+B)^T=A^T+B^T$ 与 $(cA)^T=cA^T$，同时满足可加性与齐次性，因此是线性映射。B 说的乘法转置规律与“是否线性”无关，D 中转置其实可逆（自身为逆），均为干扰项。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "为实现高维类别数据的线性嵌入，要求嵌入后的向量满足“同类向量相似度高，异类向量相似度低”，下列线性嵌入方案中最合理的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "采用独热编码，将每个类别映射到高维稀疏向量，再通过随机投影得到低维向量"
+        },
+        {
+          "label": "B",
+          "text": "基于类别标签的监督学习，优化线性变换矩阵，使同类向量的欧氏距离最小化、异类向量的欧氏距离最大化"
+        },
+        {
+          "label": "C",
+          "text": "采用随机生成的变换矩阵，将所有类别映射到同一低维空间"
+        },
+        {
+          "label": "D",
+          "text": "忽略类别信息，将所有离散数据随机映射到低维向量空间"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "目标是“同类近、异类远”，本质是有监督的度量学习，需要用类别标签优化线性变换矩阵。B 正是这一思路。A、C、D 都使用随机映射或忽略标签，无法保证类内聚合、类间分离。",
+      "topic": "机器学习—度量学习/嵌入",
+      "difficulty": "中等",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "以下哪种数据格式最适合直接用于 SFT 训练？",
+      "options": [
+        {
+          "label": "A",
+          "text": "`{\"prompt\": \"法国的首都是哪里？\", \"chosen\": \"巴黎\", \"rejected\": \"伦敦\"}`"
+        },
+        {
+          "label": "B",
+          "text": "`{\"instruction\": \"法国的首都是哪里？\", \"output\": \"巴黎\"}`"
+        },
+        {
+          "label": "C",
+          "text": "`{\"question\": \"法国的首都\", \"answer\": \"巴黎\", \"score\": 0.95}`"
+        },
+        {
+          "label": "D",
+          "text": "`{\"text\": \"巴黎是法国的首都，位于塞纳河畔。\"}`"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "SFT（监督微调）需要“指令—回答”成对数据，B 的 `instruction`/`output` 正好对应。A 含 chosen/rejected，是偏好数据（用于 DPO）；C 带 score，更像奖励模型数据；D 是无标注纯文本（用于预训练）。",
+      "topic": "大模型—微调（SFT）",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q008",
+      "source_number": 8,
+      "type": "single",
+      "stem": "在训练 decoder-only 语言模型并使用右侧 padding 时，attention mask 的正确处理通常是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "同时使用 causal mask 与 padding mask，避免看未来和看到无 token"
+        },
+        {
+          "label": "B",
+          "text": "仅使用 causal mask 即可，padding token 会自动忽略"
+        },
+        {
+          "label": "C",
+          "text": "仅使用 padding mask 即可，因为标签处会被忽略"
+        },
+        {
+          "label": "D",
+          "text": "不需要 mask，交给 loss 的 ignore_index 处理"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "decoder-only 模型需要 causal mask，保证每个位置只能看到自己及之前的 token；padding mask 保证注意力不落到无意义的填充位。二者叠加是通用且稳健的做法。仅靠 loss 的 ignore_index 只能屏蔽损失，不能阻止注意力读取填充位。",
+      "topic": "大模型—注意力机制",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q009",
+      "source_number": 9,
+      "type": "single",
+      "stem": "某班 $60\\%$ 是男生，$40\\%$ 是女生。男生中有 $25\\%$ 喜欢编程，女生中有 $50\\%$ 喜欢编程。随机选一个喜欢编程的学生，是男生的概率是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$\\dfrac{3}{7}\\approx42.9\\%$"
+        },
+        {
+          "label": "B",
+          "text": "$60\\%$"
+        },
+        {
+          "label": "C",
+          "text": "$25\\%$"
+        },
+        {
+          "label": "D",
+          "text": "$\\dfrac{1}{2}$"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "男生且喜欢编程的概率为 $0.6\\times0.25=0.15$，女生且喜欢编程的概率为 $0.4\\times0.5=0.2$，喜欢编程的总概率为 $0.35$。故\n\\[P(\\text{男}\\mid\\text{喜欢编程})=\\frac{0.15}{0.35}=\\frac{3}{7}\\approx42.9\\%.\\]",
+      "topic": "数学—概率论/贝叶斯",
+      "difficulty": "简单",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$60\\%$",
+        "$40\\%$",
+        "$25\\%$",
+        "$50\\%$"
+      ],
+      "solution_formulas": [
+        "$0.6\\times0.25=0.15$",
+        "$0.4\\times0.5=0.2$",
+        "$0.35$",
+        "\\[P(\\text{男}\\mid\\text{喜欢编程})=\\frac{0.15}{0.35}=\\frac{3}{7}\\approx42.9\\%.\\]",
+        "男生且喜欢编程的概率为 $0.6\\times0.25=0.15$，女生且喜欢编程的概率为 $0.4\\times0.5=0.2$，喜欢编程的总概率为 $0.35$。故"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "在 Transformer 中，Residual Connection（残差连接）和 Layer Norm 通常有两种组合方式：Post-LN（原版论文）和 Pre-LN（现代大模型主流）。Pre-LN 的优势是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "Pre-LN 将 Layer Norm 置于残差路径内，梯度在主路径上直接流通，训练更稳定，更易于扩展到深层网络"
+        },
+        {
+          "label": "B",
+          "text": "Pre-LN 要求更大的 batch size 才能稳定训练"
+        },
+        {
+          "label": "C",
+          "text": "Pre-LN 的参数量少于 Post-LN"
+        },
+        {
+          "label": "D",
+          "text": "Pre-LN 去掉了残差连接，简化了模型结构"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "Pre-LN 把归一化放在子层输入端，残差主干上保留一条不经过 LN 的“直通”路径，梯度可无衰减地回传，因此深层训练更稳定、往往无需复杂的学习率 warmup。B、C、D 与 Pre-LN 的机制无关或说法错误。",
+      "topic": "深度学习—Transformer",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q011",
+      "source_number": 11,
+      "type": "single",
+      "stem": "GELU（Gaussian Error Linear Unit）是 Transformer 模型（如 BERT、GPT）中常用的激活函数。关于 GELU，下列说法正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "它是 ReLU 的精确线性近似"
+        },
+        {
+          "label": "B",
+          "text": "它在负区间完全截断为 $0$"
+        },
+        {
+          "label": "C",
+          "text": "它的计算复杂度远高于 Swish"
+        },
+        {
+          "label": "D",
+          "text": "它期望根据输入的随机性决定是否激活，是一种平滑的 ReLU 近似"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "GELU 用输入乘以标准正态的累积分布，即 $x\\Phi(x)$，可以理解为“按输入大小的概率决定是否保留”，是一条平滑曲线。A 错在“精确线性”，B 错在负区间并非硬截断（仍有小的非零输出），C 与实际计算特性不符。",
+      "topic": "深度学习—激活函数",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$x\\Phi(x)$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "关于误差的传播，下列说法正确的是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "误差在任何运算中都不会被放大"
+        },
+        {
+          "label": "B",
+          "text": "乘法运算中绝对误差等于各项绝对误差之积"
+        },
+        {
+          "label": "C",
+          "text": "加法运算中绝对误差等于各项绝对误差之和"
+        },
+        {
+          "label": "D",
+          "text": "加法运算中相对误差等于各项相对误差之和"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "按原题对最坏情况误差限的表述选择 C。严格地说，带符号误差满足 $\\Delta z=\\Delta a+\\Delta b$，因此\n\\[\\lvert\\Delta z\\rvert\\le \\lvert\\Delta a\\rvert+\\lvert\\Delta b\\rvert,\\]\n只有误差同号时取等号；C 应理解为“和的绝对误差上界等于各项绝对误差上界之和”。A 错误，相近数相减会放大相对误差；B 错误，乘法绝对误差的一阶近似为 $b\\Delta a+a\\Delta b$，不是绝对误差之积；D 错误，相对误差相加是乘法误差限的近似规律，不是加法的规律。",
+      "topic": "数学—数值计算/误差分析",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$\\Delta z=\\Delta a+\\Delta b$",
+        "$b\\Delta a+a\\Delta b$",
+        "\\[\\lvert\\Delta z\\rvert\\le \\lvert\\Delta a\\rvert+\\lvert\\Delta b\\rvert,\\]",
+        "按原题对最坏情况误差限的表述选择 C。严格地说，带符号误差满足 $\\Delta z=\\Delta a+\\Delta b$，因此"
+      ],
+      "review_status": "needs_review",
+      "review_note": "选项把绝对误差上界关系写成等式，严格条件下无唯一正确项。"
+    },
+    {
+      "id": "AIEXAM-20260715-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "在 Agent 的长期记忆机制中，向量检索（Vector Retrieval）是常用的技术。假设长期记忆库中有 $N$ 个记忆片段，每个片段被编码为 $D$ 维向量。当 Agent 需要检索与当前查询 $Q$ 最相关的 $k$ 个记忆时，需要计算查询向量与所有记忆向量的相似度。关于时间复杂度的说法中，正确的是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "检索时间复杂度为 $O(N\\times D)$，因为需要计算查询向量与所有 $N$ 个 $D$ 维向量的点积"
+        },
+        {
+          "label": "B",
+          "text": "检索时间复杂度为 $O(\\log N)$，因为使用向量索引结构近似最近邻搜索"
+        },
+        {
+          "label": "C",
+          "text": "检索时间复杂度为 $O(k)$，因为只需要返回 $k$ 个结果"
+        },
+        {
+          "label": "D",
+          "text": "检索时间复杂度为 $O(N)$，因为需要遍历所有记忆片段"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "题干明确采用“计算查询向量与所有记忆向量相似度”的暴力检索。每次点积耗时 $O(D)$，共 $N$ 个向量，故总复杂度为 $O(N\\times D)$。D 漏掉了每个向量的 $D$ 维计算量；B 是近似索引的复杂度，与题干设定不符；C 只考虑了返回结果数。",
+      "topic": "大模型—向量检索",
+      "difficulty": "简单",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$N$",
+        "$D$",
+        "$Q$",
+        "$k$"
+      ],
+      "solution_formulas": [
+        "$O(D)$",
+        "$N$",
+        "$O(N\\times D)$",
+        "$D$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "考虑到视觉特征中的空间冗余性，部分模型采用 Token Merging（ToMe）策略进行压缩，该策略的核心思想是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "使用卷积神经网络的步长（Stride）直接下采样"
+        },
+        {
+          "label": "B",
+          "text": "基于二分图匹配，在 Transformer 层内部将相似度较高的视觉 Token 进行合并"
+        },
+        {
+          "label": "C",
+          "text": "随机丢弃 $50\\%$ 的视觉 Token"
+        },
+        {
+          "label": "D",
+          "text": "通过自回归模型预测并保留重要的 Token"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "ToMe 在每个 Transformer 层内把 token 分成两组做二分图软匹配，将最相似的若干对 token 合并，从而无需训练即可逐层压缩序列长度。A 是卷积下采样，C 是随机丢弃，D 是自回归预测，都不是 ToMe 的做法。",
+      "topic": "大模型—多模态/Token压缩",
+      "difficulty": "困难",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q015",
+      "source_number": 15,
+      "type": "single",
+      "stem": "下列哪个是线性变换的性质？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$T$ 保持向量夹角不变"
+        },
+        {
+          "label": "B",
+          "text": "$T(v)=v^2$"
+        },
+        {
+          "label": "C",
+          "text": "$T(-v)=-T(v)$"
+        },
+        {
+          "label": "D",
+          "text": "$T$ 保持向量长度不变"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "线性变换满足齐次性 $T(cv)=cT(v)$，取 $c=-1$ 即得 $T(-v)=-T(v)$，故 C 正确。保持夹角、保持长度是正交变换的性质（线性变换的特例），并非一般线性变换都成立；B 含平方项，是非线性的。\n### 二、多选题",
+      "topic": "数学—线性代数/线性变换",
+      "difficulty": "入门",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$T(cv)=cT(v)$",
+        "$c=-1$",
+        "$T(-v)=-T(v)$",
+        "线性变换满足齐次性 $T(cv)=cT(v)$，取 $c=-1$ 即得 $T(-v)=-T(v)$，故 C 正确。保持夹角、保持长度是正交变换的性质（线性变换的特例），并非一般线性变换都成立；B 含平方项，是非线性的。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q016",
+      "source_number": 16,
+      "type": "multiple",
+      "stem": "关于优化器选择与训练现象，下列判断更合理的是哪些？",
+      "options": [
+        {
+          "label": "A",
+          "text": "所有任务最终都应收敛到同一种优化器选择"
+        },
+        {
+          "label": "B",
+          "text": "只要训练损失低，模型泛化一定更好"
+        },
+        {
+          "label": "C",
+          "text": "在稀疏梯度场景中，Adam 类方法通常更有优势"
+        },
+        {
+          "label": "D",
+          "text": "更换优化器时，往往需要联动调整学习率等超参数"
+        }
+      ],
+      "answer": [
+        "C",
+        "D"
+      ],
+      "explanation": "* A 错误：不同任务、数据分布与模型结构对优化器的偏好不同，没有“万能唯一”的选择。\n* B 错误：训练损失低可能是过拟合，泛化能力应由验证集或测试集表现衡量。\n* C 正确：Adam 等自适应方法按参数维护学习率，在稀疏梯度（如 NLP 词嵌入）下更新更充分。\n* D 正确：不同优化器的有效步长尺度不同，更换优化器通常要重新调整学习率等超参数。",
+      "topic": "深度学习—优化器",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q017",
+      "source_number": 17,
+      "type": "multiple",
+      "stem": "下列哪些是层次聚类（Hierarchical Clustering）中常用的簇间距离度量（Linkage）方法？",
+      "options": [
+        {
+          "label": "A",
+          "text": "Average Linkage"
+        },
+        {
+          "label": "B",
+          "text": "Single Linkage"
+        },
+        {
+          "label": "C",
+          "text": "Ward Linkage"
+        },
+        {
+          "label": "D",
+          "text": "Complete Linkage"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "* Average Linkage 使用两簇所有点对距离的平均值。\n* Single Linkage 使用两簇最近点对的距离，容易形成链状簇。\n* Ward Linkage 选择使簇内平方和增量最小的合并，倾向于得到大小均衡的簇。\n* Complete Linkage 使用两簇最远点对的距离，倾向于得到紧凑的球状簇。\n四者都是层次聚类的标准 linkage 准则。",
+      "topic": "机器学习—聚类",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "关于 Transformer 中的归一化操作，以下哪些说法是正确的？",
+      "options": [
+        {
+          "label": "A",
+          "text": "归一化有助于加速模型训练收敛"
+        },
+        {
+          "label": "B",
+          "text": "层归一化（LN）和批量归一化（BN）的作用相同，可将经典 Transformer 中的 LN 直接替换为 BN"
+        },
+        {
+          "label": "C",
+          "text": "RMSNorm 是层归一化的一种简化实现，只重新缩放不进行平移"
+        },
+        {
+          "label": "D",
+          "text": "层归一化（LN）是对每个样本的特征进行归一化"
+        }
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "* A 正确：归一化可以稳定各层输入分布，缓解梯度问题并加速收敛。\n* B 错误：BN 依赖 batch 统计量，对变长序列与小 batch 不稳定，不能直接替换 LN。\n* C 正确：RMSNorm 去掉均值中心化，只使用均方根重新缩放，不进行平移，是 LN 的简化。\n* D 正确：LN 在单个样本的特征维度上做归一化，与 batch 无关。",
+      "topic": "深度学习—归一化",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "在使用 K 近邻算法进行样本归组时，以下哪些问题是常见的挑战？",
+      "options": [
+        {
+          "label": "A",
+          "text": "高维空间中近邻关系可能变得不稳定"
+        },
+        {
+          "label": "B",
+          "text": "不同 K 取值可能导致分组结果差异较大"
+        },
+        {
+          "label": "C",
+          "text": "对异常点和局部噪声较敏感"
+        },
+        {
+          "label": "D",
+          "text": "大规模数据下近邻搜索开销较高"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "* A 正确：维数灾难下各点距离趋于接近，近邻判定不稳定。\n* B 正确：$K$ 太小容易受噪声影响，太大则可能跨类别平滑，分组结果对 $K$ 敏感。\n* C 正确：KNN 直接依赖邻居标签，异常点与局部噪声会直接干扰判定。\n* D 正确：暴力检索复杂度为 $O(N\\times D)$，大规模数据下搜索开销高，需要借助 KD-Tree、近似最近邻等方法加速。",
+      "topic": "机器学习—KNN",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$K$",
+        "$O(N\\times D)$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260715-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "关于递推算法的数值稳定性，以下说法正确的有：",
+      "options": [
+        {
+          "label": "A",
+          "text": "若递推中误差传播系数的绝对值大于 $1$，则正向递推不稳定"
+        },
+        {
+          "label": "B",
+          "text": "选择合适的递推方向是保证数值稳定性的关键"
+        },
+        {
+          "label": "C",
+          "text": "所有递推算法都是数值不稳定的"
+        },
+        {
+          "label": "D",
+          "text": "不稳定的正向递推有时可以通过反向递推来解决"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "* A 正确：传播系数绝对值大于 $1$ 时，误差会随迭代逐步放大，正向递推不稳定。\n* B 正确：同一问题正向、反向递推的误差放大特性可能相反，选择合适的方向是关键。\n* C 错误：稳定性取决于误差放大系数，很多递推算法是数值稳定的，不能一概而论。\n* D 正确：正向递推不稳定时，改用反向递推有时能让误差随迭代衰减。",
+      "topic": "数学—数值计算/递推稳定性",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$1$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}

@@ -1,0 +1,797 @@
+{
+  "source": {
+    "id": "AIEXAM-20260520",
+    "exam_date": "2026-05-20",
+    "job_track": "互联网公司 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260520",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260520-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "用二次多项式拟合下列数据点：$(0,3), (1,4), (2,5), (3,6)$。则拟合多项式的一次项系数最接近：",
+      "options": [
+        {
+          "label": "A",
+          "text": "$0.5$"
+        },
+        {
+          "label": "B",
+          "text": "$1.0$"
+        },
+        {
+          "label": "C",
+          "text": "$2.0$"
+        },
+        {
+          "label": "D",
+          "text": "$1.5$"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "四个数据点严格满足 $y = x + 3$，二次拟合在最小二乘意义下退化为这条直线，故二次项系数为 $0$，一次项系数为 $1$，常数项为 $3$。",
+      "topic": "数学——数值/多项式拟合",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$(0,3), (1,4), (2,5), (3,6)$"
+      ],
+      "solution_formulas": [
+        "$y = x + 3$",
+        "$0$",
+        "$1$",
+        "$3$",
+        "四个数据点严格满足 $y = x + 3$，二次拟合在最小二乘意义下退化为这条直线，故二次项系数为 $0$，一次项系数为 $1$，常数项为 $3$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "在计算机渲染 3D 模型时通常会使用双线性插值处理纹理映射，与最近邻插值相比，双线性插值主要可以减少：",
+      "options": [
+        {
+          "label": "A",
+          "text": "计算时间"
+        },
+        {
+          "label": "B",
+          "text": "精度损失"
+        },
+        {
+          "label": "C",
+          "text": "视觉锯齿"
+        },
+        {
+          "label": "D",
+          "text": "数据存储"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "双线性插值用 $2 \\times 2$ 邻域像素加权平均得到目标颜色，过渡平滑，消除了最近邻在边缘和斜线处典型的”阶梯状锯齿”。A 计算时间反而增加；B 严格意义的”精度”并不必然提升；D 与数据存储无关。",
+      "topic": "数学——插值",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$2 \\times 2$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q003",
+      "source_number": 3,
+      "type": "single",
+      "stem": "在多智能体强化学习中，智能体的联合状态向量组构成矩阵 $A_{2 \\times 4}$，则矩阵 $A$ 的零空间维度为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$0$"
+        },
+        {
+          "label": "B",
+          "text": "$1$"
+        },
+        {
+          "label": "C",
+          "text": "$2$"
+        },
+        {
+          "label": "D",
+          "text": "$4$"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "第二行是第一行的 $2$ 倍，矩阵秩 $r = 1$，由秩-零度定理 $\\dim(\\ker A) = 4 - 1 = 3$……题目给出第二行为第一行倍数时 $r=1$；但若两行线性无关则 $r=2$，零空间维度 $= 4 - 2 = 2$。选 C。",
+      "topic": "数学——线性代数",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$A_{2 \\times 4}$",
+        "$A$"
+      ],
+      "solution_formulas": [
+        "$2$",
+        "$r = 1$",
+        "$\\dim(\\ker A) = 4 - 1 = 3$",
+        "$r=1$",
+        "$r=2$",
+        "$= 4 - 2 = 2$",
+        "第二行是第一行的 $2$ 倍，矩阵秩 $r = 1$，由秩-零度定理 $\\dim(\\ker A) = 4 - 1 = 3$……题目给出第二行为第一行倍数时 $r=1$；但若两行线性无关则 $r=2$，零空间维度 $= 4 - 2 = 2$。选 C。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "预条件共轭梯度法（PCG）中，预条件矩阵 $M$ 的选取目标是使得 $M^{-1}A$ 的条件数：",
+      "options": [
+        {
+          "label": "A",
+          "text": "无所谓"
+        },
+        {
+          "label": "B",
+          "text": "尽可能接近 $1$"
+        },
+        {
+          "label": "C",
+          "text": "等于 $A$ 的条件数"
+        },
+        {
+          "label": "D",
+          "text": "尽可能大"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "CG 类迭代法收敛速率上界与系数矩阵条件数 $\\kappa$ 直接相关。$\\kappa = 1$ 意味着 $M^{-1}A$ 接近单位阵，收敛最快。",
+      "topic": "数学——数值优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$M$",
+        "$M^{-1}A$"
+      ],
+      "solution_formulas": [
+        "$\\kappa$",
+        "$\\kappa = 1$",
+        "$M^{-1}A$",
+        "CG 类迭代法收敛速率上界与系数矩阵条件数 $\\kappa$ 直接相关。$\\kappa = 1$ 意味着 $M^{-1}A$ 接近单位阵，收敛最快。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "在训练神经网络时，使用带 L2 正则化的损失函数。关于正则化系数 $\\lambda$，下列说法正确的是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "$\\lambda = 0$ 时，正则化效果最强，模型最简"
+        },
+        {
+          "label": "B",
+          "text": "$\\lambda$ 的选择与模型过拟合或欠拟合无关"
+        },
+        {
+          "label": "C",
+          "text": "$\\lambda$ 越大，模型越倾向于拟合训练数据"
+        },
+        {
+          "label": "D",
+          "text": "$\\lambda$ 越大，对权重参数的惩罚越重，模型复杂度越低"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "L2 正则将 $\\lambda \\lVert w \\rVert^2$ 加到损失里，$\\lambda$ 越大优化器越倾向让 $w$ 变小，等价于偏好简单模型。A 反了，$\\lambda=0$ 时没有正则；B 显然错；C 大 $\\lambda$ 偏向欠拟合。",
+      "topic": "机器学习——正则化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$\\lambda$"
+      ],
+      "solution_formulas": [
+        "$\\lambda \\lVert w \\rVert^2$",
+        "$\\lambda$",
+        "$w$",
+        "$\\lambda=0$",
+        "L2 正则将 $\\lambda \\lVert w \\rVert^2$ 加到损失里，$\\lambda$ 越大优化器越倾向让 $w$ 变小，等价于偏好简单模型。A 反了，$\\lambda=0$ 时没有正则；B 显然错；C 大 $\\lambda$ 偏向欠拟合。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "PagedAttention 的核心设计目标是解决 AI 模型推理中的？",
+      "options": [
+        {
+          "label": "A",
+          "text": "重计算导致的推理延迟过高问题"
+        },
+        {
+          "label": "B",
+          "text": "显存碎片化，导致显存利用率低下问题"
+        },
+        {
+          "label": "C",
+          "text": "模型量化后精度损失问题"
+        },
+        {
+          "label": "D",
+          "text": "KV Cache 占用显存过大问题"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "PagedAttention（vLLM）把 KV Cache 按固定大小的”页”管理，类似操作系统虚拟内存的分页机制，消除了因变长序列产生的外部碎片，显著提升显存利用率。D 是常见误解：PagedAttention 并不减小 KV Cache 总量，只是减少浪费。",
+      "topic": "大模型——推理优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "在大语言模型的安全对齐过程中，关于”对齐失效”的描述，哪一项是最常见的风险场景？",
+      "options": [
+        {
+          "label": "A",
+          "text": "模型推理速度过慢"
+        },
+        {
+          "label": "B",
+          "text": "模型词汇表过小"
+        },
+        {
+          "label": "C",
+          "text": "模型损失函数无法收敛"
+        },
+        {
+          "label": "D",
+          "text": "模型在面对恶意诱导 prompt 时，绕过安全限制生成有害内容"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "对齐失效的典型表现是 jailbreak/越狱：通过精心构造的 prompt 让模型绕过 RLHF 训练出的拒答策略，输出有害内容。A、B、C 是性能或工程问题，不属于对齐失效。",
+      "topic": "大模型——对齐与安全",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q008",
+      "source_number": 8,
+      "type": "single",
+      "stem": "弦截法（割线法）的收敛阶约为：",
+      "options": [
+        {
+          "label": "A",
+          "text": "$1$ 阶"
+        },
+        {
+          "label": "B",
+          "text": "$2$ 阶"
+        },
+        {
+          "label": "C",
+          "text": "$3$ 阶"
+        },
+        {
+          "label": "D",
+          "text": "$1.618$ 阶"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "割线法的收敛阶恰好等于黄金比例 $\\varphi \\approx 1.618$，介于线性（$1$）与牛顿法的二次（$2$）之间，是经典数值分析结论。",
+      "topic": "数学——数值方法",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$\\varphi \\approx 1.618$",
+        "$1$",
+        "$2$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q009",
+      "source_number": 9,
+      "type": "single",
+      "stem": "关于 KV Cache 在自回归推理中的作用，最准确的是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "减少参数量，降低模型存储体积"
+        },
+        {
+          "label": "B",
+          "text": "提升训练收敛速度"
+        },
+        {
+          "label": "C",
+          "text": "缓存历史 token 的 K/V，避免每步重复计算"
+        },
+        {
+          "label": "D",
+          "text": "让模型在推理时不再需要注意力机制"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "自回归解码每步都要做 Attention，历史 token 的 K、V 不变，缓存起来可省掉每步的重复线性变换，把单步复杂度从 $O(n)$ 降到 $O(1)$（只算新 token 的 K/V）。",
+      "topic": "大模型——推理优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$O(n)$",
+        "$O(1)$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "在 LLM 推理中，prefill 阶段和 decoding 阶段的计算瓶颈不同。以下分析正确的是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "两个阶段都是 compute-bound"
+        },
+        {
+          "label": "B",
+          "text": "prefill 阶段是 memory-bound，decoding 阶段是 compute-bound"
+        },
+        {
+          "label": "C",
+          "text": "prefill 阶段并行处理整个输入序列，是 compute-bound；decoding 阶段每步生成一个 token，是 memory-bound"
+        },
+        {
+          "label": "D",
+          "text": "KV Cache 使 decoding 阶段变为 compute-bound"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "prefill 处理整个 prompt，可做大 GEMM，算术强度高；decoding 一次只产一个 token，但每步要把所有权重从显存搬到计算单元，瓶颈在显存带宽。这正是 PD 分离、continuous batching 等技术的出发点。",
+      "topic": "大模型——推理优化",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q011",
+      "source_number": 11,
+      "type": "single",
+      "stem": "如果数据集存在明显的噪声点和离群值，哪种聚类算法表现最稳健？",
+      "options": [
+        {
+          "label": "A",
+          "text": "GMM"
+        },
+        {
+          "label": "B",
+          "text": "DBSCAN"
+        },
+        {
+          "label": "C",
+          "text": "谱聚类"
+        },
+        {
+          "label": "D",
+          "text": "K-Means"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "DBSCAN 将密度不足的点标为 noise，不强行分配到任何簇，对离群值天然鲁棒。K-Means/GMM 对离群点敏感；谱聚类也会被异常点拉偏。",
+      "topic": "机器学习——聚类",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "将一张 $224 \\times 224$ 的 RGB 图像展平为一维向量，其维度是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$150528$"
+        },
+        {
+          "label": "B",
+          "text": "$50176$"
+        },
+        {
+          "label": "C",
+          "text": "$224$"
+        },
+        {
+          "label": "D",
+          "text": "$672$"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "$224 \\times 224 \\times 3 = 150528$。",
+      "topic": "深度学习——数据维度",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$224 \\times 224$"
+      ],
+      "solution_formulas": [
+        "$224 \\times 224 \\times 3 = 150528$",
+        "$224 \\times 224 \\times 3 = 150528$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "已知模型配置：hidden size $= 4096$，层数 $= 32$，注意力头数 $= 32$。FP16 存储 KV Cache，最大序列长度 $= 2048$，Batch Size $= 32$。存储 KV Cache 所需的显存最接近：",
+      "options": [
+        {
+          "label": "A",
+          "text": "$8$ GB"
+        },
+        {
+          "label": "B",
+          "text": "$16$ GB"
+        },
+        {
+          "label": "C",
+          "text": "$32$ GB"
+        },
+        {
+          "label": "D",
+          "text": "$64$ GB"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "公式：\\(2 \\times \\text{layers} \\times \\text{seq\\_len} \\times \\text{hidden\\_size} \\times \\text{batch} \\times \\text{bytes}\\)。代入：$2 \\times 32 \\times 2048 \\times 4096 \\times 32 \\times 2 = 68,719,476,736$ 字节 $\\approx 64$ GB。",
+      "topic": "大模型——KV Cache 显存估算",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$= 4096$",
+        "$= 32$",
+        "$= 2048$",
+        "已知模型配置：hidden size $= 4096$，层数 $= 32$，注意力头数 $= 32$。FP16 存储 KV Cache，最大序列长度 $= 2048$，Batch Size $= 32$。存储 KV Cache 所需的显存最接近："
+      ],
+      "solution_formulas": [
+        "$2 \\times 32 \\times 2048 \\times 4096 \\times 32 \\times 2 = 68,719,476,736$",
+        "$\\approx 64$",
+        "\\(2 \\times \\text{layers} \\times \\text{seq\\_len} \\times \\text{hidden\\_size} \\times \\text{batch} \\times \\text{bytes}\\)",
+        "公式：\\(2 \\times \\text{layers} \\times \\text{seq\\_len} \\times \\text{hidden\\_size} \\times \\text{batch} \\times \\text{bytes}\\)。代入：$2 \\times 32 \\times 2048 \\times 4096 \\times 32 \\times 2 = 68,719,476,736$ 字节 $\\approx 64$ GB。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "在商品推荐系统中，计算两个用户向量相似度，最常用的度量是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "皮尔逊相关系数"
+        },
+        {
+          "label": "B",
+          "text": "余弦相似度"
+        },
+        {
+          "label": "C",
+          "text": "曼哈顿距离"
+        },
+        {
+          "label": "D",
+          "text": "欧氏距离"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "推荐系统中的用户/物品向量通常对绝对量级不敏感，关心方向（兴趣分布）。余弦相似度衡量夹角、忽略模长，是协同过滤和向量召回的事实标准。",
+      "topic": "机器学习——推荐系统",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q015",
+      "source_number": 15,
+      "type": "single",
+      "stem": "Scaled Dot-Product Attention 中除以 $\\sqrt{d_k}$ 的原因是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "保证 $Q$ 和 $K$ 的内积严格服从标准正态分布"
+        },
+        {
+          "label": "B",
+          "text": "让注意力权重之和归一化为 $1$"
+        },
+        {
+          "label": "C",
+          "text": "减少矩阵乘法的计算量"
+        },
+        {
+          "label": "D",
+          "text": "防止点积结果过大使 Softmax 进入梯度极小的饱和区"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "若各分量独立同分布且方差为 $1$，则点积方差正比于 $d_k$。未缩放时 logits 随维度变大，Softmax 进入饱和区导致梯度消失。除以 $\\sqrt{d_k}$ 把方差归一到 $1$，保持梯度尺度稳定。",
+      "topic": "深度学习——Transformer",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$\\sqrt{d_k}$"
+      ],
+      "solution_formulas": [
+        "$1$",
+        "$d_k$",
+        "$\\sqrt{d_k}$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q016",
+      "source_number": 16,
+      "type": "multiple",
+      "stem": "针对 Prefill 和 Decode 阶段的性能差异，现代推理引擎通常采用哪些策略优化整体吞吐量？",
+      "options": [
+        {
+          "label": "A",
+          "text": "在 Decode 阶段强制使用 GEMM 代替 GEMV"
+        },
+        {
+          "label": "B",
+          "text": "PD 分离部署"
+        },
+        {
+          "label": "C",
+          "text": "Continuous Batching"
+        },
+        {
+          "label": "D",
+          "text": "Chunked Prefill"
+        }
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "B 把 compute-bound 的 Prefill 与 memory-bound 的 Decode 分到不同硬件；C 不等批次满就发车，持续填满空闲 slot；D 把长 prompt 切片避免阻塞 Decode。A 单 token Decode 只有 GEMV，无法强行变 GEMM。",
+      "topic": "大模型——推理优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q017",
+      "source_number": 17,
+      "type": "multiple",
+      "stem": "下列哪些情况可能导致矩阵的行列式为零？",
+      "options": [
+        {
+          "label": "A",
+          "text": "矩阵是可逆矩阵"
+        },
+        {
+          "label": "B",
+          "text": "矩阵的秩小于其阶数"
+        },
+        {
+          "label": "C",
+          "text": "矩阵是奇异矩阵"
+        },
+        {
+          "label": "D",
+          "text": "两个非零矩阵相乘的结果可能是零矩阵"
+        }
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "B 秩亏即列向量线性相关，$\\det = 0$；C “奇异”定义就是 $\\det = 0$；D 非零矩阵乘积为零矩阵则两个因子至少一个奇异。A 可逆矩阵 $\\det \\neq 0$。",
+      "topic": "数学——线性代数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$\\det = 0$",
+        "$\\det \\neq 0$",
+        "B 秩亏即列向量线性相关，$\\det = 0$；C “奇异”定义就是 $\\det = 0$；D 非零矩阵乘积为零矩阵则两个因子至少一个奇异。A 可逆矩阵 $\\det \\neq 0$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "以下关于直接法和迭代法求解线性方程组的比较，正确的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "迭代法适合求解大型稀疏方程组"
+        },
+        {
+          "label": "B",
+          "text": "高斯消元法属于直接法"
+        },
+        {
+          "label": "C",
+          "text": "Jacobi 和 Gauss-Seidel 方法属于迭代法"
+        },
+        {
+          "label": "D",
+          "text": "直接法经过有限步运算可得到精确解（理论上）"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "四项均为基础结论。A 迭代法避免对稀疏结构做填充；B 高斯消元、LU 分解为代表的直接法；C Jacobi、Gauss-Seidel、SOR 都是定点迭代；D 直接法在精确算术下有限步终止。",
+      "topic": "数学——数值方法",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "下列哪些算子通常不建议进行低比特量化？",
+      "options": [
+        {
+          "label": "A",
+          "text": "LayerNorm"
+        },
+        {
+          "label": "B",
+          "text": "Softmax"
+        },
+        {
+          "label": "C",
+          "text": "RoPE"
+        },
+        {
+          "label": "D",
+          "text": "MatMul"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A LayerNorm 含均值/方差与小数值除法，量化误差被放大；B Softmax 指数函数对输入扰动敏感；C RoPE 涉及三角函数与高频相位，低比特会严重破坏位置关系。D MatMul 是量化收益最大且最成熟的算子（INT8/INT4 主战场）。",
+      "topic": "大模型——量化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260520-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "关于特征工程中的转换与评估，下列说法正确的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "目标编码即使加平滑，低频类别仍可能过拟合"
+        },
+        {
+          "label": "B",
+          "text": "Box-Cox 变换能使数据接近正态且稳定方差"
+        },
+        {
+          "label": "C",
+          "text": "WoE 编码本质是将特征映射为对数似然比，契合逻辑回归"
+        },
+        {
+          "label": "D",
+          "text": "过滤式方法比包裹式方法更能选出最优特征子集"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A 目标编码低频类别条件概率估计方差大；B Box-Cox 通过参数化幂变换实现近正态化与方差稳定；C WoE 映射为 $\\ln(\\text{Good}/\\text{Bad})$，与 logit 线性。D 反了，Wrapper 直接以模型性能为目标更可能选出最优子集。",
+      "topic": "机器学习——特征工程",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$\\ln(\\text{Good}/\\text{Bad})$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}

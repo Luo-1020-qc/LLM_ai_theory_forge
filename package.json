@@ -1,0 +1,17 @@
+{
+  "name": "ai-theory-forge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node local_server.mjs",
+    "dev": "node local_server.mjs",
+    "build": "node --check local_server.mjs && node --check dashboard/app.js",
+    "test": "npm run build && node --test tests/local-server.test.mjs",
+    "database:build": "node database/build-database.mjs",
+    "database:audit": "node database/audit-new-bank.mjs"
+  }
+}

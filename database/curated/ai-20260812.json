@@ -1,0 +1,435 @@
+{
+  "source": {
+    "id": "AIFORGE-S01",
+    "exam_date": "2026-08-12",
+    "job_track": "互联网公司 AI 岗 · 强化题库 01",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html",
+    "license": "个人学习用原创重组；引用材料沿用来源许可",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-12"
+  },
+  "questions": [
+    {
+      "id": "AIFORGE-S01-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "某大模型使用 8 路数据并行。每张卡的 micro-batch size 为 4，每累计 6 个 micro-batch 才同步更新一次参数。一次参数更新对应的全局批量（global batch size）是多少？",
+      "options": [
+        { "label": "A", "text": "$32$" },
+        { "label": "B", "text": "$192$" },
+        { "label": "C", "text": "$48$" },
+        { "label": "D", "text": "$384$" }
+      ],
+      "answer": ["B"],
+      "explanation": "全局批量等于单卡微批量、梯度累积步数与数据并行副本数的乘积。这里每张卡在一次参数更新前处理 $4\\times6=24$ 个样本，8 张卡合计处理 $24\\times8=192$ 个样本。张量并行或流水线并行的设备数不应再乘入该公式，因为它们共同处理同一份样本。",
+      "topic": "大模型—分布式训练/批量计算",
+      "difficulty": "简单",
+      "is_calculation": true,
+      "prompt_formulas": ["$B_{global}=B_{micro}\\times N_{acc}\\times N_{DP}$"],
+      "solution_formulas": ["\\[B_{global}=4\\times6\\times8=192\\]"],
+      "review_status": "usable",
+      "review_note": "原创计算题；已核对全局批量定义。"
+    },
+    {
+      "id": "AIFORGE-S01-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "一个理想化流水线有 4 个阶段，每个阶段处理一个微批的耗时相同。一次迭代切成 12 个微批，并按总时间步数 $m+p-1$ 估算填充与排空开销，则流水线利用率约为多少？",
+      "options": [
+        { "label": "A", "text": "$80\\%$" },
+        { "label": "B", "text": "$75\\%$" },
+        { "label": "C", "text": "$60\\%$" },
+        { "label": "D", "text": "$92.3\\%$" }
+      ],
+      "answer": ["A"],
+      "explanation": "在题目给定的理想模型中，有效工作时间为 $m$ 个时间步，总时间为 $m+p-1$ 个时间步。因此利用率为 $m/(m+p-1)=12/(12+4-1)=12/15=80\\%$。增大微批数通常能摊薄填充和排空造成的气泡，但也可能增加调度复杂度。",
+      "topic": "大模型—分布式训练/流水线并行",
+      "difficulty": "中等",
+      "is_calculation": true,
+      "prompt_formulas": ["$U=\\dfrac{m}{m+p-1}$"],
+      "solution_formulas": ["\\[U=\\frac{12}{12+4-1}=0.8=80\\%\\]"],
+      "review_status": "usable",
+      "review_note": "题干已限定理想调度模型，避免不同流水线调度公式产生歧义。"
+    },
+    {
+      "id": "AIFORGE-S01-Q003",
+      "source_number": 3,
+      "type": "multiple",
+      "stem": "关于数据并行（DP）、张量并行（TP）和流水线并行（PP）的切分对象，下列说法正确的是哪些？",
+      "options": [
+        { "label": "A", "text": "DP 让不同副本处理不同数据分片，各副本通常持有一份完整模型参数" },
+        { "label": "B", "text": "TP 把同一层中的张量运算切到多台设备协同完成" },
+        { "label": "C", "text": "PP 把连续的模型层划分到不同阶段，并让微批在阶段间流动" },
+        { "label": "D", "text": "只增加 DP 路数，就能让单个模型副本容纳超过单卡显存的层" }
+      ],
+      "answer": ["A", "B", "C"],
+      "explanation": "A、B、C 分别准确描述了三种并行方式的主要切分维度：数据、层内张量和层序列。传统 DP 会复制模型，所以仅增加 DP 路数不会降低单个副本的模型参数占用；若模型单层或整模型放不下，通常要结合 TP、PP、参数分片或全分片数据并行。",
+      "topic": "大模型—分布式训练/并行策略",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": "从已有并行定义题扩展为切分对象综合辨析。"
+    },
+    {
+      "id": "AIFORGE-S01-Q004",
+      "source_number": 4,
+      "type": "multiple",
+      "stem": "在保持数据并行路数和 micro-batch size 不变时，把梯度累积步数从 2 增加到 8。若其他条件不变，下列判断正确的是哪些？",
+      "options": [
+        { "label": "A", "text": "每次参数更新覆盖的全局批量扩大为原来的 4 倍" },
+        { "label": "B", "text": "参数更新频率降低" },
+        { "label": "C", "text": "单个 micro-batch 的前向激活显存会必然扩大为原来的 4 倍" },
+        { "label": "D", "text": "若各微批损失采用平均梯度，通常需要正确归一化累积梯度以保持更新尺度" }
+      ],
+      "answer": ["A", "B", "D"],
+      "explanation": "累积步数从 2 变为 8，使每次更新聚合的微批数变为 4 倍，所以全局批量变为 4 倍、参数更新频率降为原来的四分之一。micro-batch 本身没有变大，因此单次前向的激活规模不会因此必然变为 4 倍。实现时应对累积损失或梯度做一致的缩放，否则学习率对应的有效更新尺度会改变。",
+      "topic": "大模型—分布式训练/梯度累积",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": ["$B_{global}=B_{micro}\\times N_{acc}\\times N_{DP}$"],
+      "solution_formulas": ["$8/2=4$"],
+      "review_status": "usable",
+      "review_note": "已区分全局批量与单微批激活显存。"
+    },
+    {
+      "id": "AIFORGE-S01-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "Huber 损失的阈值为 $\\delta=1$，单个样本的预测误差为 $e=3$。按标准分段定义，该样本的 Huber 损失是多少？",
+      "options": [
+        { "label": "A", "text": "$1.5$" },
+        { "label": "B", "text": "$2.5$" },
+        { "label": "C", "text": "$2.0$" },
+        { "label": "D", "text": "$4.5$" }
+      ],
+      "answer": ["B"],
+      "explanation": "因为 $|e|=3>\\delta$，应使用线性分支 $L=\\delta(|e|-\\delta/2)$，得到 $1\\times(3-0.5)=2.5$。若误用平方误差的二次分支，会得到 $0.5e^2=4.5$；该分支只适用于 $|e|\\leq\\delta$。",
+      "topic": "深度学习—损失函数/Huber",
+      "difficulty": "简单",
+      "is_calculation": true,
+      "prompt_formulas": ["$L_\\delta(e)=\\delta(|e|-\\frac{1}{2}\\delta),\\ |e|>\\delta$"],
+      "solution_formulas": ["\\[L_1(3)=1\\times(3-0.5)=2.5\\]"],
+      "review_status": "usable",
+      "review_note": "由原有定性考点扩展为分段函数计算。"
+    },
+    {
+      "id": "AIFORGE-S01-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "Focal Loss 的调制因子为 $(1-p_t)^\\gamma$。当 $\\gamma=2$ 时，一个易样本的 $p_t=0.9$，其交叉熵项会被乘上多大的调制因子？",
+      "options": [
+        { "label": "A", "text": "$0.01$" },
+        { "label": "B", "text": "$0.1$" },
+        { "label": "C", "text": "$0.81$" },
+        { "label": "D", "text": "$0.9$" }
+      ],
+      "answer": ["A"],
+      "explanation": "代入得到 $(1-0.9)^2=0.1^2=0.01$。因此模型已高置信度正确分类的易样本，其损失贡献会被显著压低；相同 $\\gamma$ 下，$p_t$ 较小的难样本衰减更少。这正是 Focal Loss 聚焦难样本的机制。",
+      "topic": "深度学习—损失函数/Focal Loss",
+      "difficulty": "简单",
+      "is_calculation": true,
+      "prompt_formulas": ["$(1-p_t)^\\gamma$"],
+      "solution_formulas": ["\\[(1-0.9)^2=0.01\\]"],
+      "review_status": "usable",
+      "review_note": "由已有机制题扩展为调制因子计算。"
+    },
+    {
+      "id": "AIFORGE-S01-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "某优化器明确采用 $v_t=0.9v_{t-1}+g_t$、$\\theta_t=\\theta_{t-1}-0.1v_t$。若 $v_0=0$、$\\theta_0=1$、第一步梯度 $g_1=2$，则 $\\theta_1$ 为多少？",
+      "options": [
+        { "label": "A", "text": "$0.8$" },
+        { "label": "B", "text": "$0.82$" },
+        { "label": "C", "text": "$0.98$" },
+        { "label": "D", "text": "$1.2$" }
+      ],
+      "answer": ["A"],
+      "explanation": "题目已明确动量采用不含 $(1-\\beta)$ 的写法。先算 $v_1=0.9\\times0+2=2$，再算 $\\theta_1=1-0.1\\times2=0.8$。不同教材可能把 $(1-\\beta)$ 乘到梯度上，因此做计算题时必须以题目给出的递推式为准。",
+      "topic": "深度学习—优化器/动量",
+      "difficulty": "简单",
+      "is_calculation": true,
+      "prompt_formulas": ["$v_t=0.9v_{t-1}+g_t$", "$\\theta_t=\\theta_{t-1}-0.1v_t$"],
+      "solution_formulas": ["$v_1=2$", "$\\theta_1=0.8$"],
+      "review_status": "usable",
+      "review_note": "显式给出动量约定，消除不同记号体系的歧义。"
+    },
+    {
+      "id": "AIFORGE-S01-Q008",
+      "source_number": 8,
+      "type": "multiple",
+      "stem": "关于 AdamW 的状态与参数更新，下列说法正确的是哪些？",
+      "options": [
+        { "label": "A", "text": "一阶动量主要跟踪梯度的指数移动平均" },
+        { "label": "B", "text": "二阶动量主要跟踪梯度平方的指数移动平均" },
+        { "label": "C", "text": "训练初期的偏差修正用于补偿零初始化导致的移动平均偏小" },
+        { "label": "D", "text": "AdamW 把权重衰减项加入梯度后，再让它接受同样的自适应缩放" }
+      ],
+      "answer": ["A", "B", "C"],
+      "explanation": "Adam 系列用一阶矩估计梯度方向、用二阶原始矩估计梯度尺度；由于两者通常从零初始化，初期需要除以 $1-\\beta_1^t$ 和 $1-\\beta_2^t$ 做偏差修正。AdamW 的关键恰是把权重衰减与自适应梯度更新解耦，所以 D 描述的是它要避免的耦合方式。",
+      "topic": "深度学习—优化器/AdamW",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": ["$\\hat m_t=m_t/(1-\\beta_1^t)$", "$\\hat v_t=v_t/(1-\\beta_2^t)$"],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": "与已有 AdamW 定义题错位，考察状态含义和偏差修正。"
+    },
+    {
+      "id": "AIFORGE-S01-Q009",
+      "source_number": 9,
+      "type": "multiple",
+      "stem": "在类别极不平衡的多分类任务中，关于 Macro-F1 与 Micro-F1，下列说法正确的是哪些？",
+      "options": [
+        { "label": "A", "text": "Macro-F1 先分别计算各类别的 F1，再对类别做等权平均" },
+        { "label": "B", "text": "Micro-F1 先汇总所有类别的 TP、FP、FN，再计算整体指标" },
+        { "label": "C", "text": "大类样本很多时，Micro-F1 可能掩盖小类表现很差的问题" },
+        { "label": "D", "text": "Macro-F1 会按各类别样本数自动加权，所以主要由大类决定" }
+      ],
+      "answer": ["A", "B", "C"],
+      "explanation": "Macro-F1 对每个类别等权，因此更能反映小类是否被照顾；Micro-F1 聚合所有样本层面的统计量，样本多的类别贡献通常更大。按类别样本数加权的是 weighted-F1，而不是标准 Macro-F1，所以 D 错误。",
+      "topic": "机器学习—评价指标/F1",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": ["$F_1=\\dfrac{2PR}{P+R}$"],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": "补足现有题库对 Macro、Micro 与 weighted 三者关系的覆盖。"
+    },
+    {
+      "id": "AIFORGE-S01-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "一个二分类节点有 8 个样本，其中正负样本各 4 个。某特征能把它分成两个各含 4 个样本的纯子节点：左侧全为正类，右侧全为负类。以 2 为对数底，该划分的信息增益是多少？",
+      "options": [
+        { "label": "A", "text": "$0$ bit" },
+        { "label": "B", "text": "$0.5$ bit" },
+        { "label": "C", "text": "$1$ bit" },
+        { "label": "D", "text": "$2$ bit" }
+      ],
+      "answer": ["C"],
+      "explanation": "父节点正负各半，熵为 $-0.5\\log_2 0.5-0.5\\log_2 0.5=1$ bit。两个子节点都完全纯净，熵均为 0，加权条件熵也为 0。因此信息增益为 $1-0=1$ bit，这是该二分类节点能达到的最大熵下降。",
+      "topic": "机器学习—决策树/信息增益",
+      "difficulty": "简单",
+      "is_calculation": true,
+      "prompt_formulas": ["$H(Y)=-\\sum_k p_k\\log_2p_k$", "$IG=H(Y)-H(Y\\mid X)$"],
+      "solution_formulas": ["$H(Y)=1$", "$H(Y\\mid X)=0$", "$IG=1$"],
+      "review_status": "usable",
+      "review_note": "已核对熵与信息增益计算。"
+    },
+    {
+      "id": "AIFORGE-S01-Q011",
+      "source_number": 11,
+      "type": "multiple",
+      "stem": "关于随机森林中的袋外样本（out-of-bag, OOB），下列说法正确的是哪些？",
+      "options": [
+        { "label": "A", "text": "每棵树用 bootstrap 有放回采样训练，未被该树抽中的训练样本可作为该树的 OOB 样本" },
+        { "label": "B", "text": "当训练集很大时，一棵树的 OOB 样本比例约为 $36.8\\%$" },
+        { "label": "C", "text": "汇总样本在其 OOB 树上的预测，可得到无需额外验证集的泛化误差估计" },
+        { "label": "D", "text": "OOB 估计要求每棵树都使用完整训练集且不得重复采样" }
+      ],
+      "answer": ["A", "B", "C"],
+      "explanation": "对 $n$ 个样本做 $n$ 次有放回采样时，一个指定样本一次都未被抽中的概率为 $(1-1/n)^n$，当 $n$ 很大时趋近 $e^{-1}\\approx36.8\\%$。这些未入袋样本可以评价对应树，再对多棵树汇总形成 OOB 估计。D 与 bootstrap 的定义相反。",
+      "topic": "机器学习—集成学习/随机森林",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": ["$(1-1/n)^n\\to e^{-1}$"],
+      "solution_formulas": ["$e^{-1}\\approx0.368$"],
+      "review_status": "usable",
+      "review_note": "从报告中的 bootstrap 知识外推并完成概率核验。"
+    },
+    {
+      "id": "AIFORGE-S01-Q012",
+      "source_number": 12,
+      "type": "multiple",
+      "stem": "实现文本分类的朴素贝叶斯模型时，下列做法或判断正确的是哪些？",
+      "options": [
+        { "label": "A", "text": "用对数概率把大量条件概率的连乘改写为求和，可降低数值下溢风险" },
+        { "label": "B", "text": "拉普拉斯平滑可避免某个未见过的词把整类后验概率乘成零" },
+        { "label": "C", "text": "朴素假设是给定类别后，各特征条件独立" },
+        { "label": "D", "text": "取对数会改变各类别后验分数的大小顺序，因此不能用于求最大后验类别" }
+      ],
+      "answer": ["A", "B", "C"],
+      "explanation": "由于对数函数严格单调，最大化概率乘积与最大化对数和得到相同的类别，因此 D 错误。拉普拉斯平滑解决零频问题；朴素贝叶斯的核心建模假设则是给定类别后的条件独立。实践中即使该假设不完全成立，模型仍可能有良好表现。",
+      "topic": "机器学习—概率模型/朴素贝叶斯",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": ["$\\log P(y)+\\sum_i\\log P(x_i\\mid y)$"],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": "与现有后验数值题错位，考察数值稳定和零频处理。"
+    },
+    {
+      "id": "AIFORGE-S01-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "一个标准 LSTM 层的输入维度 $D=16$、隐藏维度 $H=32$，四组门各自都有输入权重、循环权重和偏置。忽略输出层，该 LSTM 层共有多少个可训练参数？",
+      "options": [
+        { "label": "A", "text": "$1568$" },
+        { "label": "B", "text": "$3136$" },
+        { "label": "C", "text": "$8192$" },
+        { "label": "D", "text": "$6272$" }
+      ],
+      "answer": ["D"],
+      "explanation": "每组门包含输入权重 $D\\times H$、循环权重 $H\\times H$ 和偏置 $H$，共 $DH+H^2+H$ 个参数。LSTM 有遗忘门、输入门、输出门和候选状态四组仿射变换，所以总数为 $4(16\\times32+32^2+32)=4(512+1024+32)=6272$。",
+      "topic": "深度学习—序列模型/LSTM",
+      "difficulty": "中等",
+      "is_calculation": true,
+      "prompt_formulas": ["$N=4(DH+H^2+H)$"],
+      "solution_formulas": ["\\[N=4(16\\times32+32^2+32)=6272\\]"],
+      "review_status": "usable",
+      "review_note": "参数公式与报告 LSTM 章节逐项核对。"
+    },
+    {
+      "id": "AIFORGE-S01-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "某个 LSTM 单元在一个维度上有 $c_{t-1}=0.5$、遗忘门 $f_t=0.8$、输入门 $i_t=0.25$、候选状态 $\\tilde c_t=0.4$。新的细胞状态 $c_t$ 是多少？",
+      "options": [
+        { "label": "A", "text": "$0.30$" },
+        { "label": "B", "text": "$0.40$" },
+        { "label": "C", "text": "$0.50$" },
+        { "label": "D", "text": "$0.72$" }
+      ],
+      "answer": ["C"],
+      "explanation": "细胞状态由旧记忆的保留项和新候选信息的写入项相加：$c_t=f_tc_{t-1}+i_t\\tilde c_t=0.8\\times0.5+0.25\\times0.4=0.4+0.1=0.5$。这里的乘法在向量形式下是逐元素乘，不是矩阵乘法。",
+      "topic": "深度学习—序列模型/LSTM",
+      "difficulty": "简单",
+      "is_calculation": true,
+      "prompt_formulas": ["$c_t=f_t\\odot c_{t-1}+i_t\\odot\\tilde c_t$"],
+      "solution_formulas": ["\\[c_t=0.8\\times0.5+0.25\\times0.4=0.5\\]"],
+      "review_status": "usable",
+      "review_note": "已核对逐元素门控更新。"
+    },
+    {
+      "id": "AIFORGE-S01-Q015",
+      "source_number": 15,
+      "type": "multiple",
+      "stem": "关于 GRU 与标准 LSTM 的结构对比，下列说法正确的是哪些？",
+      "options": [
+        { "label": "A", "text": "GRU 通常使用更新门和重置门" },
+        { "label": "B", "text": "GRU 通常没有与隐藏状态分离的独立细胞状态 $c_t$" },
+        { "label": "C", "text": "在输入维度和隐藏维度相同时，GRU 的参数量通常少于 LSTM" },
+        { "label": "D", "text": "GRU 在任何数据集和任何序列长度上都必然优于 LSTM" }
+      ],
+      "answer": ["A", "B", "C"],
+      "explanation": "GRU 用更新门与重置门完成信息保留和候选状态构造，状态通常只保留 $h_t$；标准 LSTM 则有三类门并维护 $c_t$ 与 $h_t$。因此同维度下 GRU 通常参数更少、训练更快，但模型效果取决于任务和数据，不能宣称它在所有场景都必然更好。",
+      "topic": "深度学习—序列模型/GRU",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": "补充现有题库未直接覆盖的 GRU 对比。"
+    },
+    {
+      "id": "AIFORGE-S01-Q016",
+      "source_number": 16,
+      "type": "single",
+      "stem": "对长度为 31 的一维输入使用卷积核大小 $K=3$、dilation $d=2$、padding $P=0$、stride $S=1$ 的空洞卷积。输出长度是多少？",
+      "options": [
+        { "label": "A", "text": "$25$" },
+        { "label": "B", "text": "$27$" },
+        { "label": "C", "text": "$29$" },
+        { "label": "D", "text": "$31$" }
+      ],
+      "answer": ["B"],
+      "explanation": "先计算有效卷积核大小：$K_{eff}=K+(K-1)(d-1)=3+2\\times1=5$。再代入输出长度公式，得到 $\\lfloor(31+0-5)/1\\rfloor+1=27$。dilation 扩大采样跨度，但不会增加卷积核参数个数。",
+      "topic": "深度学习—CNN/空洞卷积",
+      "difficulty": "中等",
+      "is_calculation": true,
+      "prompt_formulas": ["$K_{eff}=K+(K-1)(d-1)$", "$L_{out}=\\lfloor(L+2P-K_{eff})/S\\rfloor+1$"],
+      "solution_formulas": ["$K_{eff}=5$", "\\[L_{out}=\\lfloor(31-5)/1\\rfloor+1=27\\]"],
+      "review_status": "usable",
+      "review_note": "与现有作用题错位，新增有效核与输出尺寸联合计算。"
+    },
+    {
+      "id": "AIFORGE-S01-Q017",
+      "source_number": 17,
+      "type": "single",
+      "stem": "忽略偏置，一个 $3\\times3$ 深度可分离卷积把 32 个输入通道映射到 64 个输出通道。Depthwise 与 Pointwise 两部分合计有多少个参数？",
+      "options": [
+        { "label": "A", "text": "$2336$" },
+        { "label": "B", "text": "$2304$" },
+        { "label": "C", "text": "$2048$" },
+        { "label": "D", "text": "$18432$" }
+      ],
+      "answer": ["A"],
+      "explanation": "Depthwise 部分每个输入通道独立使用一个 $3\\times3$ 核，参数量为 $3^2\\times32=288$；Pointwise 部分用 $1\\times1$ 卷积混合通道，参数量为 $32\\times64=2048$。合计 $288+2048=2336$，显著少于标准卷积的 $3^2\\times32\\times64=18432$。",
+      "topic": "深度学习—CNN/深度可分离卷积",
+      "difficulty": "中等",
+      "is_calculation": true,
+      "prompt_formulas": ["$N_{sep}=K^2C_{in}+C_{in}C_{out}$"],
+      "solution_formulas": ["\\[N_{sep}=3^2\\times32+32\\times64=2336\\]", "$N_{standard}=18432$"],
+      "review_status": "usable",
+      "review_note": "新增参数量计算，已分别核对 Depthwise 与 Pointwise 两项。"
+    },
+    {
+      "id": "AIFORGE-S01-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "关于 BatchNorm（BN）和 LayerNorm（LN），下列说法正确的是哪些？",
+      "options": [
+        { "label": "A", "text": "BN 训练时通常依赖当前批次统计量，推理时通常使用运行均值和运行方差" },
+        { "label": "B", "text": "LN 通常对单个样本的特征维归一化，因此不依赖其他样本组成的 batch" },
+        { "label": "C", "text": "LN 对小批量或变长序列更友好，因此常用于 Transformer" },
+        { "label": "D", "text": "BN 和 LN 都没有可学习的缩放与平移参数" }
+      ],
+      "answer": ["A", "B", "C"],
+      "explanation": "BN 的统计量跨 batch 样本计算，训练与推理阶段使用的统计来源通常不同；LN 在每个样本内部沿特征维计算统计量，不受 batch 组成影响。两者通常都带可学习的缩放参数 $\\gamma$ 和平移参数 $\\beta$，所以 D 错误。",
+      "topic": "深度学习—归一化/BN与LN",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": ["$y=\\gamma\\hat x+\\beta$"],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": "补足现有题库对归一化统计轴与训练/推理差异的覆盖。"
+    },
+    {
+      "id": "AIFORGE-S01-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "关于神经网络权重初始化，下列搭配或判断正确的是哪些？",
+      "options": [
+        { "label": "A", "text": "ReLU 网络常使用 He 初始化，使权重方差约为 $2/fan_{in}$" },
+        { "label": "B", "text": "Tanh 或近似对称激活常配合 Xavier/Glorot 初始化，以平衡前向和反向信号尺度" },
+        { "label": "C", "text": "把同一层全部权重初始化为相同的零值，是打破神经元对称性的推荐方法" },
+        { "label": "D", "text": "初始化只影响第一次前向传播，对后续收敛速度和梯度稳定性没有影响" }
+      ],
+      "answer": ["A", "B"],
+      "explanation": "He 初始化考虑了 ReLU 约有一半激活被截断，常取方差 $2/fan_{in}$；Xavier 旨在让层间信号方差较稳定，常用于 Tanh 等对称激活。全零权重会让同层神经元保持完全相同的梯度，无法打破对称；初始化还会显著影响深层网络的梯度传播与收敛。",
+      "topic": "深度学习—训练技巧/权重初始化",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": ["$\\mathrm{Var}(W)\\approx2/fan_{in}$"],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": "依据激活函数章节的初始化建议重组。"
+    },
+    {
+      "id": "AIFORGE-S01-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "关于梯度裁剪与混合精度训练中的损失缩放，下列说法正确的是哪些？",
+      "options": [
+        { "label": "A", "text": "全局梯度范数超过阈值 $\\tau$ 时，可按 $\\tau/\\lVert g\\rVert$ 等比例缩放，从而保留梯度方向" },
+        { "label": "B", "text": "梯度裁剪主要用于抑制梯度爆炸，而不是直接解决梯度消失" },
+        { "label": "C", "text": "损失缩放先放大损失及反向梯度，更新前再反缩放，可降低低精度梯度下溢风险" },
+        { "label": "D", "text": "只要启用损失缩放，就能保证任何学习率下训练都不会发散" }
+      ],
+      "answer": ["A", "B", "C"],
+      "explanation": "范数裁剪在 $\\lVert g\\rVert>\\tau$ 时统一缩放所有梯度，限制幅值而尽量不改变方向，适合控制爆炸梯度。低精度损失缩放用于让很小的梯度进入可表示范围，更新前必须反缩放。它不能修复过大学习率、错误数据或其他导致发散的问题，因此 D 错误。",
+      "topic": "深度学习—训练技巧/数值稳定",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": ["$g' = g\\cdot\\min(1,\\tau/\\lVert g\\rVert)$"],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": "联合考察爆炸梯度与低精度下溢，概念边界已核对。"
+    }
+  ]
+}

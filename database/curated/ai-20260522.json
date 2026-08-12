@@ -1,0 +1,795 @@
+{
+  "source": {
+    "id": "AIEXAM-20260522",
+    "exam_date": "2026-05-22",
+    "job_track": "互联网公司 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260522",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260522-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "设模型参数量 $P$，训练数据量 $D$ token，采用 FP16 混合精度训练（Adam 优化器）。以下关于显存占用的估算，说法正确的是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "使用梯度检查点（Gradient Checkpointing）会增加显存占用"
+        },
+        {
+          "label": "B",
+          "text": "训练时需保存 FP32 主权重、FP16 参数、FP16 梯度，以及 Adam 的一阶和二阶矩（FP32），总显存约 $16P$ 字节"
+        },
+        {
+          "label": "C",
+          "text": "仅模型参数占用显存 $2P$（FP16），训练总显存约等于 $2P$"
+        },
+        {
+          "label": "D",
+          "text": "训练显存仅取决于参数量，与 batch size 和序列长度无关"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "Adam 混合精度训练单参数显存：FP32 主权重 4B + FP16 参数 2B + FP16 梯度 2B + FP32 一阶矩 4B + FP32 二阶矩 4B = 16B。A 错，梯度检查点用算力换显存，显存反降；C 错，只统计参数忽略了梯度和优化器状态；D 错，激活显存随 batch 和序列长度线性增长。",
+      "topic": "大模型——训练显存",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$P$",
+        "$D$"
+      ],
+      "solution_formulas": [
+        "Adam 混合精度训练单参数显存：FP32 主权重 4B + FP16 参数 2B + FP16 梯度 2B + FP32 一阶矩 4B + FP32 二阶矩 4B = 16B。A 错，梯度检查点用算力换显存，显存反降；C 错，只统计参数忽略了梯度和优化器状态；D 错，激活显存随 batch 和序列长度线性增长。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "已知事件 $A$ 与 $B$ 互斥且独立，则下列一定成立的是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "$P(A) = P(B) = 0.5$"
+        },
+        {
+          "label": "B",
+          "text": "$P(A \\cup B) = 1$"
+        },
+        {
+          "label": "C",
+          "text": "$P(A) + P(B) = 1$"
+        },
+        {
+          "label": "D",
+          "text": "$P(A) = 0$ 或 $P(B) = 0$"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "互斥推出 $P(A \\cap B) = 0$，独立推出 $P(A \\cap B) = P(A)P(B)$，联立得 $P(A)P(B) = 0$，故必有一个为 $0$。A、B、C 都需要额外条件。",
+      "topic": "数学——概率论",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$A$",
+        "$B$"
+      ],
+      "solution_formulas": [
+        "$P(A \\cap B) = 0$",
+        "$P(A \\cap B) = P(A)P(B)$",
+        "$P(A)P(B) = 0$",
+        "$0$",
+        "互斥推出 $P(A \\cap B) = 0$，独立推出 $P(A \\cap B) = P(A)P(B)$，联立得 $P(A)P(B) = 0$，故必有一个为 $0$。A、B、C 都需要额外条件。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q003",
+      "source_number": 3,
+      "type": "single",
+      "stem": "训练脚本支持 gradient accumulation，你把 micro_batch 由 $b$ 调到 $2b$，并把 accumulation 相应减小，global batch 保持不变。通常最可能出现的变化是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "一定吞吐下降"
+        },
+        {
+          "label": "B",
+          "text": "参数量减少"
+        },
+        {
+          "label": "C",
+          "text": "显存占用上升"
+        },
+        {
+          "label": "D",
+          "text": "一定收敛更好"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "micro_batch 变大，单次前向/反向需要保存的激活与中间梯度变多，显存随 micro_batch 大致线性上升。吞吐通常上升（更好利用 GPU 并行）但不绝对；参数量与 micro_batch 无关；global batch 不变时收敛轨迹基本一致。",
+      "topic": "大模型——训练优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$b$",
+        "$2b$"
+      ],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "Transformer 模型最初被提出来主要是用于什么任务？",
+      "options": [
+        {
+          "label": "A",
+          "text": "文本生成"
+        },
+        {
+          "label": "B",
+          "text": "图像分类"
+        },
+        {
+          "label": "C",
+          "text": "语音识别"
+        },
+        {
+          "label": "D",
+          "text": "机器翻译"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "2017 年 “Attention is All You Need” 论文以 WMT 英德/英法机器翻译为基准提出 Transformer，编码器-解码器结构正是为序列到序列翻译设计。",
+      "topic": "深度学习——Transformer",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "BLIP-2 中 Q-Former 的核心设计原理是”可查询的 Transformer”。关于其工作机制和训练策略，以下哪项描述最准确？",
+      "options": [
+        {
+          "label": "A",
+          "text": "Q-Former 包含双向自注意力（queries 之间）和交叉注意力（queries 与视觉特征），冻结视觉编码器，queries 通过交叉注意力从冻结的视觉特征中抽取压缩信息"
+        },
+        {
+          "label": "B",
+          "text": "Q-Former 是视觉编码器的替代品，输入原始像素，输出固定 $N$ 个 token，通过 ITG 损失训练文本生成能力"
+        },
+        {
+          "label": "C",
+          "text": "Q-Former 的 queries 通过自注意力直接与文本交互，无需交叉注意力即可压缩视觉信息，训练时解冻视觉编码器以学习更好的视觉表示"
+        },
+        {
+          "label": "D",
+          "text": "Q-Former 使用共享的自注意力层同时处理可学习 queries 和文本 tokens，通过 ITC/ITM/ITG 三个损失训练，所有损失都更新视觉编码器参数"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "BLIP-2 第一阶段冻结视觉编码器，Q-Former 用一组可学习 queries 通过自注意力相互交互、再通过交叉注意力从视觉特征中”查询”压缩信息。B 错，Q-Former 不输入原始像素而是 ViT 输出；C 错，没有交叉注意力无法压缩视觉信息；D 错，视觉编码器始终冻结。",
+      "topic": "大模型——多模态",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "在计算机渲染 3D 模型时通常会使用双线性插值处理纹理映射，与最近邻插值相比，双线性插值主要可以减少？",
+      "options": [
+        {
+          "label": "A",
+          "text": "数据存储"
+        },
+        {
+          "label": "B",
+          "text": "精度损失"
+        },
+        {
+          "label": "C",
+          "text": "计算时间"
+        },
+        {
+          "label": "D",
+          "text": "视觉锯齿"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "双线性插值用 $2 \\times 2$ 邻域像素加权平均得到目标颜色，过渡平滑，消除最近邻在边缘和斜线处的”阶梯状锯齿”。A 与存储无关；B 精度概念不严谨；C 计算时间反而增加。",
+      "topic": "数学——插值",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$2 \\times 2$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "在分布式训练时，AllReduce 的浮点累加顺序不同会导致最终模型参数有微小差异。这种差异属于哪类误差？",
+      "options": [
+        {
+          "label": "A",
+          "text": "舍入误差"
+        },
+        {
+          "label": "B",
+          "text": "模型结构误差"
+        },
+        {
+          "label": "C",
+          "text": "采样误差"
+        },
+        {
+          "label": "D",
+          "text": "截断误差"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "浮点加法不满足结合律，$(a+b)+c$ 与 $a+(b+c)$ 因尾数对齐时丢弃低位而产生微小差异，属于舍入误差。截断误差来自级数/积分截断，与累加顺序无关。",
+      "topic": "数学——数值计算",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$(a+b)+c$",
+        "$a+(b+c)$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q008",
+      "source_number": 8,
+      "type": "single",
+      "stem": "在广义相对论或高阶连续介质力学中，张量的”收缩（Contraction）”是一项核心运算。假设有一个 $3$ 阶张量 $T$，其分量表示为 $T_{ijk}$。若我们对该张量的第 $1$ 个指标和第 $3$ 个指标进行收缩，得到一个新的数学对象 $V$。关于 $V$ 的数学性质，下列说法中最准确的一项是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "$V$ 的分量可以表示为 $V_j = \\sum_k T_{kjk}$，它是一个 $2$ 阶张量（矩阵）"
+        },
+        {
+          "label": "B",
+          "text": "收缩操作仅对方阵形式的 $2$ 阶张量（即求迹 Trace）有定义，对于 $3$ 阶及以上张量，必须先通过张量积将其降维"
+        },
+        {
+          "label": "C",
+          "text": "收缩操作等价于对张量在特定平面上进行”投影”操作，因此 $V$ 的阶数保持不变，仍为 $3$ 阶"
+        },
+        {
+          "label": "D",
+          "text": "$V$ 的分量可以表示为 $V_j = \\sum_i T_{iji}$，它是一个 $1$ 阶张量（向量）"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "对一对指标做收缩等价于把这两个下标置成同一个哑指标并求和，每收缩一对阶数下降 $2$。第 $1$ 与第 $3$ 指标收缩得 $V_j = \\sum_i T_{iji}$，结果阶数为 $3 - 2 = 1$。A 错，那是对第 $1$ 个指标求和不是收缩；B 错，收缩定义对任意阶张量都成立；C 错，收缩必然降阶。",
+      "topic": "数学——张量",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$3$",
+        "$T$",
+        "$T_{ijk}$",
+        "$1$",
+        "$V$"
+      ],
+      "solution_formulas": [
+        "$2$",
+        "$1$",
+        "$3$",
+        "$V_j = \\sum_i T_{iji}$",
+        "$3 - 2 = 1$",
+        "对一对指标做收缩等价于把这两个下标置成同一个哑指标并求和，每收缩一对阶数下降 $2$。第 $1$ 与第 $3$ 指标收缩得 $V_j = \\sum_i T_{iji}$，结果阶数为 $3 - 2 = 1$。A 错，那是对第 $1$ 个指标求和不是收缩；B 错，收缩定义对任意阶张量都成立；C 错，收缩必然降阶。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q009",
+      "source_number": 9,
+      "type": "single",
+      "stem": "在欺诈检测中，若漏检（把真实欺诈样本错判为非欺诈）成本远高于误报成本，模型评估时应优先关注哪个指标？",
+      "options": [
+        {
+          "label": "A",
+          "text": "准确率"
+        },
+        {
+          "label": "B",
+          "text": "均方误差 MSE"
+        },
+        {
+          "label": "C",
+          "text": "召回率"
+        },
+        {
+          "label": "D",
+          "text": "特异度"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "漏检即假阴性 FN，召回率 $\\text{Recall} = \\text{TP}/(\\text{TP}+\\text{FN})$ 越高 FN 越少。准确率在类别极不平衡时失效；MSE 用于回归；特异度衡量真阴性率，与漏检率不直接对应。",
+      "topic": "机器学习——评价指标",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$\\text{Recall} = \\text{TP}/(\\text{TP}+\\text{FN})$",
+        "漏检即假阴性 FN，召回率 $\\text{Recall} = \\text{TP}/(\\text{TP}+\\text{FN})$ 越高 FN 越少。准确率在类别极不平衡时失效；MSE 用于回归；特异度衡量真阴性率，与漏检率不直接对应。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "在机器学习模型评估中，如果任务中误报正样本的代价较高，应优先关注以下哪个指标？",
+      "options": [
+        {
+          "label": "A",
+          "text": "Precision"
+        },
+        {
+          "label": "B",
+          "text": "Accuracy"
+        },
+        {
+          "label": "C",
+          "text": "Recall"
+        },
+        {
+          "label": "D",
+          "text": "样本总数"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "误报即把负类错判为正类（假阳性 FP），$\\text{Precision} = \\text{TP}/(\\text{TP}+\\text{FP})$ 越高 FP 越少。本题与第 9 题构成精确率/召回率取舍的对照。",
+      "topic": "机器学习——评价指标",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$\\text{Precision} = \\text{TP}/(\\text{TP}+\\text{FP})$",
+        "误报即把负类错判为正类（假阳性 FP），$\\text{Precision} = \\text{TP}/(\\text{TP}+\\text{FP})$ 越高 FP 越少。本题与第 9 题构成精确率/召回率取舍的对照。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q011",
+      "source_number": 11,
+      "type": "single",
+      "stem": "某工厂有甲、乙两条生产线，甲生产线次品率为 $3\\%$，乙生产线次品率为 $5\\%$，甲生产线产量占总产量的 $60\\%$，随机抽取一件产品为次品，则该次品来自甲生产线的概率为：",
+      "options": [
+        {
+          "label": "A",
+          "text": "$3\\%$"
+        },
+        {
+          "label": "B",
+          "text": "$60\\%$"
+        },
+        {
+          "label": "C",
+          "text": "$47.4\\%$"
+        },
+        {
+          "label": "D",
+          "text": "$52.6\\%$"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "由贝叶斯公式 $P(\\text{甲}\\mid\\text{次}) = \\frac{P(\\text{次}\\mid\\text{甲}) \\cdot P(\\text{甲})}{P(\\text{次})} = \\frac{0.03 \\times 0.6}{0.03 \\times 0.6 + 0.05 \\times 0.4} = \\frac{0.018}{0.038} \\approx 47.4\\%$。",
+      "topic": "数学——贝叶斯",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$3\\%$",
+        "$5\\%$",
+        "$60\\%$"
+      ],
+      "solution_formulas": [
+        "$P(\\text{甲}\\mid\\text{次}) = \\frac{P(\\text{次}\\mid\\text{甲}) \\cdot P(\\text{甲})}{P(\\text{次})} = \\frac{0.03 \\times 0.6}{0.03 \\times 0.6 + 0.05 \\times 0.4} = \\frac{0.018}{0.038} \\approx 47.4\\%$",
+        "由贝叶斯公式 $P(\\text{甲}\\mid\\text{次}) = \\frac{P(\\text{次}\\mid\\text{甲}) \\cdot P(\\text{甲})}{P(\\text{次})} = \\frac{0.03 \\times 0.6}{0.03 \\times 0.6 + 0.05 \\times 0.4} = \\frac{0.018}{0.038} \\approx 47.4\\%$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "相比于单头注意力，多头注意力（Multi-Head Attention, MHA）的核心优势在于？",
+      "options": [
+        {
+          "label": "A",
+          "text": "减少推理阶段的 KV Cache 显存占用"
+        },
+        {
+          "label": "B",
+          "text": "允许模型在不同的表示子空间中并行关注来自不同位置的信息"
+        },
+        {
+          "label": "C",
+          "text": "能够显著降低模型的总体参数量"
+        },
+        {
+          "label": "D",
+          "text": "能够彻底消除序列处理中的位置依赖问题"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "MHA 把 $d$ 维 QKV 拆成 $h$ 个低维子空间各自做 attention，不同头能学到不同的关注模式（如句法、语义等）。A 是 MQA/GQA 的优化目标；C 错，参数量不变；D 错，位置依赖靠位置编码而非头数。",
+      "topic": "深度学习——Transformer",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$d$",
+        "$h$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "线性回归模型中，通常采用哪种损失函数进行参数估计？",
+      "options": [
+        {
+          "label": "A",
+          "text": "均方误差（MSE）"
+        },
+        {
+          "label": "B",
+          "text": "交叉熵损失"
+        },
+        {
+          "label": "C",
+          "text": "Hinge 损失"
+        },
+        {
+          "label": "D",
+          "text": "$0$-$1$ 损失"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "线性回归在高斯噪声假设下最大似然估计等价于最小化 MSE，且 MSE 连续可导便于解析或梯度求解。交叉熵用于分类，Hinge 用于 SVM，$0$-$1$ 损失不可导。",
+      "topic": "机器学习——损失函数",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$0$",
+        "$1$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "Newton 插值多项式与 Lagrange 插值多项式的关系正确的是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "Lagrange 只适用于等距节点，Newton 适用于任意节点"
+        },
+        {
+          "label": "B",
+          "text": "二者相同，都是同一个插值多项式的不同表示"
+        },
+        {
+          "label": "C",
+          "text": "Newton 只适用于等距节点，Lagrange 适用于任意节点"
+        },
+        {
+          "label": "D",
+          "text": "二者一般不相同，Newton 只能近似而 Lagrange 是精确"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "$n+1$ 个互异节点的插值多项式由唯一性定理决定为同一个 $n$ 次多项式，Newton 与 Lagrange 只是不同的构造写法。Newton 形式便于增量添加节点，Lagrange 形式系数清晰，二者代数等价。",
+      "topic": "数学——数值/插值",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$n+1$",
+        "$n$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q015",
+      "source_number": 15,
+      "type": "single",
+      "stem": "在图像处理中，将一张 $224 \\times 224$ 的 RGB 图像展平为一维向量，其维度是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$224$"
+        },
+        {
+          "label": "B",
+          "text": "$150528$"
+        },
+        {
+          "label": "C",
+          "text": "$50176$"
+        },
+        {
+          "label": "D",
+          "text": "$672$"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "RGB 有 $3$ 个通道，向量维度 $224 \\times 224 \\times 3 = 150528$。C 漏算了通道维度。",
+      "topic": "深度学习——CNN",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$224 \\times 224$"
+      ],
+      "solution_formulas": [
+        "$3$",
+        "$224 \\times 224 \\times 3 = 150528$",
+        "RGB 有 $3$ 个通道，向量维度 $224 \\times 224 \\times 3 = 150528$。C 漏算了通道维度。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q016",
+      "source_number": 16,
+      "type": "multiple",
+      "stem": "以下哪些因素使得线性方程组 $Ax = b$ 更容易受到扰动影响（即更病态）？",
+      "options": [
+        {
+          "label": "A",
+          "text": "矩阵 $A$ 的维数很大"
+        },
+        {
+          "label": "B",
+          "text": "矩阵有接近相等的特征值"
+        },
+        {
+          "label": "C",
+          "text": "矩阵的条件数很大"
+        },
+        {
+          "label": "D",
+          "text": "矩阵 $A$ 的行列式接近零"
+        }
+      ],
+      "answer": [
+        "C",
+        "D"
+      ],
+      "explanation": "A 错误：维数大本身并不直接决定病态，单位阵即使很大也良态。B 错误：恰恰相反，特征值彼此接近意味着条件数接近 $1$，反而良态；让条件数变大的是特征值绝对值差距悬殊。C 正确：条件数是病态性的标准度量，相对扰动放大上界正比于条件数。D 正确：行列式趋近 $0$ 说明 $A$ 趋近奇异，最小奇异值/特征值很小，条件数发散。",
+      "topic": "数学——线性代数/数值",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$Ax = b$",
+        "以下哪些因素使得线性方程组 $Ax = b$ 更容易受到扰动影响（即更病态）？"
+      ],
+      "solution_formulas": [
+        "$1$",
+        "$0$",
+        "$A$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q017",
+      "source_number": 17,
+      "type": "multiple",
+      "stem": "在没有真实标签的情况下（无监督），下列哪些指标可以用于评估聚类效果的好坏？",
+      "options": [
+        {
+          "label": "A",
+          "text": "轮廓系数（Silhouette Coefficient）"
+        },
+        {
+          "label": "B",
+          "text": "戴维森-堡丁指数（Davies-Bouldin Index）"
+        },
+        {
+          "label": "C",
+          "text": "准确率（Accuracy）"
+        },
+        {
+          "label": "D",
+          "text": "卡林斯基-Harabasz 指数（CH Index）"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "A 正确：轮廓系数仅依赖样本到同簇/异簇的距离，无需标签。B 正确：DB 指数比较簇内分散度与簇间距离，无需标签。C 错误：Accuracy 需要预测类别与真实标签对齐，属于监督指标。D 正确：CH 指数基于簇间/簇内方差比，无需标签。",
+      "topic": "机器学习——聚类评估",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "下列场景中，MLE 更适用的有：",
+      "options": [
+        {
+          "label": "A",
+          "text": "需快速得到点估计"
+        },
+        {
+          "label": "B",
+          "text": "参数为离散型且取值较少"
+        },
+        {
+          "label": "C",
+          "text": "无明确先验信息"
+        },
+        {
+          "label": "D",
+          "text": "样本量较大"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A 正确：MLE 给出单点最大化解，无需采样后验。B 正确：离散参数取值少时可直接枚举每个取值的似然，MLE 实现极其简单。C 正确：MLE 不依赖先验，正是频率派与贝叶斯派的分水岭。D 正确：样本量大时 MLE 渐近正态、相合、有效，是大样本下的首选估计量。",
+      "topic": "机器学习——参数估计",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "以下哪些方法可以同时很好地缓解过拟合和欠拟合？",
+      "options": [
+        {
+          "label": "A",
+          "text": "调整模型复杂度"
+        },
+        {
+          "label": "B",
+          "text": "特征选择"
+        },
+        {
+          "label": "C",
+          "text": "增加训练数据"
+        },
+        {
+          "label": "D",
+          "text": "集成学习 Bagging"
+        }
+      ],
+      "answer": [
+        "A",
+        "B"
+      ],
+      "explanation": "A 正确：复杂度可升可降，欠拟合时增大模型、过拟合时减小模型，能同时治。B 正确：特征过少导致欠拟合、特征过多/含噪导致过拟合，选对子集两端都能缓解。C 错误：增数据主要降方差缓解过拟合，对偏差（欠拟合）几乎无帮助。D 错误：Bagging 通过聚合多个高方差模型降方差，主要缓解过拟合，对欠拟合无能为力。",
+      "topic": "机器学习——正则化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260522-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "关于 Weierstrass 逼近定理（闭区间上的连续函数可以用多项式一致逼近到任意精度）及其数值实现，以下正确的有：",
+      "options": [
+        {
+          "label": "A",
+          "text": "逼近多项式的次数可以任意低"
+        },
+        {
+          "label": "B",
+          "text": "实际计算中通常使用 Chebyshev 展开而非 Bernstein 多项式"
+        },
+        {
+          "label": "C",
+          "text": "任何闭区间上的连续函数都可以用多项式一致逼近"
+        },
+        {
+          "label": "D",
+          "text": "Bernstein 多项式收敛速度很快适合实际计算"
+        }
+      ],
+      "answer": [
+        "B",
+        "C"
+      ],
+      "explanation": "A 错误：达到任意精度可能需要任意高的次数，定理只保证”存在某个次数”。B 正确：Chebyshev 展开收敛指数级，且节点等振荡分布抑制 Runge 现象，是数值实践首选。C 正确：这就是 Weierstrass 定理本身的结论。D 错误：Bernstein 多项式收敛为 $O(1/\\sqrt{n})$ 级别，仅用于存在性证明，实际计算极慢。",
+      "topic": "数学——数值/逼近",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$O(1/\\sqrt{n})$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}

@@ -1,0 +1,798 @@
+{
+  "source": {
+    "id": "AIEXAM-20260509",
+    "exam_date": "2026-05-09",
+    "job_track": "互联网公司 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260509",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260509-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "逻辑回归的决策边界是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "一条 S 形曲线"
+        },
+        {
+          "label": "B",
+          "text": "特征空间中的超平面"
+        },
+        {
+          "label": "C",
+          "text": "以原点为圆心的超球面"
+        },
+        {
+          "label": "D",
+          "text": "由核函数决定的非线性曲面"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "逻辑回归用 sigmoid 输出概率，分类边界对应 $w^T x + b = 0$，是特征空间中的超平面。A 是 sigmoid 函数本身的形状不是决策边界；C 是高斯核分类器的特性；D 是核 SVM 等方法。",
+      "topic": "机器学习——逻辑回归",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$w^T x + b = 0$",
+        "逻辑回归用 sigmoid 输出概率，分类边界对应 $w^T x + b = 0$，是特征空间中的超平面。A 是 sigmoid 函数本身的形状不是决策边界；C 是高斯核分类器的特性；D 是核 SVM 等方法。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "当 CUDA 内核因寄存器压力过大导致寄存器溢出时，溢出的数据会被存储到哪种内存中？",
+      "options": [
+        {
+          "label": "A",
+          "text": "L1 缓存"
+        },
+        {
+          "label": "B",
+          "text": "局部内存（Local Memory，由全局内存物理支持）"
+        },
+        {
+          "label": "C",
+          "text": "常量内存"
+        },
+        {
+          "label": "D",
+          "text": "共享内存"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "寄存器溢出后变量被放到 local memory，物理上位于 global memory（虽然名字叫”局部”）。A 仅是缓存层，不是溢出目标存储；C 用于只读常量，编译期静态分配；D 由 kernel 显式声明分配，与寄存器溢出无关。",
+      "topic": "算法——GPU 体系结构",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q003",
+      "source_number": 3,
+      "type": "single",
+      "stem": "采用固定页管理 KV-Cache（页大小固定）在显存碎片严重的场景下，最直接的好处是：",
+      "options": [
+        {
+          "label": "A",
+          "text": "减少小对象频繁分配导致的碎片与分配开销"
+        },
+        {
+          "label": "B",
+          "text": "减少碎片对齐误差，提高数值精度"
+        },
+        {
+          "label": "C",
+          "text": "降低显存访问的带宽压力（通过页对齐减少随机小块访问）"
+        },
+        {
+          "label": "D",
+          "text": "降低小对象的内存访问延迟（通过页内局部性优化）"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "固定页（PagedAttention）复用统一大小的内存块，直接降低碎片化和频繁分配开销。B 与数值精度无关；C 主要靠合并访问而非分页；D 局部性优化是次要收益。",
+      "topic": "大模型——推理优化",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "在长文本生成模型中，关于温度（Temperature）系数下面说法正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "初始温度低，随长度递增逐渐增高"
+        },
+        {
+          "label": "B",
+          "text": "保持温度不变，保证变化量一致"
+        },
+        {
+          "label": "C",
+          "text": "初始温度高，随长度递增逐渐降低"
+        },
+        {
+          "label": "D",
+          "text": "每 1000 Token 随机设置温度"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "长文本生成中可逐步提高温度，增加后续生成的多样性，缓解重复和退化。B 无法适应长文本退化问题；C 方向相反，越靠后越确定反而更易陷入重复；D 随机温度无明确目标，不利于稳定生成。",
+      "topic": "大模型——生成策略",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "关于 Decoder-only，下列哪一项说法是错误的？",
+      "options": [
+        {
+          "label": "A",
+          "text": "常用于文本续写和对话生成"
+        },
+        {
+          "label": "B",
+          "text": "输入提示和输出文本常被组织为同一连续序列"
+        },
+        {
+          "label": "C",
+          "text": "必须包含独立编码器才能生成输出"
+        },
+        {
+          "label": "D",
+          "text": "常见训练思路是根据已有上下文继续预测后续 token"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "Decoder-only 模型（GPT 系列）没有独立 Encoder，仅靠自回归预测后续 token。A、B、D 都是 Decoder-only 的标准特性。",
+      "topic": "大模型——Transformer 架构",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "在 PPO 中使用截断代理目标函数（clipped surrogate objective）的主要目的是什么？",
+      "options": [
+        {
+          "label": "A",
+          "text": "使策略梯度估计保持无偏性"
+        },
+        {
+          "label": "B",
+          "text": "消除价值函数估计带来的偏差"
+        },
+        {
+          "label": "C",
+          "text": "保证每次策略更新都严格满足 KL 散度约束"
+        },
+        {
+          "label": "D",
+          "text": "限制策略更新幅度，防止因更新过大导致训练不稳定"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "PPO 的 clipping 机制把概率比 $r_t(\\theta)$ 截断在 $[1-\\varepsilon, 1+\\varepsilon]$ 内，约束新旧策略差异，提升训练稳定性。A 截断会引入偏差；B 与 critic 无关；C clip 只是软约束，不严格满足 KL。",
+      "topic": "大模型——RLHF",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$r_t(\\theta)$",
+        "$[1-\\varepsilon, 1+\\varepsilon]$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "关于 Prompt Tuning（或 Prefix Tuning）的描述，正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "微调整个预训练模型的全部参数"
+        },
+        {
+          "label": "B",
+          "text": "对模型进行知识蒸馏"
+        },
+        {
+          "label": "C",
+          "text": "完全冻结模型参数，仅调整输出层"
+        },
+        {
+          "label": "D",
+          "text": "在输入前添加可学习的连续向量，仅更新这些向量的参数"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "Prompt/Prefix Tuning 冻结大模型参数，只训练额外的可学习软提示（soft prompt）向量。A 是 Full Fine-tuning；B 是另一种方法；C 是 Linear Probing。",
+      "topic": "大模型——LoRA/PEFT",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q008",
+      "source_number": 8,
+      "type": "single",
+      "stem": "梯度爆炸问题通常与权重矩阵的什么性质相关？",
+      "options": [
+        {
+          "label": "A",
+          "text": "特征值过大"
+        },
+        {
+          "label": "B",
+          "text": "行列式为 0"
+        },
+        {
+          "label": "C",
+          "text": "秩为 1"
+        },
+        {
+          "label": "D",
+          "text": "非对称性"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "反向传播中多次矩阵相乘 $\\prod W_l$，若特征值（谱半径）大于 1，梯度可能指数级放大。B 行列式为 0 是奇异不可逆，导致梯度消失或秩亏；C 秩为 1 反而会丢失信息；D 与梯度幅值无直接关系。",
+      "topic": "深度学习——训练稳定性",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$\\prod W_l$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q009",
+      "source_number": 9,
+      "type": "single",
+      "stem": "设样本 $x_1, …, x_n$ 来自二项分布 $B(n, p)$（$n$ 已知，$p$ 未知），则 $p$ 的最大似然估计值为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$\\bar{x}$"
+        },
+        {
+          "label": "B",
+          "text": "$\\bar{x} / n^2$"
+        },
+        {
+          "label": "C",
+          "text": "$\\bar{x} / n$"
+        },
+        {
+          "label": "D",
+          "text": "$n / \\bar{x}$"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "二项分布有 $E[X] = np$，对似然函数 $L(p) = \\prod C_n^{x_i} p^{x_i}(1-p)^{n-x_i}$ 求导并令其为零，得 $\\hat{p} = \\bar{x}/n$。",
+      "topic": "数学——概率论/MLE",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$x_1, …, x_n$",
+        "$B(n, p)$",
+        "$n$",
+        "$p$"
+      ],
+      "solution_formulas": [
+        "$E[X] = np$",
+        "$L(p) = \\prod C_n^{x_i} p^{x_i}(1-p)^{n-x_i}$",
+        "$\\hat{p} = \\bar{x}/n$",
+        "二项分布有 $E[X] = np$，对似然函数 $L(p) = \\prod C_n^{x_i} p^{x_i}(1-p)^{n-x_i}$ 求导并令其为零，得 $\\hat{p} = \\bar{x}/n$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "标准自注意力机制的注意力打分矩阵大小为 $O(n^2)$。将上下文窗口从 4096（4K）暴力扩展到 32768（32K），打分矩阵所占显存理论上膨胀多少倍？",
+      "options": [
+        {
+          "label": "A",
+          "text": "512 倍"
+        },
+        {
+          "label": "B",
+          "text": "64 倍"
+        },
+        {
+          "label": "C",
+          "text": "8 倍"
+        },
+        {
+          "label": "D",
+          "text": "16 倍"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "注意力矩阵大小为 $n^2$，序列长度从 4K 扩到 32K，长度比为 8，矩阵元素数量比为 $8^2 = 64$ 倍。",
+      "topic": "大模型——注意力机制",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$O(n^2)$"
+      ],
+      "solution_formulas": [
+        "$n^2$",
+        "$8^2 = 64$",
+        "注意力矩阵大小为 $n^2$，序列长度从 4K 扩到 32K，长度比为 8，矩阵元素数量比为 $8^2 = 64$ 倍。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q011",
+      "source_number": 11,
+      "type": "single",
+      "stem": "在 Transformer 的标准缩放点积注意力中，为什么要除以 $\\sqrt{d_k}$？",
+      "options": [
+        {
+          "label": "A",
+          "text": "降低计算复杂度"
+        },
+        {
+          "label": "B",
+          "text": "避免点积结果过大导致 Softmax 进入饱和区，梯度极小"
+        },
+        {
+          "label": "C",
+          "text": "对查询和键向量的模长进行归一化"
+        },
+        {
+          "label": "D",
+          "text": "防止梯度消失，使训练更加稳定"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "当 $d_k$ 较大时，$Q \\cdot K^T$ 的方差为 $d_k$，值过大会让 softmax 进入饱和区，梯度近 0。除以 $\\sqrt{d_k}$ 把方差归一化为 1。A 计算复杂度无变化；C 仅做缩放不是模长归一化；D 描述方向反了——是防止梯度过小（饱和）。",
+      "topic": "大模型——注意力机制",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$\\sqrt{d_k}$"
+      ],
+      "solution_formulas": [
+        "$d_k$",
+        "$Q \\cdot K^T$",
+        "$\\sqrt{d_k}$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "PCA 降维：数据矩阵 $X \\in \\mathbb{R}^{n \\times d}$，投影矩阵 $W \\in \\mathbb{R}^{d \\times k}$，降维后 $Z = XW \\in \\mathbb{R}^{n \\times k}$，重构矩阵 $\\hat{X} = ZW^T$，则 $\\hat{X}$ 的维度是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$n \\times k$"
+        },
+        {
+          "label": "B",
+          "text": "$n \\times d$"
+        },
+        {
+          "label": "C",
+          "text": "$d \\times d$"
+        },
+        {
+          "label": "D",
+          "text": "$k \\times d$"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "$Z \\in \\mathbb{R}^{n \\times k}$，再乘 $W^T \\in \\mathbb{R}^{k \\times d}$，得 $\\hat{X} \\in \\mathbb{R}^{n \\times d}$，恢复为原始维度。",
+      "topic": "数学——线性代数/PCA",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$X \\in \\mathbb{R}^{n \\times d}$",
+        "$W \\in \\mathbb{R}^{d \\times k}$",
+        "$Z = XW \\in \\mathbb{R}^{n \\times k}$",
+        "$\\hat{X} = ZW^T$",
+        "$\\hat{X}$",
+        "PCA 降维：数据矩阵 $X \\in \\mathbb{R}^{n \\times d}$，投影矩阵 $W \\in \\mathbb{R}^{d \\times k}$，降维后 $Z = XW \\in \\mathbb{R}^{n \\times k}$，重构矩阵 $\\hat{X} = ZW^T$，则 $\\hat{X}$ 的维度是？"
+      ],
+      "solution_formulas": [
+        "$Z \\in \\mathbb{R}^{n \\times k}$",
+        "$W^T \\in \\mathbb{R}^{k \\times d}$",
+        "$\\hat{X} \\in \\mathbb{R}^{n \\times d}$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "某电商平台逻辑回归模型，回归斜率 1.5，截距 $-15$。某用户停留 10 分钟，是潜在用户的概率是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "0.4"
+        },
+        {
+          "label": "B",
+          "text": "0.5"
+        },
+        {
+          "label": "C",
+          "text": "1"
+        },
+        {
+          "label": "D",
+          "text": "0.9"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "$z = 1.5 \\times 10 + (-15) = 0$，$\\text{sigmoid}(0) = 0.5$。",
+      "topic": "机器学习——逻辑回归",
+      "difficulty": "未标注",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$-15$"
+      ],
+      "solution_formulas": [
+        "$z = 1.5 \\times 10 + (-15) = 0$",
+        "$\\text{sigmoid}(0) = 0.5$",
+        "$z = 1.5 \\times 10 + (-15) = 0$，$\\text{sigmoid}(0) = 0.5$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "某模型经过 SFT 后，出现了”过度道歉”现象（如频繁说”抱歉，作为一个 AI 助手…“）。最可能的原因是什么？",
+      "options": [
+        {
+          "label": "A",
+          "text": "训练时使用了混合精度（FP16），导致数值精度损失"
+        },
+        {
+          "label": "B",
+          "text": "SFT 的学习率设置过高，导致模型参数更新过度"
+        },
+        {
+          "label": "C",
+          "text": "模型的参数量太小，无法承载复杂的指令遵循能力"
+        },
+        {
+          "label": "D",
+          "text": "训练数据中包含大量安全审核后的样本，模型学习到了保守的回答风格"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "SFT 模型行为来自训练数据分布，含大量安全审核样本会让模型拟合保守回复风格。A 数值精度问题不会引起特定语言模式；B 学习率过高表现为发散或混乱输出，不是统一的道歉模式；C 小模型可能能力不足但不必然过度道歉。",
+      "topic": "大模型——SFT",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q015",
+      "source_number": 15,
+      "type": "single",
+      "stem": "贝叶斯网络中，链式结构 $A \\to B \\to C$，在 $B$ 已被观测（给定）时，$A$ 与 $C$ 的关系是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$A$ 与 $C$ 完全相关"
+        },
+        {
+          "label": "B",
+          "text": "$A$ 与 $C$ 条件独立（给定 $B$）"
+        },
+        {
+          "label": "C",
+          "text": "$A$ 与 $C$ 边缘独立"
+        },
+        {
+          "label": "D",
+          "text": "$A$ 与 $C$ 的关系与 $B$ 是否被观测无关"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "链式结构中 $B$ 被观测后，按 d-separation 规则阻塞 $A$ 到 $C$ 的信息通路，故 $A \\perp C \\mid B$。A 不观测 $B$ 时 $A$ 和 $C$ 通过 $B$ 间接相关；C 边缘上 $A$ 与 $C$ 通过 $B$ 仍相关；D 错误，$B$ 是否观测决定了独立性。",
+      "topic": "数学——概率论/贝叶斯网络",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$A \\to B \\to C$",
+        "$B$",
+        "$A$",
+        "$C$"
+      ],
+      "solution_formulas": [
+        "$B$",
+        "$A$",
+        "$C$",
+        "$A \\perp C \\mid B$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q016",
+      "source_number": 16,
+      "type": "multiple",
+      "stem": "关于 KV 缓存机制在大模型推理中的作用，以下说法正确的有：",
+      "options": [
+        {
+          "label": "A",
+          "text": "使用 KV 缓存后，自注意力计算复杂度从 $O(n^2)$ 降低到 $O(n)$"
+        },
+        {
+          "label": "B",
+          "text": "KV 缓存存储的是历史 token 的 Key 和 Value 向量"
+        },
+        {
+          "label": "C",
+          "text": "Query 向量不会被缓存，因为每个新 token 的 Query 需要重新计算"
+        },
+        {
+          "label": "D",
+          "text": "KV 缓存的大小与序列长度、批大小、层数、头数成正比"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "* A 正确：每生成一个新 token 只需对 1 个 Q 与所有历史 K/V 做点积，单步复杂度从 $O(n^2)$ 降到 $O(n)$\n* B 正确：缓存的内容就是历史 token 的 Key 和 Value 投影向量\n* C 正确：当前位置的 Query 是即时计算的，不需要也不会被缓存\n* D 正确：KV 缓存总量为 $2 \\times \\text{layers} \\times \\text{heads} \\times n \\times d_k$，与这些维度均成正比",
+      "topic": "大模型——推理优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "$O(n^2)$",
+        "$O(n)$",
+        "$2 \\times \\text{layers} \\times \\text{heads} \\times n \\times d_k$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q017",
+      "source_number": 17,
+      "type": "multiple",
+      "stem": "对于数据集 ${3, 3, 4, 5, 7, 8}$，以下描述正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "中位数为 5"
+        },
+        {
+          "label": "B",
+          "text": "方差为 $\\frac{10}{3}$"
+        },
+        {
+          "label": "C",
+          "text": "平均数为 5"
+        },
+        {
+          "label": "D",
+          "text": "众数为 3"
+        }
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "* A 错误：排序后为 ${3, 3, 4, 5, 7, 8}$，偶数个数据中位数为 $(4+5)/2 = 4.5 \\neq 5$\n* B 正确：均值 5，方差 $= [(3-5)^2 \\times 2 + (4-5)^2 + (5-5)^2 + (7-5)^2 + (8-5)^2] / 6 = 20/6 = 10/3$\n* C 正确：$(3+3+4+5+7+8)/6 = 30/6 = 5$\n* D 正确：3 出现 2 次，是出现次数最多的值",
+      "topic": "数学——统计",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "${3, 3, 4, 5, 7, 8}$"
+      ],
+      "solution_formulas": [
+        "${3, 3, 4, 5, 7, 8}$",
+        "$(4+5)/2 = 4.5 \\neq 5$",
+        "$= [(3-5)^2 \\times 2 + (4-5)^2 + (5-5)^2 + (7-5)^2 + (8-5)^2] / 6 = 20/6 = 10/3$",
+        "$(3+3+4+5+7+8)/6 = 30/6 = 5$",
+        "* A 错误：排序后为 ${3, 3, 4, 5, 7, 8}$，偶数个数据中位数为 $(4+5)/2 = 4.5 \\neq 5$",
+        "* B 正确：均值 5，方差 $= [(3-5)^2 \\times 2 + (4-5)^2 + (5-5)^2 + (7-5)^2 + (8-5)^2] / 6 = 20/6 = 10/3$",
+        "* C 正确：$(3+3+4+5+7+8)/6 = 30/6 = 5$"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "关于特征处理与选择，下列说法中正确的有：",
+      "options": [
+        {
+          "label": "A",
+          "text": "嵌入式方法（如 Lasso）通过 $L_1$ 正则实现特征选择；与之相比，过滤式方法完全不考虑特征间的组合效应"
+        },
+        {
+          "label": "B",
+          "text": "在使用 PCA 降维前必须先进行标准化，因为 PCA 寻找最大方差方向，不缩放会偏向量纲大的变量"
+        },
+        {
+          "label": "C",
+          "text": "Permutation Importance 处理强相关特征组时往往低估单个特征重要性，因为洗牌一个特征后模型仍能从冗余特征获取信息"
+        },
+        {
+          "label": "D",
+          "text": "特征哈希虽能处理高基数类别特征，但哈希冲突本质上等于给特征引入不可控的加性噪声"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "四项均正确：A Lasso 嵌入式选择 vs 过滤式逐特征独立打分；B PCA 对方差敏感必须标准化；C 共线特征互补导致重要性被低估；D 哈希冲突让多特征映射到同一桶，等价于加性噪声。",
+      "topic": "机器学习——特征工程",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "在 INT8 量化部署中，以下哪些因素会影响量化后模型的精度？",
+      "options": [
+        {
+          "label": "A",
+          "text": "校准集分布是否接近真实数据"
+        },
+        {
+          "label": "B",
+          "text": "激活范围统计是否稳定"
+        },
+        {
+          "label": "C",
+          "text": "是否存在离群值导致 scale 不合理"
+        },
+        {
+          "label": "D",
+          "text": "是否使用了浮点数进行训练"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "* A 正确：校准集决定 scale/zero-point 的统计估计，分布偏离真实数据会让量化参数失真\n* B 正确：激活动态范围统计不稳会让 scale 估计偏差大，导致截断或精度损失\n* C 正确：少数离群值会拉大 scale，使绝大多数正常值落在很少的量化等级里\n* D 错误：浮点数训练是 INT8 部署的前提，它本身不属于”影响量化精度”的因素",
+      "topic": "大模型——量化部署",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260509-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "关于模型推理中 Prefill 和 Decode 阶段的区别，下列说法正确的有：",
+      "options": [
+        {
+          "label": "A",
+          "text": "Prefill 阶段计算并缓存 KVCache，Decode 阶段复用 KVCache，仅新增计算当前 token 的 K/V"
+        },
+        {
+          "label": "B",
+          "text": "Prefill 一次性处理所有输入 token，Decode 阶段逐 token 处理"
+        },
+        {
+          "label": "C",
+          "text": "Prefill 仅存在于生成式模型推理，Decode 阶段存在于所有模型推理"
+        },
+        {
+          "label": "D",
+          "text": "Prefill 耗时与输入 token 数量正相关，Decode 阶段耗时与生成 token 数量正相关"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "* A 正确：Prefill 一次性把 prompt 全部 K/V 算出并缓存；Decode 每步只算当前 token 的 K/V 并追加\n* B 正确：Prefill 是并行处理整段输入，Decode 是自回归逐 token 生成\n* C 错误：Decode（逐 token 自回归）只存在于生成式模型，非生成模型（如 BERT 编码器）没有 Decode 阶段\n* D 正确：Prefill 是 compute-bound，耗时随输入长度线性增长；Decode 是 memory-bound，耗时随生成 token 数线性增长",
+      "topic": "大模型——推理优化",
+      "difficulty": "未标注",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}

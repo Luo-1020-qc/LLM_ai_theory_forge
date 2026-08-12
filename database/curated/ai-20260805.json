@@ -1,0 +1,840 @@
+{
+  "source": {
+    "id": "AIEXAM-20260805",
+    "exam_date": "2026-08-05",
+    "job_track": "互联网公司 AI 岗",
+    "url": "https://onefly.top/zero2Leetcode/04_real_interviews/index.html#ai-20260805",
+    "license": "EPL-2.0（源仓库）",
+    "advertised_choice_count": 20,
+    "parsed_choice_count": 20,
+    "source_completeness": "full",
+    "collected_at": "2026-08-11"
+  },
+  "questions": [
+    {
+      "id": "AIEXAM-20260805-Q001",
+      "source_number": 1,
+      "type": "single",
+      "stem": "Softmax 定义为 $\\operatorname{softmax}(x)_i=\\dfrac{e^{x_i}}{\\sum_j e^{x_j}}$。当部分 $x_i$ 很大时，正确的数值稳定化实现是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "先对 $x$ 做 L2 归一化"
+        },
+        {
+          "label": "B",
+          "text": "将所有 $x_i$ 除以 $\\max(x)$"
+        },
+        {
+          "label": "C",
+          "text": "只把中间变量改为 FP64"
+        },
+        {
+          "label": "D",
+          "text": "将所有 $x_i$ 减去 $\\max(x)$ 后再计算 Softmax"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "分子、分母同乘 $e^{-\\max(x)}$ 不改变结果，而所有指数自变量都变为非正数：\n\\[\\operatorname{softmax}(x)_i =\\frac{e^{x_i-\\max(x)}}{\\sum_j e^{x_j-\\max(x)}}.\\]\n这样指数值落在 $(0,1]$ 内，可避免上溢。归一化或除以最大值都会改变分量间差值。",
+      "topic": "深度学习—Softmax/数值稳定性",
+      "difficulty": "入门",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$\\operatorname{softmax}(x)_i=\\dfrac{e^{x_i}}{\\sum_j e^{x_j}}$",
+        "$x_i$",
+        "Softmax 定义为 $\\operatorname{softmax}(x)_i=\\dfrac{e^{x_i}}{\\sum_j e^{x_j}}$。当部分 $x_i$ 很大时，正确的数值稳定化实现是？"
+      ],
+      "solution_formulas": [
+        "$e^{-\\max(x)}$",
+        "$(0,1]$",
+        "\\[\\operatorname{softmax}(x)_i =\\frac{e^{x_i-\\max(x)}}{\\sum_j e^{x_j-\\max(x)}}.\\]"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q002",
+      "source_number": 2,
+      "type": "single",
+      "stem": "视觉问答（Visual Question Answering，VQA）的典型输入和输出分别是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "输入为图像和文本问题，输出为文本答案"
+        },
+        {
+          "label": "B",
+          "text": "输入为文本，输出为图像"
+        },
+        {
+          "label": "C",
+          "text": "输入为文本答案，输出为图像和问题"
+        },
+        {
+          "label": "D",
+          "text": "输入为图像，输出仍为图像"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "VQA 同时理解图像内容与自然语言问题，并生成或选择文本答案。B 更接近文生图任务，D 更接近图像变换任务。",
+      "topic": "多模态—VQA",
+      "difficulty": "入门",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q003",
+      "source_number": 3,
+      "type": "single",
+      "stem": "某分层强化学习任务依次执行 $A\\to B\\to C\\to D$。$A$ 成功奖励为 $5$；$B$ 成功奖励为 $8$，失败惩罚为 $-8/4$。若 $B$ 失败，还要追加被跳过任务 $C,D$ 的成功奖励 $12,16$ 的平均值作为负惩罚。已知 $A$ 成功、$B$ 失败，总奖励为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$-4$"
+        },
+        {
+          "label": "B",
+          "text": "$-11$"
+        },
+        {
+          "label": "C",
+          "text": "$-25$"
+        },
+        {
+          "label": "D",
+          "text": "$3$"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "$A$ 的奖励为 $5$，$B$ 的基础惩罚为 $-2$，级联惩罚为\n\\[-\\frac{12+16}{2}=-14.\\]\n因此总奖励为 $5-2-14=-11$。被跳过的任务不再单独计分。",
+      "topic": "强化学习—分层任务/奖励计算",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$A\\to B\\to C\\to D$",
+        "$A$",
+        "$5$",
+        "$B$",
+        "$8$",
+        "$-8/4$",
+        "$C,D$",
+        "$12,16$"
+      ],
+      "solution_formulas": [
+        "$A$",
+        "$5$",
+        "$B$",
+        "$-2$",
+        "$5-2-14=-11$",
+        "\\[-\\frac{12+16}{2}=-14.\\]",
+        "因此总奖励为 $5-2-14=-11$。被跳过的任务不再单独计分。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q004",
+      "source_number": 4,
+      "type": "single",
+      "stem": "向量 $v_x=[2,3]^T$ 与 $v_y=[4,1]^T$ 的欧氏距离为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$\\sqrt{5}$"
+        },
+        {
+          "label": "B",
+          "text": "$\\sqrt{13}$"
+        },
+        {
+          "label": "C",
+          "text": "$\\sqrt{10}$"
+        },
+        {
+          "label": "D",
+          "text": "$\\sqrt{8}$"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "差向量为 $[-2,2]^T$，故\n\\[\\lVert v_x-v_y\\rVert_2=\\sqrt{(-2)^2+2^2}=\\sqrt{8}.\\]",
+      "topic": "数学—向量范数",
+      "difficulty": "入门",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$v_x=[2,3]^T$",
+        "$v_y=[4,1]^T$",
+        "向量 $v_x=[2,3]^T$ 与 $v_y=[4,1]^T$ 的欧氏距离为？"
+      ],
+      "solution_formulas": [
+        "$[-2,2]^T$",
+        "\\[\\lVert v_x-v_y\\rVert_2=\\sqrt{(-2)^2+2^2}=\\sqrt{8}.\\]"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q005",
+      "source_number": 5,
+      "type": "single",
+      "stem": "单个人工神经元满足 $x=2,w=1,b=0$，$y=wx+b$，损失 $L=\\dfrac12(y-t)^2$，标签 $t=5$。$\\dfrac{\\partial L}{\\partial w}$ 为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$-3$"
+        },
+        {
+          "label": "B",
+          "text": "$3$"
+        },
+        {
+          "label": "C",
+          "text": "$-6$"
+        },
+        {
+          "label": "D",
+          "text": "$6$"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "$y=2$，因此\n\\[\\frac{\\partial L}{\\partial w} =\\frac{\\partial L}{\\partial y}\\frac{\\partial y}{\\partial w} =(y-t)x=(2-5)\\times2=-6.\\]",
+      "topic": "深度学习—反向传播/链式法则",
+      "difficulty": "入门",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$x=2,w=1,b=0$",
+        "$y=wx+b$",
+        "$L=\\dfrac12(y-t)^2$",
+        "$t=5$",
+        "$\\dfrac{\\partial L}{\\partial w}$",
+        "单个人工神经元满足 $x=2,w=1,b=0$，$y=wx+b$，损失 $L=\\dfrac12(y-t)^2$，标签 $t=5$。$\\dfrac{\\partial L}{\\partial w}$ 为？"
+      ],
+      "solution_formulas": [
+        "$y=2$",
+        "\\[\\frac{\\partial L}{\\partial w} =\\frac{\\partial L}{\\partial y}\\frac{\\partial y}{\\partial w} =(y-t)x=(2-5)\\times2=-6.\\]",
+        "$y=2$，因此"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q006",
+      "source_number": 6,
+      "type": "single",
+      "stem": "一个 $1000\\times800$ 的评分矩阵使用截断 SVD，保留秩 $r=50$。若存储 $U\\in\\mathbb{R}^{1000\\times50}$、50 个奇异值和 $V^T\\in\\mathbb{R}^{50\\times800}$，存储空间约减少多少？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$88.74\\%$"
+        },
+        {
+          "label": "B",
+          "text": "$87.74\\%$"
+        },
+        {
+          "label": "C",
+          "text": "$85.74\\%$"
+        },
+        {
+          "label": "D",
+          "text": "$86.74\\%$"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "原矩阵存储 $800000$ 个数，截断 SVD 存储\n\\[1000\\times50+50+50\\times800=90050\\]\n个数，减少比例为 $1-90050/800000\\approx88.74\\%$。",
+      "topic": "数学—SVD/低秩压缩",
+      "difficulty": "中等",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$1000\\times800$",
+        "$r=50$",
+        "$U\\in\\mathbb{R}^{1000\\times50}$",
+        "$V^T\\in\\mathbb{R}^{50\\times800}$",
+        "一个 $1000\\times800$ 的评分矩阵使用截断 SVD，保留秩 $r=50$。若存储 $U\\in\\mathbb{R}^{1000\\times50}$、50 个奇异值和 $V^T\\in\\mathbb{R}^{50\\times800}$，存储空间约减少多少？"
+      ],
+      "solution_formulas": [
+        "$800000$",
+        "$1-90050/800000\\approx88.74\\%$",
+        "\\[1000\\times50+50+50\\times800=90050\\]"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q007",
+      "source_number": 7,
+      "type": "single",
+      "stem": "公司 A、B 分别供应 $70\\%$、$30\\%$ 的芯片，次品率分别为 $2\\%$、$4\\%$。随机抽到一个次品，它来自 B 的概率约为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$63.2\\%$"
+        },
+        {
+          "label": "B",
+          "text": "$53.8\\%$"
+        },
+        {
+          "label": "C",
+          "text": "$46.2\\%$"
+        },
+        {
+          "label": "D",
+          "text": "$30\\%$"
+        }
+      ],
+      "answer": [
+        "C"
+      ],
+      "explanation": "设 $D$ 表示次品，则\n\\[P(D)=0.7\\times0.02+0.3\\times0.04=0.026,\\] \\[P(B\\mid D)=\\frac{0.3\\times0.04}{0.026}\\approx46.2\\%.\\]",
+      "topic": "数学—贝叶斯公式",
+      "difficulty": "简单",
+      "is_calculation": true,
+      "prompt_formulas": [
+        "$70\\%$",
+        "$30\\%$",
+        "$2\\%$",
+        "$4\\%$"
+      ],
+      "solution_formulas": [
+        "$D$",
+        "\\[P(D)=0.7\\times0.02+0.3\\times0.04=0.026,\\]",
+        "\\[P(B\\mid D)=\\frac{0.3\\times0.04}{0.026}\\approx46.2\\%.\\]",
+        "\\[P(D)=0.7\\times0.02+0.3\\times0.04=0.026,\\] \\[P(B\\mid D)=\\frac{0.3\\times0.04}{0.026}\\approx46.2\\%.\\]"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q008",
+      "source_number": 8,
+      "type": "single",
+      "stem": "设 $x=(1,0,1)$、$y=(1,1,0)$，二者的余弦相似度为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$0.5$"
+        },
+        {
+          "label": "B",
+          "text": "$1$"
+        },
+        {
+          "label": "C",
+          "text": "$0.707$"
+        },
+        {
+          "label": "D",
+          "text": "$0.25$"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "$x^Ty=1$，且 $\\lVert x\\rVert_2=\\lVert y\\rVert_2=\\sqrt2$，所以\n\\[\\cos\\theta=\\frac{x^Ty}{\\lVert x\\rVert_2\\lVert y\\rVert_2}=\\frac12.\\]",
+      "topic": "数学—余弦相似度",
+      "difficulty": "入门",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$x=(1,0,1)$",
+        "$y=(1,1,0)$",
+        "设 $x=(1,0,1)$、$y=(1,1,0)$，二者的余弦相似度为？"
+      ],
+      "solution_formulas": [
+        "$x^Ty=1$",
+        "$\\lVert x\\rVert_2=\\lVert y\\rVert_2=\\sqrt2$",
+        "\\[\\cos\\theta=\\frac{x^Ty}{\\lVert x\\rVert_2\\lVert y\\rVert_2}=\\frac12.\\]",
+        "$x^Ty=1$，且 $\\lVert x\\rVert_2=\\lVert y\\rVert_2=\\sqrt2$，所以"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q009",
+      "source_number": 9,
+      "type": "single",
+      "stem": "给定三个点 $(0,1),(1,2),(2,5)$，其二次插值多项式在 $x=1.5$ 处的值为？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$3.125$"
+        },
+        {
+          "label": "B",
+          "text": "$3.5$"
+        },
+        {
+          "label": "C",
+          "text": "$3.75$"
+        },
+        {
+          "label": "D",
+          "text": "$3.25$"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "设 $p(x)=ax^2+bx+c$，代入三点可得 $a=1,b=0,c=1$，即 $p(x)=x^2+1$。因此 $p(1.5)=3.25$。",
+      "topic": "数学—多项式插值",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$(0,1),(1,2),(2,5)$",
+        "$x=1.5$",
+        "给定三个点 $(0,1),(1,2),(2,5)$，其二次插值多项式在 $x=1.5$ 处的值为？"
+      ],
+      "solution_formulas": [
+        "$p(x)=ax^2+bx+c$",
+        "$a=1,b=0,c=1$",
+        "$p(x)=x^2+1$",
+        "$p(1.5)=3.25$",
+        "设 $p(x)=ax^2+bx+c$，代入三点可得 $a=1,b=0,c=1$，即 $p(x)=x^2+1$。因此 $p(1.5)=3.25$。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q010",
+      "source_number": 10,
+      "type": "single",
+      "stem": "RAG 语义检索中，查询向量 $q=[0.8,1.2,1.6,2.0]$，案例向量 $c=[1.0,0.8,1.4,1.8]$。余弦相似度保留三位小数，并按“$\\ge0.95$ 为极高匹配，$[0.85,0.95)$ 为高匹配”判断，正确的是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$0.842$，中等匹配"
+        },
+        {
+          "label": "B",
+          "text": "$0.989$，极高匹配"
+        },
+        {
+          "label": "C",
+          "text": "$0.948$，高匹配"
+        },
+        {
+          "label": "D",
+          "text": "$0.896$，高匹配"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "$q^Tc=7.6$，$\\lVert q\\rVert_2=\\sqrt{8.64}$，$\\lVert c\\rVert_2=\\sqrt{6.84}$，所以\n\\[\\cos(q,c)=\\frac{7.6}{\\sqrt{8.64}\\sqrt{6.84}}\\approx0.989.\\]",
+      "topic": "大模型—RAG/语义检索",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$q=[0.8,1.2,1.6,2.0]$",
+        "$c=[1.0,0.8,1.4,1.8]$",
+        "$\\ge0.95$",
+        "$[0.85,0.95)$",
+        "RAG 语义检索中，查询向量 $q=[0.8,1.2,1.6,2.0]$，案例向量 $c=[1.0,0.8,1.4,1.8]$。余弦相似度保留三位小数，并按“$\\ge0.95$ 为极高匹配，$[0.85,0.95)$ 为高匹配”判断，正确的是？"
+      ],
+      "solution_formulas": [
+        "$q^Tc=7.6$",
+        "$\\lVert q\\rVert_2=\\sqrt{8.64}$",
+        "$\\lVert c\\rVert_2=\\sqrt{6.84}$",
+        "\\[\\cos(q,c)=\\frac{7.6}{\\sqrt{8.64}\\sqrt{6.84}}\\approx0.989.\\]",
+        "$q^Tc=7.6$，$\\lVert q\\rVert_2=\\sqrt{8.64}$，$\\lVert c\\rVert_2=\\sqrt{6.84}$，所以"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q011",
+      "source_number": 11,
+      "type": "single",
+      "stem": "最大似然估计（MLE）的核心操作是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "直接把样本均值和方差作为任意分布的参数"
+        },
+        {
+          "label": "B",
+          "text": "先为参数指定先验分布，再计算后验分布"
+        },
+        {
+          "label": "C",
+          "text": "只通过增加样本量得到真实参数"
+        },
+        {
+          "label": "D",
+          "text": "寻找使观测数据出现的似然最大的参数"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "MLE 求解\n\\[\\hat\\theta=\\arg\\max_\\theta L(\\theta) =\\arg\\max_\\theta P(X\\mid\\theta).\\]\nB 描述的是贝叶斯估计，C 是估计量可能具有的相合性，不是 MLE 的定义。",
+      "topic": "机器学习—最大似然估计",
+      "difficulty": "入门",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [
+        "\\[\\hat\\theta=\\arg\\max_\\theta L(\\theta) =\\arg\\max_\\theta P(X\\mid\\theta).\\]"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q012",
+      "source_number": 12,
+      "type": "single",
+      "stem": "评价逻辑回归分类性能的常用指标不包括？",
+      "options": [
+        {
+          "label": "A",
+          "text": "对数损失"
+        },
+        {
+          "label": "B",
+          "text": "AUC"
+        },
+        {
+          "label": "C",
+          "text": "准确率"
+        },
+        {
+          "label": "D",
+          "text": "均方误差"
+        }
+      ],
+      "answer": [
+        "D"
+      ],
+      "explanation": "逻辑回归用于分类，常用对数损失、AUC、准确率等指标。均方误差主要用于回归任务，并非逻辑回归的典型评价指标。",
+      "topic": "机器学习—分类指标",
+      "difficulty": "入门",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q013",
+      "source_number": 13,
+      "type": "single",
+      "stem": "端侧推理时，哪项因素最可能使峰值内存显著超过模型文件大小？",
+      "options": [
+        {
+          "label": "A",
+          "text": "中间激活、临时缓冲区与多分支并发执行"
+        },
+        {
+          "label": "B",
+          "text": "输出类别数固定"
+        },
+        {
+          "label": "C",
+          "text": "训练集规模大"
+        },
+        {
+          "label": "D",
+          "text": "标签类别少"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "模型文件主要保存权重，推理运行时还需要中间激活、算子工作区和并发分支的中间结果。训练集通常不会在推理阶段载入。",
+      "topic": "深度学习—推理部署/内存占用",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q014",
+      "source_number": 14,
+      "type": "single",
+      "stem": "描述一组数据集中趋势最合适的统计量是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "偏度"
+        },
+        {
+          "label": "B",
+          "text": "均值"
+        },
+        {
+          "label": "C",
+          "text": "标准差"
+        },
+        {
+          "label": "D",
+          "text": "方差"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "explanation": "均值、中位数和众数描述数据的中心位置；方差、标准差描述离散程度；偏度描述分布的不对称程度。",
+      "topic": "数学—描述统计",
+      "difficulty": "入门",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q015",
+      "source_number": 15,
+      "type": "single",
+      "stem": "GSPO 引入序列级重要性采样比率的主要原因是？",
+      "options": [
+        {
+          "label": "A",
+          "text": "缓解长序列中 token 级比率带来的高方差与训练不稳定"
+        },
+        {
+          "label": "B",
+          "text": "消除奖励模型的一切偏差"
+        },
+        {
+          "label": "C",
+          "text": "保证探索能力无限增加"
+        },
+        {
+          "label": "D",
+          "text": "将算法强制变为离线策略"
+        }
+      ],
+      "answer": [
+        "A"
+      ],
+      "explanation": "序列级比率与序列级奖励更一致，可减少长序列逐 token 比率波动和裁剪所引入的不稳定。它并不能消除奖励模型偏差，也不决定算法是否为离线策略。\n### 二、多选题",
+      "topic": "大模型—RLHF/策略优化",
+      "difficulty": "困难",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q016",
+      "source_number": 16,
+      "type": "multiple",
+      "stem": "关于单位向量 $v$ 定义的 Householder 矩阵 $H=I-2vv^T$，正确的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "$H$ 是正交矩阵"
+        },
+        {
+          "label": "B",
+          "text": "$\\det(H)=+1$"
+        },
+        {
+          "label": "C",
+          "text": "Householder QR 通常比经典 Gram-Schmidt 数值稳定"
+        },
+        {
+          "label": "D",
+          "text": "$H$ 是对称矩阵"
+        }
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "$H^T=H$，且\n\\[H^TH=H^2=(I-2vv^T)^2=I.\\]\n因此 H 对称且正交。它在 $v$ 方向上的特征值为 $-1$，其余方向为 $1$，故行列式为 $-1$。Householder 变换也具有较好的数值稳定性。",
+      "topic": "数学—Householder 变换/QR 分解",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$v$",
+        "$H=I-2vv^T$",
+        "关于单位向量 $v$ 定义的 Householder 矩阵 $H=I-2vv^T$，正确的有？"
+      ],
+      "solution_formulas": [
+        "$H^T=H$",
+        "$v$",
+        "$-1$",
+        "$1$",
+        "\\[H^TH=H^2=(I-2vv^T)^2=I.\\]",
+        "$H^T=H$，且"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q017",
+      "source_number": 17,
+      "type": "multiple",
+      "stem": "关于早期停止（Early Stopping），正确的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "可以设置 patience，允许验证指标若干轮没有改善"
+        },
+        {
+          "label": "B",
+          "text": "可依据验证集表现选择合适的训练轮数"
+        },
+        {
+          "label": "C",
+          "text": "验证集最优的模型一定也是测试集最优"
+        },
+        {
+          "label": "D",
+          "text": "它通过减少每轮使用的数据量来实现正则化"
+        }
+      ],
+      "answer": [
+        "A",
+        "B"
+      ],
+      "explanation": "patience 可容忍验证指标的短期波动；早停相当于把训练轮数作为超参数。验证集最优不保证测试集一定最优，且早停限制的是训练进程，而不是每轮的数据量。",
+      "topic": "机器学习—正则化/早停",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q018",
+      "source_number": 18,
+      "type": "multiple",
+      "stem": "梯度矩阵 $A\\in\\mathbb{R}^{1000\\times2000}$ 的秩为 $r(A)=500$。下列说法正确的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "高维零空间意味着存在许多一阶变化为零的参数方向，可能对应平坦区域"
+        },
+        {
+          "label": "B",
+          "text": "零空间维度越高，梯度覆盖的有效方向越少"
+        },
+        {
+          "label": "C",
+          "text": "$\\dim\\mathcal{N}(A)=1500$"
+        },
+        {
+          "label": "D",
+          "text": "增大批次大小必然直接降低零空间维度"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "由秩—零化度定理，\n\\[\\dim\\mathcal{N}(A)=2000-r(A)=1500.\\]\n若 $Ad=0$，方向 $d$ 不被当前梯度矩阵覆盖。增大批次可能增加行数，但若新样本梯度没有带来新的独立方向，矩阵秩不会增加，因此 D 的“必然”错误。",
+      "topic": "数学—秩与零空间",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [
+        "$A\\in\\mathbb{R}^{1000\\times2000}$",
+        "$r(A)=500$",
+        "梯度矩阵 $A\\in\\mathbb{R}^{1000\\times2000}$ 的秩为 $r(A)=500$。下列说法正确的有？"
+      ],
+      "solution_formulas": [
+        "$Ad=0$",
+        "$d$",
+        "\\[\\dim\\mathcal{N}(A)=2000-r(A)=1500.\\]",
+        "若 $Ad=0$，方向 $d$ 不被当前梯度矩阵覆盖。增大批次可能增加行数，但若新样本梯度没有带来新的独立方向，矩阵秩不会增加，因此 D 的“必然”错误。"
+      ],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q019",
+      "source_number": 19,
+      "type": "multiple",
+      "stem": "关于在线逻辑回归，正确的有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "逐样本更新可视为 batch size 为 $1$ 的随机梯度下降"
+        },
+        {
+          "label": "B",
+          "text": "AdaGrad 等自适应学习率方法适合稀疏特征场景"
+        },
+        {
+          "label": "C",
+          "text": "面对概念漂移，在线更新通常比一次性批量训练更易适应分布变化"
+        },
+        {
+          "label": "D",
+          "text": "固定学习率一定保证参数严格收敛到全局最优点"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "在线学习持续吸收新样本，适合数据分布变化；AdaGrad 能按维度调节稀疏特征的有效步长。固定学习率的随机梯度通常会在最优点附近波动，不能保证严格收敛。",
+      "topic": "机器学习—逻辑回归/在线学习",
+      "difficulty": "中等",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    },
+    {
+      "id": "AIEXAM-20260805-Q020",
+      "source_number": 20,
+      "type": "multiple",
+      "stem": "训练大模型时常见的工程实践或稳定性手段有？",
+      "options": [
+        {
+          "label": "A",
+          "text": "学习率预热（warmup）"
+        },
+        {
+          "label": "B",
+          "text": "从头到尾固定学习率且不做任何调度"
+        },
+        {
+          "label": "C",
+          "text": "梯度裁剪"
+        },
+        {
+          "label": "D",
+          "text": "FP16/BF16 混合精度训练"
+        }
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "warmup 可降低训练初期发散风险；梯度裁剪抑制梯度尖峰；混合精度降低显存和带宽开销。工程中通常会在 warmup 后继续采用线性或余弦衰减，而非全程固定学习率。",
+      "topic": "大模型—训练工程/稳定性",
+      "difficulty": "简单",
+      "is_calculation": false,
+      "prompt_formulas": [],
+      "solution_formulas": [],
+      "review_status": "usable",
+      "review_note": ""
+    }
+  ]
+}
