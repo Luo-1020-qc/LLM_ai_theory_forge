@@ -1,4 +1,4 @@
-(function () {
+(function (root) {
   "use strict";
 
   var SESSION_STORAGE_KEY = "ai-theory-forge-last-session";
@@ -10,7 +10,7 @@
     { id: "catalog", label: "题源档案", index: "04" }
   ];
 
-  var app = document.getElementById("app");
+  var app = typeof document !== "undefined" ? document.getElementById("app") : null;
   var state = {
     catalog: null,
     catalogError: "",
@@ -45,43 +45,60 @@
       .replace(/'/g, "&#39;");
   }
 
-  function renderMath(value) {
+  function fallbackMath(value) {
     var math = String(value == null ? "" : value).trim();
+    var original = math;
     math = math
-      .replace(/\\left|\\right/g, "")
+      .replace(/\\(?:left|right)(?![A-Za-z])/g, "")
       .replace(/\\mathbb\{R\}/g, "ℝ")
       .replace(/\\mathbb\{N\}/g, "ℕ")
       .replace(/\\mathbb\{Z\}/g, "ℤ")
       .replace(/\\times/g, "×")
       .replace(/\\cdot/g, "·")
-      .replace(/\\geq|\\ge/g, "≥")
-      .replace(/\\leq|\\le/g, "≤")
-      .replace(/\\neq/g, "≠")
+      .replace(/\\mid/g, "∣")
+      .replace(/\\(?:geq|ge)(?![A-Za-z])/g, "≥")
+      .replace(/\\(?:leq|le)(?![A-Za-z])/g, "≤")
+      .replace(/\\(?:neq|ne)(?![A-Za-z])/g, "≠")
       .replace(/\\approx/g, "≈")
-      .replace(/\\to/g, "→")
+      .replace(/\\(?:to|rightarrow)(?![A-Za-z])/g, "→")
+      .replace(/\\leftarrow/g, "←")
       .replace(/\\infty/g, "∞")
       .replace(/\\ldots|\\cdots/g, "…")
-      .replace(/\\in/g, "∈")
+      .replace(/\\in(?![A-Za-z])/g, "∈")
       .replace(/\\sum/g, "∑")
       .replace(/\\prod/g, "∏")
+      .replace(/\\partial/g, "∂")
       .replace(/\\rho/g, "ρ")
       .replace(/\\mu/g, "μ")
       .replace(/\\sigma/g, "σ")
       .replace(/\\pi/g, "π")
       .replace(/\\theta/g, "θ")
       .replace(/\\lambda/g, "λ")
+      .replace(/\\alpha/g, "α")
+      .replace(/\\beta/g, "β")
+      .replace(/\\gamma/g, "γ")
+      .replace(/\\Delta/g, "Δ")
       .replace(/\\exp/g, "exp")
+      .replace(/\\log/g, "log")
+      .replace(/\\lVert|\\rVert/g, "‖")
+      .replace(/\\lvert|\\rvert/g, "|")
       .replace(/\\text\{([^{}]*)\}/g, "$1")
       .replace(/\\operatorname\{([^{}]*)\}/g, "$1")
       .replace(/\\hat\{([^{}]+)\}/g, "$1̂")
       .replace(/\\bar\{([^{}]+)\}/g, "$1̄")
+      .replace(/\\vec\{([^{}]+)\}/g, "$1⃗")
       .replace(/\\sqrt\{([^{}]+)\}/g, "√($1)");
 
     var previous;
     do {
       previous = math;
-      math = math.replace(/\\frac\{([^{}]+)\}\{([^{}]+)\}/g, "($1)/($2)");
+      math = math.replace(/\\(?:d?frac)\{([^{}]+)\}\{([^{}]+)\}/g, "($1)/($2)");
     } while (math !== previous);
+
+    if (/\\[A-Za-z]+/.test(math)) {
+      // Never silently delete unsupported operators (e.g. integrals or matrices).
+      return '<code class="math-inline math-fallback" title="公式暂无法排版，显示原始公式">' + escapeHtml(original) + "</code>";
+    }
 
     var safe = escapeHtml(math);
     safe = safe
@@ -93,31 +110,93 @@
       .replace(/\\,/g, " ")
       .replace(/\\!/g, "")
       .replace(/\\([{}])/g, "$1");
-    return '<span class="math-inline">' + safe + "</span>";
+    return '<span class="math-inline math-fallback">' + safe + "</span>";
   }
 
-  function renderInlineMath(value) {
+  function normalizeMathSource(value) {
+    var source = String(value == null ? "" : value).trim();
+    var pairs = [["$$", "$$"], ["\\[", "\\]"], ["\\(", "\\)"], ["$", "$"]];
+    pairs.some(function (pair) {
+      if (source.startsWith(pair[0]) && source.endsWith(pair[1]) && source.length >= pair[0].length + pair[1].length) {
+        source = source.slice(pair[0].length, -pair[1].length).trim();
+        return true;
+      }
+      return false;
+    });
+    return source
+      .replace(/\\exp!\s*/g, "\\exp ")
+      .replace(/[’‘]/g, "'");
+  }
+
+  function renderMath(value, displayMode) {
+    var math = normalizeMathSource(value);
+    if (!math) return "";
+    if (root.katex && typeof root.katex.renderToString === "function") {
+      try {
+        return '<span class="math-rendered">' + root.katex.renderToString(math, {
+          displayMode: Boolean(displayMode),
+          throwOnError: true,
+          strict: "ignore",
+          trust: false,
+          output: "htmlAndMathml"
+        }) + "</span>";
+      } catch (_error) {
+        // 异常题源仍以可读降级形式显示，不能把 TeX 命令原样暴露给用户。
+      }
+    }
+    return fallbackMath(math);
+  }
+
+  function tokenizeRichText(value) {
     var source = String(value == null ? "" : value);
-    var output = "";
+    var tokens = [];
     var cursor = 0;
-    var pattern = /\$([^$\n]+)\$/g;
+    // Escaped dollars are literal text; strong tokens are visited recursively below.
+    var pattern = /(?<!\\)\$\$([\s\S]+?)(?<!\\)\$\$|\\\[([\s\S]+?)\\\]|\\\(([\s\S]+?)\\\)|(?<!\\)\$((?:\\[^\n]|[^$\\\n])+?)(?<!\\)\$|\*\*([^*]+?)\*\*/g;
     var match;
     while ((match = pattern.exec(source)) !== null) {
-      output += escapeHtml(source.slice(cursor, match.index));
-      output += renderMath(match[1]);
+      if (match.index > cursor) tokens.push({ type: "text", value: source.slice(cursor, match.index) });
+      if (match[1] != null || match[2] != null) {
+        tokens.push({ type: "display-math", value: match[1] ?? match[2] });
+      } else if (match[3] != null || match[4] != null) {
+        tokens.push({ type: "inline-math", value: match[3] ?? match[4] });
+      } else {
+        tokens.push({ type: "strong", value: match[5] });
+      }
       cursor = pattern.lastIndex;
     }
-    output += escapeHtml(source.slice(cursor));
-    return output;
+    if (cursor < source.length) tokens.push({ type: "text", value: source.slice(cursor) });
+    return tokens;
+  }
+
+  function bareMathSource(value) {
+    var source = String(value == null ? "" : value).trim();
+    var strong = false;
+    if (source.startsWith("**")) {
+      source = source.slice(2).trim();
+      strong = true;
+    }
+    if (source.endsWith("**")) {
+      source = source.slice(0, -2).trim();
+      strong = true;
+    }
+    if (!source || /[$`]|\\[()[\]]/.test(source)) return null;
+    if (!/\\[A-Za-z]+/.test(source) || !/[=<>+\-*/^]/.test(source)) return null;
+    if (/[^A-Za-z0-9_{}()[\] ,.;:+\-*/^=<>\\|]/.test(source)) return null;
+    return { source: source, strong: strong };
   }
 
   function renderRichText(value) {
-    var source = String(value == null ? "" : value);
-    var pieces = source.split("**");
-    if (pieces.length === 1) return renderInlineMath(source);
-    return pieces.map(function (piece, index) {
-      var rendered = renderInlineMath(piece);
-      return index % 2 === 1 ? "<strong>" + rendered + "</strong>" : rendered;
+    var bareMath = bareMathSource(value);
+    if (bareMath) {
+      var rendered = renderMath(bareMath.source, false);
+      return bareMath.strong ? "<strong>" + rendered + "</strong>" : rendered;
+    }
+    return tokenizeRichText(value).map(function (token) {
+      if (token.type === "inline-math") return renderMath(token.value, false);
+      if (token.type === "display-math") return '<span class="math-display">' + renderMath(token.value, true) + "</span>";
+      if (token.type === "strong") return "<strong>" + renderRichText(token.value) + "</strong>";
+      return escapeHtml(token.value.replace(/\\\$/g, "$"));
     }).join("");
   }
 
@@ -199,24 +278,67 @@
 
   function formulaEntries(formulas) {
     var entries = [];
+    var seenMath = new Set();
+    var seenText = new Set();
+    function addMath(token) {
+      var key = formulaKey(token.value);
+      if (seenMath.has(key)) return;
+      seenMath.add(key);
+      entries.push({ math: normalizeMathSource(token.value), display: token.type === "display-math" });
+    }
     (Array.isArray(formulas) ? formulas : []).forEach(function (formula) {
       var source = String(formula == null ? "" : formula).trim();
       if (!source) return;
-      if (/^\$[^$\n]+\$$/.test(source)) {
-        entries.push(source);
-        return;
-      }
-      var found = false;
-      source.replace(/\$([^$\n]+)\$/g, function (_match, math) {
-        entries.push("$" + math + "$");
-        found = true;
-        return _match;
+      var tokens = flattenedTokens(source);
+      var mathTokens = tokens.filter(isMathToken);
+      var hasDescription = tokens.some(function (token) {
+        return token.type === "text" && /[^\s,，;；、。:.：]/.test(token.value);
       });
-      if (!found && source.length <= 140 && /[=<>≤≥∑√^_]|\\(?:frac|sum|sqrt|times|cdot)/.test(source)) {
-        entries.push(source);
+      if (mathTokens.length && !hasDescription) {
+        mathTokens.forEach(addMath);
+      } else {
+        var bareMath = bareMathSource(source);
+        if (bareMath) {
+          addMath({ type: "inline-math", value: bareMath.source });
+          return;
+        }
+        // Keep labels, conditions and units together with their formulas.
+        if (!seenText.has(source)) {
+          seenText.add(source);
+          entries.push({ text: source });
+        }
+        mathTokens.forEach(function (token) { seenMath.add(formulaKey(token.value)); });
       }
     });
-    return [...new Set(entries)];
+    var describedMath = new Set();
+    entries.forEach(function (entry) {
+      if (entry.text == null) return;
+      flattenedTokens(entry.text).filter(isMathToken).forEach(function (token) {
+        describedMath.add(formulaKey(token.value));
+      });
+    });
+    return entries.filter(function (entry) {
+      return entry.math == null || !describedMath.has(formulaKey(entry.math));
+    });
+  }
+
+  function isMathToken(token) {
+    return token.type === "inline-math" || token.type === "display-math";
+  }
+
+  function flattenedTokens(value) {
+    var bareMath = bareMathSource(value);
+    if (bareMath) return [{ type: "inline-math", value: bareMath.source }];
+    return tokenizeRichText(value).flatMap(function (token) {
+      return token.type === "strong" ? flattenedTokens(token.value) : [token];
+    });
+  }
+
+  function formulaKey(value) {
+    // Token boundaries matter: "\\alpha x" must not collapse to "\\alphax".
+    // Preserve spaces inside text commands while ignoring ordinary TeX whitespace.
+    var source = normalizeMathSource(value).replace(/\\(?:left|right)(?![A-Za-z])/g, "");
+    return (source.match(/\\(?:text|operatorname)\s*\{[^{}]*\}|\\[A-Za-z]+|\\.|[^\s]/g) || []).join("\u001f");
   }
 
   function formulaBlock(title, formulas) {
@@ -225,13 +347,25 @@
     return (
       '<div class="formula-block">' +
         "<span>" + escapeHtml(title) + "</span>" +
-        entries.map(function (formula) {
-          var source = String(formula == null ? "" : formula).trim();
-          var pureMath = source.match(/^\$([^$\n]+)\$$/);
-          return "<code>" + (pureMath ? renderMath(pureMath[1]) : renderRichText(source)) + "</code>";
+        entries.map(function (entry) {
+          return "<div class=\"formula-entry\">" +
+            (entry.math != null ? renderMath(entry.math, entry.display) : renderRichText(entry.text)) +
+          "</div>";
         }).join("") +
       "</div>"
     );
+  }
+
+  function combinedFormulaEntries(primary, supportingText) {
+    var formulas = Array.isArray(primary) ? primary.slice() : [];
+    var texts = Array.isArray(supportingText) ? supportingText : [supportingText];
+    texts.forEach(function (text) {
+      flattenedTokens(text).forEach(function (token) {
+        if (token.type === "inline-math") formulas.push("$" + token.value + "$");
+        if (token.type === "display-math") formulas.push("\\[" + token.value + "\\]");
+      });
+    });
+    return formulas;
   }
 
   function renderNavigation() {
@@ -365,7 +499,7 @@
           '<div class="feedback-title"><strong>' + (feedback.correct ? "回答正确" : "本题答错") + "</strong><span>正确答案：" +
             (feedback.answer || []).map(escapeHtml).join("、") + "</span></div>" +
           "<p>" + renderRichText(feedback.explanation) + "</p>" +
-          formulaBlock("计算 / 推导公式", feedback.solutionFormulas) +
+          formulaBlock("计算 / 推导公式", combinedFormulaEntries(feedback.solutionFormulas, feedback.explanation)) +
           (feedback.reviewNote ? '<div class="review-note">待复核说明：' + escapeHtml(feedback.reviewNote) + "</div>" : "") +
         "</div>"
       );
@@ -374,7 +508,10 @@
     var current = Math.min(number(session.answered, 0) + 1, number(session.total, 0));
     var accuracy = number(session.accuracy, 0).toFixed(1);
     var countdown = number(session.answered, 0) % 10 === 0 ? 10 : 10 - (number(session.answered, 0) % 10);
-    var promptFormulas = Array.isArray(question.prompt_formulas) ? question.prompt_formulas : [];
+    var promptFormulas = combinedFormulaEntries(question.prompt_formulas, [
+      question.stem,
+      ...(question.options || []).map(function (option) { return option.text; })
+    ]);
 
     return (
       '<div class="practice-layout">' +
@@ -790,6 +927,19 @@
     if (tab === "mistakes") await loadMistakes();
   }
 
+  root.AITheoryMath = {
+    combinedFormulaEntries: combinedFormulaEntries,
+    formulaEntries: formulaEntries,
+    flattenedTokens: flattenedTokens,
+    formulaKey: formulaKey,
+    normalizeMathSource: normalizeMathSource,
+    renderMath: renderMath,
+    renderRichText: renderRichText,
+    tokenizeRichText: tokenizeRichText
+  };
+
+  if (!app || typeof document === "undefined") return;
+
   app.addEventListener("click", function (event) {
     var target = event.target instanceof Element ? event.target.closest("[data-action]") : null;
     if (!target || target.hasAttribute("disabled")) return;
@@ -849,4 +999,4 @@
   });
 
   void loadCatalog();
-}());
+}(typeof window !== "undefined" ? window : globalThis));

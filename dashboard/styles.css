@@ -102,7 +102,7 @@ button:focus-visible, select:focus-visible, a:focus-visible {
 .ghost-button { border: 1px solid var(--line); border-radius: 10px; padding: 9px 13px; background: rgba(255,255,255,.38); cursor: pointer; font-size: 12px; font-weight: 800; }
 
 .practice-layout { display: grid; grid-template-columns: minmax(0, 1fr) 285px; gap: 20px; align-items: start; }
-.question-card { padding: 30px; }
+.question-card { min-width: 0; padding: 30px; }
 .question-topline { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .question-topline > div { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .question-topline > strong { font-family: ui-monospace, monospace; font-size: 13px; }
@@ -114,26 +114,34 @@ button:focus-visible, select:focus-visible, a:focus-visible {
 .question-meta { display: flex; gap: 14px; color: #71817a; font-size: 11px; }
 .question-meta span + span::before { content: "·"; margin-right: 14px; }
 .question-card h2 { margin: 22px 0 26px; font-family: Georgia, "Noto Serif SC", serif; font-size: clamp(24px, 3vw, 34px); font-weight: 500; line-height: 1.55; white-space: pre-line; }
-.math-inline { display: inline-block; margin: 0 .08em; padding: .02em .18em; border-radius: .28em; color: #183c34; background: rgba(13,122,97,.07); font-family: "Cambria Math", Cambria, "Times New Roman", serif; font-weight: 500; white-space: nowrap; letter-spacing: .01em; }
+.math-inline, .katex { color: #183c34; font-weight: 500; }
+.math-inline { display: inline-block; margin: 0 .08em; padding: .02em .18em; border-radius: .28em; background: rgba(13,122,97,.07); font-family: "Cambria Math", Cambria, "Times New Roman", serif; white-space: nowrap; letter-spacing: .01em; }
 .math-inline sup, .math-inline sub { font-size: .72em; line-height: 0; }
-.question-card h2 .math-inline { color: var(--green); background: rgba(13,122,97,.08); }
+.math-fallback { max-width: 100%; overflow-x: auto; vertical-align: middle; }
+.math-rendered { display: inline-block; max-width: 100%; padding: .3em 0; overflow-x: auto; overflow-y: hidden; vertical-align: middle; white-space: normal; }
+.math-display { display: block; margin: 12px 0; overflow-x: auto; overflow-y: hidden; }
+.math-display .katex-display { margin: .35em 0; text-align: left; }
+.question-card h2 .math-inline, .question-card h2 .katex { color: var(--green); }
 .options { display: grid; gap: 10px; }
-.option { width: 100%; min-height: 64px; display: grid; grid-template-columns: 38px 1fr 24px; align-items: center; gap: 12px; padding: 12px 16px; text-align: left; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.46); cursor: pointer; transition: border .18s, transform .18s, background .18s; }
+.option { width: 100%; min-width: 0; min-height: 64px; display: grid; grid-template-columns: 38px minmax(0, 1fr) 24px; align-items: center; gap: 12px; padding: 12px 16px; text-align: left; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.46); cursor: pointer; transition: border .18s, transform .18s, background .18s; }
 .option:hover:not(:disabled) { border-color: rgba(13,122,97,.5); transform: translateX(3px); }
-.option b { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; background: rgba(20,34,31,.06); font-family: Georgia, serif; font-size: 15px; }
-.option span { line-height: 1.55; white-space: pre-line; }
-.option i { text-align: center; font-style: normal; font-weight: 900; }
+.option > b { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; background: rgba(20,34,31,.06); font-family: Georgia, serif; font-size: 15px; }
+.option > span { min-width: 0; line-height: 1.55; white-space: pre-line; overflow-wrap: anywhere; }
+.option > i { text-align: center; font-style: normal; font-weight: 900; }
 .option.selected { border-color: var(--violet); background: rgba(116,85,217,.07); box-shadow: inset 0 0 0 1px rgba(116,85,217,.3); }
-.option.selected b { color: #fff; background: var(--violet); }
+.option.selected > b { color: #fff; background: var(--violet); }
 .option.correct { border-color: var(--green); background: rgba(13,122,97,.08); }
-.option.correct b { color: #fff; background: var(--green); }
+.option.correct > b { color: #fff; background: var(--green); }
 .option.wrong { border-color: var(--red); background: rgba(200,76,70,.07); }
-.option.wrong b { color: #fff; background: var(--red); }
+.option.wrong > b { color: #fff; background: var(--red); }
 .option:disabled { cursor: default; }
 .formula-block { margin: 0 0 22px; padding: 14px; border-left: 3px solid var(--amber); border-radius: 0 10px 10px 0; background: rgba(180,124,32,.075); overflow: auto; }
 .formula-block > span { display: block; margin-bottom: 8px; color: #806226; font-size: 10px; font-weight: 900; letter-spacing: .12em; }
-.formula-block code { display: block; padding: 5px 0; color: #4d3a17; font-family: "Cambria Math", Cambria, "Times New Roman", serif; font-size: 14px; line-height: 1.65; white-space: pre-wrap; word-break: break-word; }
-.formula-block code .math-inline { margin: 0; padding: 0; color: inherit; background: transparent; font-size: 1.04em; }
+.formula-entry { min-width: 0; padding: 6px 0; color: #4d3a17; font-size: 14px; line-height: 1.65; white-space: pre-line; overflow-wrap: anywhere; }
+.formula-entry + .formula-entry { border-top: 1px solid rgba(128,98,38,.1); }
+.formula-entry .math-inline { margin: 0; padding: 0; color: inherit; background: transparent; font-size: 1.04em; }
+.formula-entry .katex-display { margin: .2em 0; text-align: left; }
+.formula-entry .katex { color: inherit; font-size: 1.04em; }
 .feedback { margin-top: 22px; padding: 20px; border-radius: 16px; border: 1px solid; }
 .feedback.pass { border-color: rgba(13,122,97,.28); background: rgba(13,122,97,.06); }
 .feedback.fail { border-color: rgba(200,76,70,.28); background: rgba(200,76,70,.055); }
@@ -259,7 +267,7 @@ footer { min-height: 65px; display: flex; justify-content: space-between; gap: 2
   .question-card h2 { font-size: 23px; }
   .question-meta { flex-wrap: wrap; gap: 5px 10px; }
   .question-meta span + span::before { margin-right: 10px; }
-  .option { grid-template-columns: 34px 1fr 18px; padding: 11px; }
+  .option { grid-template-columns: 34px minmax(0, 1fr) 18px; padding: 11px; }
   .question-actions, .feedback-title, .section-heading.row { align-items: stretch; flex-direction: column; }
   .question-actions .primary-action { width: 100%; }
   .mistake-list { grid-template-columns: 1fr; }

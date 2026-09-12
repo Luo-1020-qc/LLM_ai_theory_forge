@@ -77,6 +77,8 @@ test("local server supports a complete ten-question practice round", { timeout: 
     assert.match(pageResponse.headers.get("content-type") ?? "", /^text\/html\b/i);
     const page = await pageResponse.text();
     assert.match(page, /AI Theory Forge/);
+    assert.match(page, /href="\/vendor\/katex\/katex\.min\.css"/);
+    assert.match(page, /src="\/vendor\/katex\/katex\.min\.js"/);
     assert.match(page, /href="\/styles\.css"/);
     assert.match(page, /src="\/app\.js"/);
 
@@ -84,8 +86,23 @@ test("local server supports a complete ten-question practice round", { timeout: 
     assert.equal(clientResponse.status, 200);
     const client = await clientResponse.text();
     assert.match(client, /每十题/);
-    assert.match(client, /function renderInlineMath/);
+    assert.match(client, /function tokenizeRichText/);
+    assert.match(client, /function combinedFormulaEntries/);
     assert.match(client, /function renderRichText/);
+
+    const katexResponse = await fetch(`${baseUrl}/vendor/katex/katex.min.js`);
+    assert.equal(katexResponse.status, 200);
+    assert.match(katexResponse.headers.get("content-type") ?? "", /^text\/javascript\b/i);
+    assert.ok((await katexResponse.arrayBuffer()).byteLength > 200_000);
+
+    const katexCssResponse = await fetch(`${baseUrl}/vendor/katex/katex.min.css`);
+    assert.equal(katexCssResponse.status, 200);
+    assert.match(await katexCssResponse.text(), /KaTeX_Main-Regular\.woff2/);
+
+    const katexFontResponse = await fetch(`${baseUrl}/vendor/katex/fonts/KaTeX_Main-Regular.woff2`);
+    assert.equal(katexFontResponse.status, 200);
+    assert.equal(katexFontResponse.headers.get("content-type"), "font/woff2");
+    assert.ok((await katexFontResponse.arrayBuffer()).byteLength > 20_000);
 
     const stylesResponse = await fetch(`${baseUrl}/styles.css`);
     assert.equal(stylesResponse.status, 200);
@@ -99,6 +116,16 @@ test("local server supports a complete ten-question practice round", { timeout: 
     const reinforcementBank = catalog.sources.find((source) => source.id === "AIFORGE-S01");
     assert.equal(reinforcementBank.parsed_choice_count, 20);
     assert.equal(JSON.stringify(catalog).match(new RegExp(`${String.fromCharCode(21326, 20026)}|hua${"wei"}`, "gi")), null);
+
+    const formulaQuestion = await json(`${baseUrl}/api/quiz/start`, {
+      method: "POST",
+      body: JSON.stringify({ count: 10, mode: "random", topic: "机器学习—决策树/信息增益" }),
+    });
+    assert.equal(formulaQuestion.question.id, "AIFORGE-S01-Q010");
+    assert.deepEqual(formulaQuestion.question.prompt_formulas, [
+      "$H(Y)=-\\sum_k p_k\\log_2p_k$",
+      "$IG=H(Y)-H(Y\\mid X)$",
+    ]);
 
     const started = await json(`${baseUrl}/api/quiz/start`, {
       method: "POST",
@@ -173,7 +200,7 @@ test("local server supports a complete ten-question practice round", { timeout: 
     const stats = await json(`${baseUrl}/api/stats`);
     assert.equal(stats.totals.attempts, 11);
     assert.equal(stats.totals.correct, 10);
-    assert.equal(stats.totals.sessions, 2);
+    assert.equal(stats.totals.sessions, 3);
     assert.equal(stats.rounds.length, 1);
 
     const cssResponse = await fetch(`${baseUrl}/styles.css`);

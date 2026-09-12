@@ -175,7 +175,7 @@
       "difficulty": "中等",
       "is_calculation": false,
       "prompt_formulas": ["$\\hat m_t=m_t/(1-\\beta_1^t)$", "$\\hat v_t=v_t/(1-\\beta_2^t)$"],
-      "solution_formulas": [],
+      "solution_formulas": ["$\\hat m_t=m_t/(1-\\beta_1^t)$", "$\\hat v_t=v_t/(1-\\beta_2^t)$"],
       "review_status": "usable",
       "review_note": "与已有 AdamW 定义题错位，考察状态含义和偏差修正。"
     },
@@ -322,7 +322,7 @@
       "difficulty": "简单",
       "is_calculation": false,
       "prompt_formulas": [],
-      "solution_formulas": [],
+      "solution_formulas": ["$h_t$", "$c_t$"],
       "review_status": "usable",
       "review_note": "补充现有题库未直接覆盖的 GRU 对比。"
     },
@@ -385,7 +385,7 @@
       "difficulty": "中等",
       "is_calculation": false,
       "prompt_formulas": ["$y=\\gamma\\hat x+\\beta$"],
-      "solution_formulas": [],
+      "solution_formulas": ["$y=\\gamma\\hat x+\\beta$"],
       "review_status": "usable",
       "review_note": "补足现有题库对归一化统计轴与训练/推理差异的覆盖。"
     },
@@ -406,7 +406,7 @@
       "difficulty": "中等",
       "is_calculation": false,
       "prompt_formulas": ["$\\mathrm{Var}(W)\\approx2/fan_{in}$"],
-      "solution_formulas": [],
+      "solution_formulas": ["$\\mathrm{Var}(W)\\approx2/fan_{in}$"],
       "review_status": "usable",
       "review_note": "依据激活函数章节的初始化建议重组。"
     },
@@ -427,7 +427,7 @@
       "difficulty": "中等",
       "is_calculation": false,
       "prompt_formulas": ["$g' = g\\cdot\\min(1,\\tau/\\lVert g\\rVert)$"],
-      "solution_formulas": [],
+      "solution_formulas": ["$g' = g\\cdot\\min(1,\\tau/\\lVert g\\rVert)$"],
       "review_status": "usable",
       "review_note": "联合考察爆炸梯度与低精度下溢，概念边界已核对。"
     }

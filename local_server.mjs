@@ -838,7 +838,9 @@ function serveStatic(response, pathname) {
   response.writeHead(200, {
     "Content-Type": MIME_TYPES.get(extname(target).toLowerCase()) ?? "application/octet-stream",
     "Content-Length": content.byteLength,
-    "Cache-Control": extname(target).toLowerCase() === ".html" ? "no-cache" : "public, max-age=3600",
+    "Cache-Control": [".html", ".js", ".css"].includes(extname(target).toLowerCase())
+      ? "no-cache"
+      : "public, max-age=31536000, immutable",
     "X-Content-Type-Options": "nosniff",
   });
   response.end(content);

@@ -11,5 +11,6 @@
 
 # 临时文件
 /work/
+/node_modules/
 *.log
 .DS_Store

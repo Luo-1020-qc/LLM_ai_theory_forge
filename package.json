@@ -10,8 +10,11 @@
     "start": "node local_server.mjs",
     "dev": "node local_server.mjs",
     "build": "node --check local_server.mjs && node --check dashboard/app.js",
-    "test": "npm run build && node --test tests/local-server.test.mjs",
+    "test": "npm run build && node database/formula-audit.mjs && node --test tests/*.test.mjs",
     "database:build": "node database/build-database.mjs",
-    "database:audit": "node database/audit-new-bank.mjs"
+    "database:audit": "node database/audit-new-bank.mjs",
+    "database:formula-audit": "node database/formula-audit.mjs",
+    "vendor:katex": "node scripts/sync-katex-assets.mjs",
+    "sync:check": "node scripts/check-sync.mjs"
   }
 }

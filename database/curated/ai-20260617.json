@@ -159,7 +159,7 @@
       "id": "AIEXAM-20260617-Q005",
       "source_number": 5,
       "type": "single",
-      "stem": "混淆矩阵为 $\\begin{bmatrix}50 & 10\\5 & 35\\end{bmatrix}$，精确率是？",
+      "stem": "混淆矩阵为 $\\begin{bmatrix}50 & 10\\\\ 5 & 35\\end{bmatrix}$，精确率是？",
       "options": [
         {
           "label": "A",
@@ -186,7 +186,7 @@
       "difficulty": "未标注",
       "is_calculation": false,
       "prompt_formulas": [
-        "$\\begin{bmatrix}50 & 10\\5 & 35\\end{bmatrix}$"
+        "$\\begin{bmatrix}50 & 10\\\\ 5 & 35\\end{bmatrix}$"
       ],
       "solution_formulas": [
         "$\\text{Precision} = \\text{TP}/(\\text{TP}+\\text{FP}) = 50/(50+5) = 50/55$",
